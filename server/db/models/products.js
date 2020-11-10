@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-module.exports = db.define('products', {
+module.exports = db.define('product', {
   name: {
     type: Sequelize.ENUM('Cropped Tops', 'Crops', 'Cropped Pictures'),
     allowNull: false
