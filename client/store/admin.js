@@ -9,8 +9,8 @@ const getUsers = users => ({type: GET_USERS, users})
 //Thunk Creator
 export const fetchUsers = () => async dispatch => {
   try {
-    const res = await axios.get('/users')
-    dispatch(getUsers(res.data))
+    const {data} = await axios.get('/api/users')
+    dispatch(getUsers(data))
   } catch (err) {
     console.error(err)
   }
@@ -22,7 +22,7 @@ const initialState = {
 }
 
 //reducer
-export default function(state = initialState, action) {
+export default function admin(state = initialState, action) {
   switch (action.type) {
     case GET_USERS:
       return {...state, users: action.users}

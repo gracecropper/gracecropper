@@ -27,9 +27,9 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  accountType: {
-    type: Sequelize.ENUM(['admin', 'customer', 'engineer']),
-    defaultValue: 'customer'
+  role: {
+    type: Sequelize.ENUM(['admin', 'User', 'engineer']),
+    defaultValue: 'User'
   }
 })
 

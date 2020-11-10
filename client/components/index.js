@@ -4,8 +4,10 @@
  * having to figure out which file they belong to!
  */
 
-export {default as Home} from './home'
-
+// export {default as Home} from './home'
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+
+export {default as AllUsers} from './allusers'
+export {default as AdminHome} from './admin-home'
