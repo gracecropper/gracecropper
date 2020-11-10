@@ -1,8 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchAllProducts } from '../redux/allProducts'
-import { BrowserRouter as Router, Link, withRouter } from 'react-router-dom'
+import {fetchAllProducts} from '../redux/allProducts'
+import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 
 /**
@@ -13,10 +13,10 @@ class AllProductsDC extends React.Component {
     super()
   }
   componentDidMount() {
-    this.props.getAllProducts();
+    this.props.getAllProducts()
   }
   render() {
-    const { allProducts, loading } = this.props
+    const {allProducts, loading} = this.props
     if (loading) {
       return (
         <div>
@@ -27,29 +27,24 @@ class AllProductsDC extends React.Component {
     }
     return (
       <div>
-        { allProducts.map(elm => {
+        {allProducts.map(elm => {
           return (
             <div key={elm.id}>
               <a href="#">
                 <img src={elm.imageUrl} alt="image" />
               </a>
-              <Link to={`/singleproduct/${elm.id}`}>
-                {elm.name}
-              </Link>
+              <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
             </div>
           )
-        })
-
-        }
+        })}
       </div>
     )
   }
-
 }
 
 const mapState = state => {
   return {
-    allProducts: state.allProducts.Products,
+    allProducts: state.allProducts.products,
     loading: state.allProducts.loading
   }
 }
@@ -61,6 +56,3 @@ const mapDispatch = dispatch => {
 }
 
 export const AllProducts = connect(mapState, mapDispatch)(AllProductsDC)
-
-
-
