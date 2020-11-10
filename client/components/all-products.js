@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { fetchAllProducts } from '../redux/campuses'
+import { fetchAllProducts } from '../redux/allProducts'
 import { BrowserRouter as Router, Link, withRouter } from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 
