@@ -6,7 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BOILERMAKER</h1>
+    <h1>GraceCropper!</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -23,6 +23,11 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      <div>
+        {/* I put this outside of the ternary operator so they appear regardless of whether user is logged in or not. */}
+        <Link to="">Products</Link>
+        <Link to="">My Cart</Link>
+      </div>
     </nav>
     <hr />
   </div>
