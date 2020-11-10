@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {fetchAllProducts} from '../store/allProducts'
+import {fetchProducts} from '../store/allProducts'
 import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 
@@ -51,7 +51,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getAllProducts: () => dispatch(fetchAllProducts())
+    getAllProducts: () => dispatch(fetchProducts())
   }
 }
 

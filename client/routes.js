@@ -8,10 +8,10 @@ import {
   UserHome,
   Home,
   AllUsers,
-  SingleProduct
+  SingleProduct,
+  AllProducts
 } from './components'
 import {me} from './store'
-//import AllProducts from './all-products'
 
 /**
  * COMPONENT
@@ -32,8 +32,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/allusers" component={AllUsers} />
-        {/* <Route path = '/products' component = {AllProducts} /> */}
-        <Route exact path="/singleproduct/:id" component={SingleProduct} />
+        <Route path="/products" component={AllProducts} />
+        <Route path="/singleproduct/:id" component={SingleProduct} />
 
         {isLoggedIn && (
           <Switch>

@@ -11,8 +11,8 @@ class SingleProduct extends Component {
     }
   }
   render() {
-    const {name, imageUrl, price, description} = this.props.product
-
+    const {name, imageUrl, price, description} = this.props.product[0] || []
+    console.log('in render', name, imageUrl, price, description)
     return (
       <div>
         <h1>{name}</h1>
