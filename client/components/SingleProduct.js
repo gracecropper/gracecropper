@@ -5,7 +5,7 @@ import {fetchProduct} from '../store/singleProduct'
 class SingleProduct extends Component {
   componentDidMount() {
     try {
-      this.props.loadingProduct(this.props.match.params.productId) //productId set in our routes
+      this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
     } catch (error) {
       console.error('there was an error in componentDidMount SingleProduct')
     }
