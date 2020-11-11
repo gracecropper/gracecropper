@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Product } = require('../db/models')
+const {Product} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -9,5 +9,17 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+//route to add products
+router.post('/', async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body)
+    res.json(newProduct)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//route to
 
 module.exports = router

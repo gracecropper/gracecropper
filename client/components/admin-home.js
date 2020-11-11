@@ -14,6 +14,8 @@ export const AdminHome = props => {
       <h3>Welcome, {email}</h3>
 
       <Link to="/allusers">All Users</Link>
+
+      {/* put links to edit products//users! */}
     </div>
   )
 }
