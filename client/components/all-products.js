@@ -34,13 +34,13 @@ class AllProductsDC extends React.Component {
     //need to refactor once DB gets refactored...
     const filteredProducts = allProducts.filter(val => {
       if (this.state.selection === 'Crops') {
-        return val.name === 'Crops'
+        return val.type === 'Crops'
       }
       if (this.state.selection === 'Cropped Tops') {
-        return val.name === 'Cropped Tops'
+        return val.type === 'Cropped Tops'
       }
       if (this.state.selection === 'Cropped Pictures') {
-        return val.name === 'Cropped Pictures'
+        return val.type === 'Cropped Pictures'
       } else {
         return val
       }
