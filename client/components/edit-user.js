@@ -16,13 +16,7 @@ const EditUser = props => {
         value={props.updates.email}
       />
       <label>Role:</label>
-      <input
-        type="text"
-        name="role"
-        placeholder="Role"
-        onChange={props.handleChange}
-        value={props.updates.role}
-      />
+
       {/* <label>
                 Password:
                 </label>

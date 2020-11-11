@@ -56,7 +56,7 @@ export const fetchProducts = () => {
 export const postProducts = productInput => {
   return async dispatch => {
     try {
-      const {data} = await Axios.post('/api/products', productInput)
+      const {data} = await Axios.post('/api/allproducts', productInput)
       dispatch(addProducts(data))
     } catch (err) {
       console.log('Could not add the product', err)
@@ -84,8 +84,8 @@ const initialState = {
     type: 'Crops',
     quantity: 0,
     price: 0.0,
-    imageUrl: '/img/croptop.jpg',
-    size: null,
+    imageUrl: '',
+    size: '',
     description: ''
   }
 }
