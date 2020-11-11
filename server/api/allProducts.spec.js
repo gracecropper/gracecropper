@@ -1,14 +1,14 @@
 // NEEDS TO UPDATE THE FILE ONCE DB CREATED
 
-const { expect } = require('chai')
+const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const Products = db.model('products')
+const Product = db.model('product')
 
 describe('All products routes', () => {
   beforeEach(() => {
-    return db.sync({ force: true })
+    return db.sync({force: true})
   })
 
   describe('/api/allproducts', () => {
@@ -16,6 +16,8 @@ describe('All products routes', () => {
     beforeEach(() => {
       return Product.create({
         //
+        name: 'Crops',
+        type: 'Crops'
       })
     })
 
