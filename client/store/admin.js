@@ -6,7 +6,7 @@ const GET_USERS = 'GET_USERS'
 //Action creator
 const getUsers = users => ({type: GET_USERS, users})
 
-//Thunk Creator
+//Thunk Creator to get Users
 export const fetchUsers = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/users')
