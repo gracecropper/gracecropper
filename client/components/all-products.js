@@ -83,7 +83,7 @@ class AllProductsDC extends React.Component {
                 </a>
                 <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
 
-                {/* If the user is an admin, link to edit product page */}
+                {/* If the user is an admin, button to delete product */}
                 {role === 'Admin' ? (
                   <button
                     className="deleteProduct"
