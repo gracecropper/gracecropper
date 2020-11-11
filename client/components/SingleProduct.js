@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProduct} from '../store/singleProduct'
-
+import AddDelete from './add-delete'
 class SingleProduct extends Component {
   componentDidMount() {
     try {
@@ -19,6 +19,7 @@ class SingleProduct extends Component {
         <img src={imageUrl} />
         <p>{price}</p>
         <p>{description}</p>
+        <AddDelete product={this.props.product} />
       </div>
     )
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {fetchProducts} from '../store/allProducts'
 import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
-
+import AddDelete from './add-delete'
 /**
  * COMPONENT
  */
@@ -34,6 +34,7 @@ class AllProductsDC extends React.Component {
                 <img src={elm.imageUrl} alt="image" />
               </a>
               <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
+              <AddDelete product={elm} />
             </div>
           )
         })}
