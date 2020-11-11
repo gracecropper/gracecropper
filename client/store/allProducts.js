@@ -68,7 +68,7 @@ export const postProducts = productInput => {
 export const removeProduct = productId => {
   return async dispatch => {
     try {
-      await Axios.delete(`/api/products/${productId}`)
+      Axios.delete(`/api/singleproduct/${productId}`)
       dispatch(deleteProduct(productId))
     } catch (err) {
       console.log('Could not remove product', err)

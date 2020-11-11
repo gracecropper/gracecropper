@@ -18,7 +18,7 @@ export const AdminHome = props => {
 
       <AddProducts />
 
-      {/* put links to edit products//users! */}
+      <label>Edit Products</label>
     </div>
   )
 }

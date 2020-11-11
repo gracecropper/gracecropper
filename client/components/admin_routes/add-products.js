@@ -59,7 +59,7 @@ export class NewProductDC extends React.Component {
   }
 
   render() {
-    let newProduct = this.props.newProduct
+    let newProduct = this.props.newProduct || {}
 
     return (
       <form className="addProductsForm" onSubmit={this.addItem}>

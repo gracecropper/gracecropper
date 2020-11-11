@@ -14,3 +14,17 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+//delete product express route!
+router.delete('/:productId', async (req, res, next) => {
+  try {
+    await Product.destroy({
+      where: {
+        id: req.params.productId
+      }
+    })
+    res.status(204)
+  } catch (err) {
+    next(err)
+  }
+})
