@@ -3,11 +3,20 @@ const db = require('../db')
 
 module.exports = db.define('product', {
   name: {
+    type: Sequelize.STRING,
+    // type: Sequelize.ENUM('Cropped Tops', 'Crops', 'Cropped Pictures'),
+    allowNull: false
+  },
+  type: {
     type: Sequelize.ENUM('Cropped Tops', 'Crops', 'Cropped Pictures'),
     allowNull: false
   },
   quantity: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0,
+      max: 10000
+    }
   },
   price: {
     type: Sequelize.INTEGER //number of pennies per item

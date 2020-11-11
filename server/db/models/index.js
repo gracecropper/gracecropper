@@ -13,7 +13,9 @@ User.hasMany(Order)
 Order.belongsTo(User)
 Order.hasMany(OrderItem)
 OrderItem.belongsTo(Order)
-OrderItem.hasOne(Product)
+OrderItem.belongsTo(Product) //productId in orderItem table
+Product.hasMany(OrderItem)
+
 //Product.belongsTo(OrderItem)
 
 /**

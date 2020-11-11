@@ -2,11 +2,12 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const OrderItem = db.define('orderItem', {
-  serial: {
-    type: Sequelize.STRING
-  },
   quantity: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0,
+      max: 10000
+    }
   },
   //note: this reflects the price of one item in the cart.  multiply by quantity to get total cost of order item
   price: {

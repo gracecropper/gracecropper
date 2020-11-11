@@ -14,7 +14,8 @@ async function seed() {
 
   const products = await Promise.all([
     Product.create({
-      name: 'Cropped Tops',
+      name: 'Cabbage Crop Top',
+      type: 'Cropped Tops',
       quantity: 20,
       price: 2500,
       size: 'M',
@@ -22,14 +23,16 @@ async function seed() {
       description: 'Cream of the crop top'
     }),
     Product.create({
-      name: 'Crops',
+      name: 'Best Crops Ever',
+      type: 'Crops',
       quantity: 20,
       price: 1000,
       imageUrl: '/img/crop.jpg',
       description: 'organic and good for you'
     }),
     Product.create({
-      name: 'Cropped Pictures',
+      name: 'When in doubt, crop it out',
+      type: 'Cropped Pictures',
       quantity: 20,
       price: 1000,
       imageUrl: '/img/croppedpic.png',
@@ -48,7 +51,7 @@ async function seed() {
   //creating an order item
   const orderItems = await Promise.all([
     OrderItem.create({
-      serial: 'jkslafjkdlfa9i9954',
+      quantity: 5000,
       price: 2500
     })
   ])
@@ -56,6 +59,8 @@ async function seed() {
   await orderItems[0].setProduct(products[0])
 
   await orders[0].addToCart(orderItems[0])
+  await users[0].addOrder(orders[0])
+
   // console.log(`$${orders[0].orderTotal / 100}`)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)

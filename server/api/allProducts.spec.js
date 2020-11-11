@@ -16,7 +16,8 @@ describe('All products routes', () => {
     beforeEach(() => {
       return Product.create({
         //
-        name: 'Crops'
+        name: 'Crops',
+        type: 'Crops'
       })
     })
 
