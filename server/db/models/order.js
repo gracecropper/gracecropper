@@ -7,8 +7,8 @@ const Order = db.define('order', {
     type: Sequelize.DATE
   },
   status: {
-    type: Sequelize.ENUM('pending', 'shipped', 'delivered'),
-    defaultValue: 'pending'
+    type: Sequelize.ENUM('Pending', 'Shipped', 'Delivered', 'In User Cart'),
+    defaultValue: 'Pending'
   },
   paymentMethod: {
     type: Sequelize.ENUM('debit', 'credit', 'paypal', 'stripe')
@@ -31,6 +31,12 @@ const Order = db.define('order', {
       return Math.round(this.orderSubtotal * this.tax)
     }
   },
+  orderTotalDisplay: {
+    type: Sequelize.STRING,
+    get() {
+      return `$${(this.orderTotal / 100).toFixed(2)}`
+    }
+  },
   shippingAddress: {
     type: Sequelize.STRING
   }
@@ -39,7 +45,7 @@ const Order = db.define('order', {
 //instance method to automatically update the order total and quantity
 Order.prototype.addToCart = async function(orderItem) {
   await this.addOrderItem(orderItem)
-  this.orderSubtotal += orderItem.price
+  this.orderSubtotal += orderItem.price * orderItem.quantity
   this.quantity += orderItem.quantity
   await this.save()
 }

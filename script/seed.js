@@ -43,7 +43,7 @@ async function seed() {
   const orders = await Promise.all([
     Order.create({
       date: new Date(),
-      status: 'delivered',
+      status: 'Delivered',
       paymentMethod: 'credit',
       shippingAddress: '777 Park Place'
     })

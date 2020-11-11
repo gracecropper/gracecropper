@@ -12,6 +12,12 @@ const OrderItem = db.define('orderItem', {
   //note: this reflects the price of one item in the cart.  multiply by quantity to get total cost of order item
   price: {
     type: Sequelize.INTEGER //divide by 100 on client side
+  },
+  priceDisplay: {
+    type: Sequelize.STRING,
+    get() {
+      return `$${(this.price / 100).toFixed(2)}`
+    }
   }
 })
 
