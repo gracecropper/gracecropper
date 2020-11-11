@@ -1,12 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {} from './add-delete.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Image from 'react-bootstrap/Image'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+
 // import { addToCart } from '../store/cart'
 //need to pass in the obj product
 
@@ -37,7 +31,12 @@ class AdddeleteDC extends React.Component {
   addToCart(e) {
     try {
       e.preventDefault()
-      this.props.addToCart(this.state.quantity, this.props.product.id)
+      // if(this.props.orderId){... or create}
+      this.props.addToCart(
+        this.state.quantity,
+        this.props.product.id,
+        this.props.product.price
+      )
     } catch (err) {
       console.log('error in add to cart', err.message)
     }
@@ -60,10 +59,14 @@ class AdddeleteDC extends React.Component {
     )
   }
 }
-
+const mapState = state => {
+  return {
+    //check for orderid
+  }
+}
 const mapDispatch = dispatch => {
   return {
-    addToCart: (quantity, id) => dispatch(addToCart(quantity, id))
+    addToCart: (quantity, id) => dispatch(addToCart(quantity, id, price))
   }
 }
 
