@@ -11,26 +11,33 @@ class OrderHistory extends React.Component {
     const orders = this.props.orders || []
     return (
       <div>
-        {orders.map(order => (
-          <div className="order" key={order.id}>
-            <p>Date: {order.date}</p>
-            <p>Status: {order.status}</p>
-            <p>Quantity Ordered: {order.quantity}</p>
-            <p>Order Total: {order.orderTotalDisplay}</p>
-            <p>Shipped To: {order.shippingAddress}</p>
-            <ul>
-              {order.orderItems.map(orderItem => (
-                <li key={orderItem.id}>
-                  <p>
-                    {`${orderItem.quantity} ${orderItem.product.name} - 
+        {orders.length ? (
+          orders.map(order => (
+            <div className="order" key={order.id}>
+              <p>Date: {order.date}</p>
+              <p>Status: {order.status}</p>
+              <p>Quantity Ordered: {order.quantity}</p>
+              <p>Order Total: {order.orderTotalDisplay}</p>
+              <p>Shipped To: {order.shippingAddress}</p>
+              <ul>
+                {order.orderItems.map(orderItem => (
+                  <li key={orderItem.id}>
+                    <p>
+                      {`${orderItem.quantity} ${orderItem.product.name} - 
                     ${orderItem.priceDisplay} per item`}
-                  </p>
-                  <img src={orderItem.product.imageUrl} height="100px" />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+                    </p>
+                    <img src={orderItem.product.imageUrl} height="100px" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <p>
+            No Orders Yet...We recommend placing some!{' '}
+            <img src="/img/sadCorn.png" />
+          </p>
+        )}
       </div>
     )
   }
