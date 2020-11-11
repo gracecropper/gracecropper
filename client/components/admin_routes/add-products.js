@@ -48,9 +48,7 @@ export class NewProductDC extends React.Component {
       //reset the form
       this.props.writeProduct({
         name: '',
-        type: 'Crops',
-        quantity: 0,
-        price: 0.0,
+        type: '',
         imageUrl: '',
         size: null,
         description: ''
@@ -90,16 +88,13 @@ export class NewProductDC extends React.Component {
           onChange={this.handleChange}
           name="type"
         >
+          <option value="" disabled>
+            Type
+          </option>
           <option value="Cropped Tops">Cropped Tops</option>
           <option value="Crops">Crops</option>
           <option value="Cropped Pictures">Cropped Pictures</option>
         </select>
-
-        {/* Image Upload */}
-
-        {/* need to update this!! */}
-        <label>Image:</label>
-        <input type="file" name="imageUrl" onChange={this.handleChange} />
 
         {/* Description */}
         <label>Description:</label>

@@ -81,11 +81,8 @@ const initialState = {
   loading: true,
   newProduct: {
     name: '',
-    type: 'Crops',
-    quantity: 0,
-    price: 0.0,
+    type: '',
     imageUrl: '',
-    size: '',
     description: ''
   }
 }
