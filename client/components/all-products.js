@@ -26,6 +26,7 @@ class AllProductsDC extends React.Component {
     this.setState({selection: event.target.value})
   }
 
+
   handleDelete(id) {
     this.props.deleteProduct(id)
   }
@@ -34,6 +35,7 @@ class AllProductsDC extends React.Component {
     const loading = this.props.loading
     const allProducts = this.props.allProducts || []
     const role = this.props.role || 'User'
+
 
     //filtering products
     //need to refactor once DB gets refactored...
@@ -83,6 +85,7 @@ class AllProductsDC extends React.Component {
                 </a>
                 <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
 
+
                 {/* If the user is an admin, button to delete product */}
                 {role === 'Admin' ? (
                   <button
@@ -94,6 +97,7 @@ class AllProductsDC extends React.Component {
                 ) : (
                   ''
                 )}
+
               </div>
             )
           })}
