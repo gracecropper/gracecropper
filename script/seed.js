@@ -17,7 +17,7 @@ async function seed() {
       name: 'Cabbage Crop Top',
       type: 'Cropped Tops',
       quantity: 20,
-      price: 2500,
+      price: 25.0,
       size: 'M',
       imageUrl: '/img/croptop.jpg',
       description: 'Cream of the crop top'
@@ -26,7 +26,7 @@ async function seed() {
       name: 'Best Crops Ever',
       type: 'Crops',
       quantity: 20,
-      price: 1000,
+      price: 10.0,
       imageUrl: '/img/crop.jpg',
       description: 'organic and good for you'
     }),
@@ -34,7 +34,7 @@ async function seed() {
       name: 'When in doubt, crop it out',
       type: 'Cropped Pictures',
       quantity: 20,
-      price: 1000,
+      price: 10.0,
       imageUrl: '/img/croppedpic.png',
       description: 'get that photobomber outta your life!'
     })
