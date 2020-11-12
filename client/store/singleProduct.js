@@ -17,7 +17,9 @@ const initialState = {
     type: '',
     imageUrl: '',
     size: '',
-    description: ''
+    description: '',
+    quantity: 0,
+    price: 0
   }
 }
 

@@ -6,7 +6,6 @@ const EditProducts = props => {
       <label htmlFor="Update Product">
         <h2>Update Product</h2>
       </label>
-
       {/* Name of Product */}
       <label>Name:</label>
       <input
@@ -16,7 +15,6 @@ const EditProducts = props => {
         onChange={props.handleChange}
         value={props.updatedProduct.name}
       />
-
       {/* Product Type */}
       <label>Product Type:</label>
       {/* select dropdown here */}
@@ -25,17 +23,38 @@ const EditProducts = props => {
         onChange={props.handleChange}
         name="type"
       >
+        <option value="" disabled>
+          Type
+        </option>
         <option value="Cropped Tops">Cropped Tops</option>
         <option value="Crops">Crops</option>
         <option value="Cropped Pictures">Cropped Pictures</option>
       </select>
-
+      {/* Quantity of Product */}
+      <label>Quantity:</label>
+      <input
+        type="number"
+        pattern="[0-9]*"
+        inputMode="numeric"
+        onChange={props.handleChange}
+        name="quantity"
+        value={props.updatedProduct.quantity}
+      />
+      {/* Price of Product */}
+      <label>Price:</label>
+      $<input
+        type="number"
+        pattern="[0-9]*"
+        inputMode="numeric"
+        onChange={props.handleChange}
+        name="price"
+        value={props.updatedProduct.price}
+        placeholder={props.price}
+      />
       {/* Image Upload */}
-
       {/* need to update props!! */}
       <label>Image:</label>
       <input type="file" name="imageUrl" onChange={props.handleChange} />
-
       {/* Description */}
       <label>Description:</label>
       <textarea

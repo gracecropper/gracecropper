@@ -29,10 +29,12 @@ class SingleProduct extends Component {
     //resets the form
     this.props.writeProduct({
       name: '',
-      type: 'Crops',
+      type: '',
       imageUrl: '',
       size: '',
-      description: ''
+      description: '',
+      quantity: 0,
+      price: 0
     })
   }
 
@@ -63,6 +65,7 @@ class SingleProduct extends Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             updatedProduct={this.props.updatedProduct}
+            price={price}
           />
         ) : (
           ''
