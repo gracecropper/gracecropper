@@ -32,6 +32,9 @@ class SingleUser extends Component {
       })
     }
   }
+  componentWillUnmount() {
+    this.props.me()
+  }
   onChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
