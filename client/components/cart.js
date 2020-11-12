@@ -55,20 +55,19 @@ export class CartDC extends React.Component {
         productId: 1
       }
     ]
-    let order = [
-      {
-        id: 1,
-        date: 2020 - 11 - 11,
-        status: 'deliverd',
-        paymentMethod: 'Credential',
-        quantity: 10,
-        orderSubtotal: 2500,
-        tax: 1.08,
-        orderTotal: null,
-        shippingAddress: '777 park place',
-        userId: 1
-      }
-    ]
+    const order = {
+      id: 1,
+      date: 2020 - 11 - 11,
+      status: 'deliverd',
+      paymentMethod: 'Credential',
+      quantity: 10,
+      orderSubtotal: 3500,
+      tax: 1.08,
+      orderTotal: null,
+      shippingAddress: '777 park place',
+      userId: 1
+    }
+
     return (
       <div className="shopping-cart">
         <h1>Shopping Cart</h1>
@@ -93,7 +92,7 @@ export class CartDC extends React.Component {
                   >
                     +
                   </button>
-                  <p className="textblock">The quantity: {item.quantity}</p>
+                  <p className="textblock">The quantity: {order.quantity}</p>
                   <button
                     className="button"
                     type="button"
@@ -119,7 +118,7 @@ export class CartDC extends React.Component {
           })
         )}
         <p>Your order total is:</p>
-        <p>${order[0].orderSubtotal}</p>
+        <p>${order.orderSubtotal}</p>
         <Link to="/home">Check Out</Link>
         <button
           className="button"
