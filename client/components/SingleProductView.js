@@ -1,26 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProduct} from '../store/singleProduct'
-import AddDelete from './add-delete'
 import './SingleProductView.css'
-class SingleProduct extends Component {
+class SingleProductView extends Component {
   componentDidMount() {
     try {
-      this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      this.props.loadingProduct(this.props.id)
     } catch (error) {
       console.error('there was an error in componentDidMount SingleProduct')
     }
   }
   render() {
-    const {name, imageUrl, price, description} = this.props.product[0] || []
-
+    const {name, imageUrl, price} = this.props.product.singleProduct || []
+    console.log(this.props.product)
     return (
-      <div>
-        <h1>{name}</h1>
-        <img src={imageUrl} />
-        <p>{price}</p>
-        <p>{description}</p>
-        <AddDelete product={this.props.product} />
+      <div className="image">
+        <span>{name}</span>
+        <img src={imageUrl} className="image" />
+        <p className="price">Price per item: {price}</p>
       </div>
     )
   }
@@ -33,4 +30,4 @@ const mapDispatch = dispatch => ({
   loadingProduct: id => dispatch(fetchProduct(id))
 })
 
-export default connect(mapState, mapDispatch)(SingleProduct)
+export default connect(mapState, mapDispatch)(SingleProductView)

@@ -10,7 +10,6 @@ module.exports = db.define('product', {
     validate: {
       notEmpty: true
     }
-
   },
   type: {
     type: Sequelize.ENUM('Cropped Tops', 'Crops', 'Cropped Pictures'),
@@ -27,7 +26,6 @@ module.exports = db.define('product', {
     type: Sequelize.INTEGER //number of pennies per item
   },
   imageUrl: {
-
     type: Sequelize.TEXT,
     defaultValue: '/img/cornPic.jpg'
 

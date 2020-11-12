@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {noExtendLeft} from 'sequelize/types/lib/operators'
 /**
  * ACTION TYPES
  */
