@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+// size: you can create mutliple rows in the product table for each size. Or add it to order item (the latter makes the most sense)
 module.exports = db.define('product', {
   name: {
     type: Sequelize.STRING,

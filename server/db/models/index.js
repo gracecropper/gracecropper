@@ -9,6 +9,9 @@ const OrderItem = require('./orderItem')
  *
  *    BlogPost.belongsTo(User)
  */
+
+// what should the relationship be between Order, OrderItem, User, and Product?
+// Order and Products are many-to-many -> in sequelize "belongsToMany"
 User.hasMany(Order)
 Order.belongsTo(User)
 Order.hasMany(OrderItem)

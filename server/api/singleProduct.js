@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {Product} = require('../db/models')
 module.exports = router
 
+// consider changing to findByPk?
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findOne({
@@ -28,6 +29,8 @@ router.delete('/:productId', async (req, res, next) => {
     next(err)
   }
 })
+
+// What if we destructured on line 38?
 
 //edit product route
 router.put('/:productId', async (req, res, next) => {
