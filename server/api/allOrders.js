@@ -5,7 +5,7 @@ const {User, Product, OrderItem, Order} = require('../db/models')
 
 router.get('/myHistory', async (req, res, next) => {
   try {
-    if (!req.user.id) {
+    if (!req.user) {
       res.sendStatus(401)
       return
     }

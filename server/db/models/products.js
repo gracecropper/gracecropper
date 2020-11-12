@@ -5,7 +5,11 @@ module.exports = db.define('product', {
   name: {
     type: Sequelize.STRING,
     // type: Sequelize.ENUM('Cropped Tops', 'Crops', 'Cropped Pictures'),
-    allowNull: false
+
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   type: {
     type: Sequelize.ENUM('Cropped Tops', 'Crops', 'Cropped Pictures'),
@@ -22,7 +26,9 @@ module.exports = db.define('product', {
     type: Sequelize.INTEGER //number of pennies per item
   },
   imageUrl: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: '/img/cornPic.jpg'
+
     // get() {
     //   switch (this.name) {
     //     case 'Cropped Tops':

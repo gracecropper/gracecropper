@@ -33,6 +33,10 @@ const User = db.define('user', {
   }
 })
 
+User.prototype.isAdmin = function() {
+  return this.role === 'Admin'
+}
+
 module.exports = User
 
 /**

@@ -12,4 +12,9 @@ export {AllProducts} from './all-products'
 export {default as SingleProduct} from './SingleProduct'
 export {default as AllUsers} from './allusers'
 export {default as AdminHome} from './admin-home'
+export {default as Home} from './home'
 export {default as OrderHistory} from './orderHistory'
+
+export {ErrorPage} from './error-page'
+
+export {default as AddProducts} from './admin_routes/add-products'
