@@ -12,7 +12,8 @@ class SingleProduct extends Component {
     }
   }
   render() {
-    const {name, imageUrl, price, description} = this.props.product[0] || []
+    const {name, imageUrl, price, description} =
+      this.props.product.singleProduct || []
 
     return (
       <div>
@@ -20,7 +21,7 @@ class SingleProduct extends Component {
         <img src={imageUrl} />
         <p>{price}</p>
         <p>{description}</p>
-        <AddDelete product={this.props.product} />
+        <AddDelete product={this.props.product.singleProduct} />
       </div>
     )
   }

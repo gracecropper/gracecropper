@@ -7,8 +7,9 @@ import {
   increaseQty,
   decreaseQty,
   deleteOrderItem
+  // , emptyCart, getOrder
 } from '../store/cart'
-// emptyCart, getOrder
+
 import SingleProductView from './SingleProductView'
 
 export class CartDC extends React.Component {
@@ -20,59 +21,31 @@ export class CartDC extends React.Component {
     this.emptyCart = this.emptyCart(this)
   }
   componentDidMount() {
-    // loadproducts()
-    // getOrders()// is it tied to userId?
+    loadproducts()
+    getOrders() // is it tied to userId?
   }
   handleMinus(id) {
     console.log('minus item')
-    // e.preventDefault()
-    // this.props.increaseQuant(id)
+    e.preventDefault()
+    this.props.increaseQuant(id)
   }
   handlePlus(id) {
     console.log('plus item')
-    // e.preventDefault()
-    // this.props.decreaseQuant(id)
+    e.preventDefault()
+    this.props.decreaseQuant(id)
   }
   deleteItem(id) {
     console.log('delete item')
-    // e.preventDefault()
-    // this.props.deleteOrderItem(id)
+    e.preventDefault()
+    this.props.deleteOrderItem(id)
   }
   emptyCart(id) {
     console.log('empty cart')
-    // e.preventDefault()
-    // this.props.emptyCart(id)
+    e.preventDefault()
+    this.props.emptyCart(id)
   }
   render() {
     // const { cartItems, order } = this.props
-    const cartItems = [
-      {
-        id: 1,
-        quantity: 5000,
-        price: 2500,
-        orderId: 1,
-        productId: 1
-      },
-      {
-        id: 2,
-        quantity: 1,
-        price: 2,
-        orderId: 1,
-        productId: 1
-      }
-    ]
-    const order = {
-      id: 1,
-      date: 2020 - 11 - 11,
-      status: 'deliverd',
-      paymentMethod: 'Credential',
-      quantity: 10,
-      orderSubtotal: 3500,
-      tax: 1.08,
-      orderTotal: null,
-      shippingAddress: '777 park place',
-      userId: 1
-    }
 
     return (
       <div className="shopping-cart">
@@ -148,7 +121,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadproducts: () => dispatch(getAllCartItems()),
-    // loadOrder: () => dispatch(getOrder()),
+    loadOrder: () => dispatch(getOrder()),
     increaseQuant: id => dispatch(increaseQty(id)),
     decreaseQuant: id => dispatch(decreaseQty(id)),
     deleteOrderItem: id => dispatch(deleteOrderItem(id))
@@ -156,3 +129,32 @@ const mapDispatch = dispatch => {
   }
 }
 export default connect(mapState, mapDispatch)(CartDC)
+
+// const cartItems = [
+//   {
+//     id: 1,
+//     quantity: 5000,
+//     price: 2500,
+//     orderId: 1,
+//     productId: 1
+//   },
+//   {
+//     id: 2,
+//     quantity: 1,
+//     price: 2,
+//     orderId: 1,
+//     productId: 1
+//   }
+// ]
+// const order = {
+//   id: 1,
+//   date: 2020 - 11 - 11,
+//   status: 'deliverd',
+//   paymentMethod: 'Credential',
+//   quantity: 10,
+//   orderSubtotal: 3500,
+//   tax: 1.08,
+//   orderTotal: null,
+//   shippingAddress: '777 park place',
+//   userId: 1
+// }

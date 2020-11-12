@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {addToCart, orderCreator} from '../store/cart'
-//need to pass in the obj product
 
 class AdddeleteDC extends React.Component {
   constructor(props) {
@@ -28,16 +27,19 @@ class AdddeleteDC extends React.Component {
     })
   }
 
-  addToCart(e) {
+  async addToCart(e) {
     try {
       e.preventDefault()
       this.props.product.quantity = this.state.quantity
+      console.log(this.props.product)
       if (!this.props.orderId) {
-        this.props.orderCreate()
+        console.log('does not have orderId')
+        await this.props.orderCreate()
       }
+      console.log('here, order id? ', this.props.orderId)
       try {
-        this.props.addToCart(this.props.product, this.state.orderId)
-        alert('Succeefully Added To Cart')
+        this.props.addToCart(this.props.product, this.props.orderId)
+        alert('Successfully Added To Cart')
       } catch (err) {
         console.log(
           'something went wrong after we try orderCreate',
@@ -68,7 +70,6 @@ class AdddeleteDC extends React.Component {
 }
 const mapState = state => {
   return {
-    //check for orderid
     orderId: state.cart.orderId,
     items: state.cart.items
   }

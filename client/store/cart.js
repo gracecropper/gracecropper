@@ -77,9 +77,10 @@ export const orderCreator = () => {
       const {data} = await axios.post('/api/cartItems', {
         status: 'In User Cart'
       })
+      console.log('data', data)
       dispatch(setOrderId(data.id))
     } catch (error) {
-      console.log('there was an error in orderCreator')
+      console.log('there was an error in orderCreator', error)
     }
   }
 }
@@ -89,7 +90,7 @@ export const addToCart = (productsObj, orderId) => {
       const {data} = await axios.post('/api/cartItems/add', {
         quantity: productsObj.quantity,
         price: productsObj.price,
-        productId: productsObj.productId,
+        productId: productsObj.id,
         orderId
       })
       dispatch(postItem(data))

@@ -7,7 +7,7 @@ const Order = db.define('order', {
     type: Sequelize.DATE
   },
   status: {
-    type: Sequelize.ENUM('pending', 'shipped', 'delivered'),
+    type: Sequelize.ENUM('pending', 'shipped', 'delivered', 'In User Cart'),
     defaultValue: 'pending'
   },
   paymentMethod: {
