@@ -33,8 +33,8 @@ class SingleProduct extends Component {
       imageUrl: '',
       size: '',
       description: '',
-      quantity: 0,
-      price: 0
+      quantity: undefined,
+      price: undefined
     })
   }
 
@@ -47,7 +47,8 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const {name, imageUrl, price, description} = this.props.product || []
+    const {name, imageUrl, price, description, quantity} =
+      this.props.product || []
 
     const role = this.props.role
 
@@ -56,7 +57,7 @@ class SingleProduct extends Component {
         <div className="singleProduct">
           <h1>{name}</h1>
           <img src={imageUrl} />
-          <p>{price}</p>
+          <p>${price / 100}</p>
           <p>{description}</p>
         </div>
 
@@ -66,6 +67,7 @@ class SingleProduct extends Component {
             handleSubmit={this.handleSubmit}
             updatedProduct={this.props.updatedProduct}
             price={price}
+            quantity={quantity}
           />
         ) : (
           ''

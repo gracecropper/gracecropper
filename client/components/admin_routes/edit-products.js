@@ -38,7 +38,8 @@ const EditProducts = props => {
         inputMode="numeric"
         onChange={props.handleChange}
         name="quantity"
-        value={props.updatedProduct.quantity}
+        value={props.updatedProduct.quantity || props.quantity}
+        placeholder={props.quantity}
       />
       {/* Price of Product */}
       <label>Price:</label>
@@ -48,8 +49,7 @@ const EditProducts = props => {
         inputMode="numeric"
         onChange={props.handleChange}
         name="price"
-        value={props.updatedProduct.price}
-        placeholder={props.price}
+        value={props.updatedProduct.price || props.price}
       />
       {/* Image Upload */}
       {/* need to update props!! */}
