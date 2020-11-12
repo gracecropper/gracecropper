@@ -14,3 +14,7 @@ export {default as AllUsers} from './allusers'
 export {default as AdminHome} from './admin-home'
 export {default as Home} from './home'
 export {CartDC} from './cart'
+
+export {ErrorPage} from './error-page'
+
+export {default as AddProducts} from './admin_routes/add-products'

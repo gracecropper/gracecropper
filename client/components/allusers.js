@@ -32,7 +32,7 @@ class allusers extends React.Component {
                   <li>ID: {user.id}</li>
                   <li>email: {user.email}</li>
                   <li>account type: {user.role}</li>
-                  {/* will have to eventually include a link to their order history here too  */}
+                  {/* will have to eventually include a link to their order history here too , also edit user link*/}
                 </ul>
               </div>
             )

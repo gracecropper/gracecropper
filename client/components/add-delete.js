@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-// import { addToCart } from '../store/cart'
+// import { addToCart, orderCreate } from '../store/cart'
 //need to pass in the obj product
 
 class AdddeleteDC extends React.Component {
@@ -31,12 +31,28 @@ class AdddeleteDC extends React.Component {
   addToCart(e) {
     try {
       e.preventDefault()
-      // if(this.props.orderId){... or create}
-      this.props.addToCart(
-        this.state.quantity,
-        this.props.product.id,
-        this.props.product.price
-      )
+      let product = {
+        name: this.props.name,
+        type: this.props.type,
+        quantity: this.state.quantity,
+        price: this.props.price,
+        imageUrl: this.props.imageurl,
+        size: this.props.size,
+        description: this.props.description
+      }
+      if (this.props.orderId) {
+        this.props.addToCart(product, this.state.orderId)
+      } else {
+        this.props.orderCreate()
+        try {
+          this.props.addToCart(product, this.state.orderId)
+        } catch (err) {
+          console.log(
+            'something went wrong after we try orderCreate',
+            err.message
+          )
+        }
+      }
     } catch (err) {
       console.log('error in add to cart', err.message)
     }
@@ -62,12 +78,15 @@ class AdddeleteDC extends React.Component {
 const mapState = state => {
   return {
     //check for orderid
+    orderId: state.orderId,
+    items: state.items
   }
 }
 const mapDispatch = dispatch => {
   return {
-    addToCart: (quantity, id) => dispatch(addToCart(quantity, id, price))
+    addToCart: (product, orderId) => dispatch(addToCart(product, orderId)),
+    orderCreate: () => dispatch(orderCreate())
   }
 }
 
-export default connect(null, mapDispatch)(AdddeleteDC)
+export default connect(mapState, mapDispatch)(AdddeleteDC)

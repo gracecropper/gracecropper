@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import './cart.css'
 // import { getAllCartItems, increaseQuant, decreaseQuant, deleteOrderItem, emptyCart, getOrder } from '../store/cart'
+import SingleProductView from './SingleProductView'
 
 export class CartDC extends React.Component {
   constructor() {
@@ -68,7 +70,7 @@ export class CartDC extends React.Component {
       }
     ]
     return (
-      <div>
+      <div className="shopping-cart">
         <h1>Shopping Cart</h1>
         {cartItems.length < 1 ? (
           <h1>
@@ -78,43 +80,40 @@ export class CartDC extends React.Component {
         ) : (
           cartItems.map(item => {
             return (
-              <div key={item.id}>
-                <div>
-                  <Link to={`/singleproduct/${item.id}`}>{item.name}</Link>
-                </div>
-                <div>
+              <div key={item.id} className="quantity">
+                <SingleProductView id={item.id} />
+                <Link to={`/singleproduct/${item.id}`}>{item.name}</Link>
+                <div className="buttons">
                   <button
+                    className="button"
                     type="button"
-                    size="lg"
                     onClick={() => {
                       this.props.handlePlus(item.id)
                     }}
                   >
                     +
                   </button>
-                  <p>The quantity: {item.quantity}</p>
+                  <p className="textblock">The quantity: {item.quantity}</p>
                   <button
+                    className="button"
                     type="button"
-                    size="lg"
                     onClick={() => {
                       this.handleMinus(item.id)
                     }}
                   >
                     -
                   </button>
-                  <p>--------------</p>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        this.deleteItem(item.id)
-                      }}
-                    >
-                      Delete Item
-                    </button>
-                  </div>
+
+                  <button
+                    className="button"
+                    type="button"
+                    onClick={() => {
+                      this.deleteItem(item.id)
+                    }}
+                  >
+                    Delete Item
+                  </button>
                 </div>
-                <div>The item's price: ${item.price}</div>
               </div>
             )
           })
@@ -123,6 +122,7 @@ export class CartDC extends React.Component {
         <p>${order[0].orderSubtotal}</p>
         <Link to="/home">Check Out</Link>
         <button
+          className="button"
           type="button"
           onClick={() => {
             this.emptyCart(order.id)

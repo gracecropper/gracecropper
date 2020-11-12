@@ -11,7 +11,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+          <Link to="/userhome">My Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -25,6 +25,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       )}
       <div>
         {/* I put this outside of the ternary operator so they appear regardless of whether user is logged in or not. */}
+        <Link to="/">Home</Link>
         <Link to="/products">Products</Link>
         <Link to="/cart">My Cart</Link>
       </div>
