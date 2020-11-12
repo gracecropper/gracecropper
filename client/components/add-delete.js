@@ -37,6 +37,7 @@ class AdddeleteDC extends React.Component {
       }
       try {
         this.props.addToCart(this.props.product, this.state.orderId)
+        alert('Succeefully Added To Cart')
       } catch (err) {
         console.log(
           'something went wrong after we try orderCreate',
