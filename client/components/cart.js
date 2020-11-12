@@ -92,7 +92,7 @@ export class CartDC extends React.Component {
                   >
                     +
                   </button>
-                  <p className="textblock">The quantity: {order.quantity}</p>
+                  <p className="textblock">The quantity:{item.quantity}</p>
                   <button
                     className="button"
                     type="button"
