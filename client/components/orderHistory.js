@@ -12,7 +12,9 @@ class OrderHistory extends React.Component {
       <div>
         {orders.length ? (
           orders
-            .filter(order => ['Delivered', 'Shipped'].includes(order.status))
+            .filter(order =>
+              ['Delivered', 'Shipped', 'Pending'].includes(order.status)
+            )
             .map(order => (
               <div className="order" key={order.id}>
                 <p>Date: {order.date}</p>
