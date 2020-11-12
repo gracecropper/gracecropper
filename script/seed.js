@@ -52,6 +52,18 @@ async function seed() {
       status: 'In User Cart',
       paymentMethod: 'paypal',
       shippingAddress: '78 Ocean Drive'
+    }),
+    Order.create({
+      date: new Date(),
+      status: 'Pending',
+      paymentMethod: 'credit',
+      shippingAddress: '777 Park Place'
+    }),
+    Order.create({
+      date: new Date(),
+      status: 'Shipped',
+      paymentMethod: 'credit',
+      shippingAddress: '777 Park Place'
     })
   ])
   //creating an order item
@@ -73,7 +85,7 @@ async function seed() {
       price: 700
     })
   ])
-  //which product is in your cart?  crop top!
+  //which product is in your cart?  crop top
   await orderItems[0].setProduct(products[0])
   await orderItems[1].setProduct(products[1])
   await orderItems[2].setProduct(products[2])
