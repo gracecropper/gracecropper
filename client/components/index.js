@@ -14,6 +14,7 @@ export {default as AllUsers} from './allusers'
 export {default as AdminHome} from './admin-home'
 export {default as Home} from './home'
 export {default as OrderHistory} from './orderHistory'
+export {default as SingleUser} from './singleUser'
 
 export {ErrorPage} from './error-page'
 
