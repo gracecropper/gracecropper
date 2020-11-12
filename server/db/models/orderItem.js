@@ -12,6 +12,9 @@ const OrderItem = db.define('orderItem', {
   //note: this reflects the price of one item in the cart.  multiply by quantity to get total cost of order item
   price: {
     type: Sequelize.INTEGER //divide by 100 on client side
+  },
+  size: {
+    type: Sequelize.ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL')
   }
 })
 

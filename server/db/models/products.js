@@ -29,9 +29,6 @@ const Product = db.define('product', {
     type: Sequelize.TEXT,
     defaultValue: '/img/cornPic.jpg'
   },
-  size: {
-    type: Sequelize.ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL') //move this to order item || create multiple crop tops for each size
-  },
   description: {
     type: Sequelize.STRING
   }

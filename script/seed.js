@@ -8,7 +8,7 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
+    User.create({email: 'cody@email.com', password: '123', type: 'Admin'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
@@ -51,12 +51,12 @@ async function seed() {
   //creating an order item
   const orderItems = await Promise.all([
     OrderItem.create({
-      quantity: 5000,
-      price: 2500
+      quantity: 5,
+      price: 2500,
+      orderId: 1,
+      productId: 1
     })
   ])
-  //which product is in your cart?  crop top!
-  await orderItems[0].setProduct(products[0])
 
   await orders[0].addToCart(orderItems[0])
   await users[0].addOrder(orders[0])
