@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const {User, Product, OrderItem, Order} = require('../db/models')
 
-// GET /api/allorders/myHistory
+// GET /api/allorders/orderhistory
 
-router.get('/myHistory', async (req, res, next) => {
+router.get('/orderhistory', async (req, res, next) => {
   try {
     if (!req.user) {
       res.sendStatus(401)

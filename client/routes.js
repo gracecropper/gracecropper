@@ -41,7 +41,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/userhome" component={UserHome} />
-            <Route path="/myhistory" component={OrderHistory} />
+            <Route path="/orderhistory" component={OrderHistory} />
           </Switch>
         )}
         {/* Displays our Error Page component as a fallback */}

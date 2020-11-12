@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AdminHome from './admin-home'
+import {OrderHistory} from '.'
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ export const UserHome = props => {
   return (
     <div>
       {props.role === 'Admin' ? <AdminHome /> : <h3>Welcome, {email}</h3>}
+      <OrderHistory />
     </div>
   )
 }
