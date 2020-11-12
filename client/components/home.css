@@ -1,4 +1,4 @@
-#homePageGrid {
+/* #homePageGrid {
   display: grid;
   grid-auto-flow: rows;
   grid-template-rows: 200px 200px;
@@ -15,4 +15,4 @@ button {
 
 .homePageImg {
   border: black;
-}
+} */
