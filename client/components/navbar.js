@@ -15,19 +15,36 @@ import {
 
 import './navbar.css'
 
+import {Dropdown} from 'react-bootstrap'
+
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div id="navigate">
     <nav>
       {isLoggedIn ? (
         <div className="inOrOut">
           {/* The navbar will show these links after you log in */}
-          <Link to="/userhome">
-            <EmojiSmile />
-            My Home
-          </Link>
-          <Link to="#" onClick={handleClick}>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              User Actions
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="/userhome">
+                <EmojiSmile />
+                My Home
+              </Dropdown.Item>
+              <Dropdown.Item href="myhistory">Order History</Dropdown.Item>
+              <Dropdown.Item href="/editprofile">Edit Profile</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <Link to="/userhome" />
+          <Link to="/myhistory" />
+          <Link to="/editprofile">Edit Profile</Link>
+
+          <a href="#" onClick={handleClick}>
             Logout
-          </Link>
+          </a>
         </div>
       ) : (
         <div className="inOrOut">

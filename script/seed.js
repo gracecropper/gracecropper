@@ -43,7 +43,25 @@ async function seed() {
   const orders = await Promise.all([
     Order.create({
       date: new Date(),
-      status: 'delivered',
+      status: 'Delivered',
+      paymentMethod: 'credit',
+      shippingAddress: '777 Park Place'
+    }),
+    Order.create({
+      date: new Date(),
+      status: 'In User Cart',
+      paymentMethod: 'paypal',
+      shippingAddress: '78 Ocean Drive'
+    }),
+    Order.create({
+      date: new Date(),
+      status: 'Pending',
+      paymentMethod: 'credit',
+      shippingAddress: '777 Park Place'
+    }),
+    Order.create({
+      date: new Date(),
+      status: 'Shipped',
       paymentMethod: 'credit',
       shippingAddress: '777 Park Place'
     })
@@ -54,12 +72,37 @@ async function seed() {
       quantity: 5,
       price: 2500,
       orderId: 1,
-      productId: 1
+      productId: 1,
+      size: 'XS'
+    }),
+    OrderItem.create({
+      quantity: 77,
+      price: 7000,
+      orderId: 1,
+      productId: 2
+    }),
+    OrderItem.create({
+      quantity: 1,
+      price: 70,
+      orderId: 2,
+      productId: 3
+    }),
+    OrderItem.create({
+      quantity: 2,
+      price: 700,
+      orderId: 2,
+      productId: 1,
+      size: 'M'
     })
   ])
 
   await orders[0].addToCart(orderItems[0])
+  await orders[0].addToCart(orderItems[1])
+  await orders[0].addToCart(orderItems[2])
+  await orders[1].addToCart(orderItems[3])
+
   await users[0].addOrder(orders[0])
+  await users[0].addOrder(orders[1])
 
   // console.log(`$${orders[0].orderTotal / 100}`)
   console.log(`seeded ${users.length} users`)
