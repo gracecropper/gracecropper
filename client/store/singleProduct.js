@@ -77,7 +77,7 @@ export const updateProduct = (id, updates) => {
         }
       }
       console.log('update Obj', updateObj)
-      const {data} = await axios.put(`/api/singleproduct/${id}`, updateObj)
+      const {data} = await axios.put(`/api/products/${id}`, updateObj)
       dispatch(updateSingleProduct(data))
     } catch (err) {
       console.log('Could not update:', err)

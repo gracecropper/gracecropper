@@ -33,8 +33,9 @@ const User = db.define('user', {
   }
 })
 
-User.prototype.isAdmin = function() {
-  return this.role === 'Admin'
+User.isAdmin = async function(id) {
+  const user = await User.findByPk(id)
+  return user.role === 'Admin'
 }
 
 module.exports = User
