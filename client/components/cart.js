@@ -17,8 +17,8 @@ class Cart extends React.Component {
   //   super()
   //   this.handleMinus = this.handleMinus.bind(this)
   //   this.handlePlus = this.handlePlus.bind(this)
-  //   this.deleteItem = this.deleteItem(this)
-  //   this.emptyCart = this.emptyCart(this)
+  //   this.deleteItem = this.deleteItem.bind(this)
+  //   this.emptyCart = this.emptyCart.bind(this)
   //   console.log('inside constructor')
   // }
   componentDidMount() {
