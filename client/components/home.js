@@ -2,8 +2,6 @@ import React from 'react'
 
 import './home.css'
 
-// General note: Try to have a consistency between all your file names as well as the names of your components
-
 const Home = () => (
   <div id="homePage">
     <div id="">
