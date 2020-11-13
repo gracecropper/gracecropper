@@ -1,11 +1,11 @@
 #homePageGrid {
+  height: 100%;
   display: grid;
-  grid-auto-flow: rows;
-  grid-template-rows: 200px 200px;
+  grid-auto-flow: column;
   grid-column-gap: 30px;
   grid-row-gap: 20px;
   justify-items: center;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   align-items: center;
 }
 
