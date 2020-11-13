@@ -92,6 +92,7 @@ export const addToCart = (productsObj, orderId) => {
         productId: productsObj.id,
         orderId
       })
+      console.log('data', data)
       dispatch(postItem(data))
     } catch (error) {
       console.log('there was an error in addToCart in redux')

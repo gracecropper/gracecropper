@@ -50,7 +50,7 @@ class Cart extends React.Component {
   render() {
     // console.log('is it rendering?')
     const items = this.props.cart.items || []
-    // console.log('this.props', this.props)
+    console.log('this.props', this.props)
     // return <div>hello</div>
     return (
       <div className="shopping-cart">

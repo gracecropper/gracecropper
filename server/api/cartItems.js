@@ -16,10 +16,19 @@ router.post('/', async (req, res, next) => {
 router.post('/add', async (req, res, next) => {
   try {
     const newItem = await OrderItem.create(req.body)
+
     const orderId = req.body.orderId
-    const orderInstance = await Order.findByPk(orderId)
-    orderInstance.addToCart(newItem)
-    res.json(newItem)
+    const orderInstance = await OrderItem.findByPk(orderId)
+    const result = await OrderItem.findOne({
+      where: {
+        id: newItem.id
+      },
+      include: {
+        model: Product
+      }
+    })
+    // orderInstance.addToCart(newItem)
+    res.json(result)
   } catch (error) {
     next(error)
   }

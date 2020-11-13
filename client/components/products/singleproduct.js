@@ -60,7 +60,7 @@ class SingleProduct extends Component {
           <p>${price / 100}</p>
           <p>{description}</p>
         </div>
-
+        <AddDelete product={this.props.product} />
         {role === 'Admin' ? (
           <EditProducts
             handleChange={this.handleChange}
@@ -77,11 +77,15 @@ class SingleProduct extends Component {
   }
 }
 const mapState = state => ({
-  product: state.singleProduct
+  product: state.singleProduct.singleProduct,
+  role: state.user.role,
+  updatedProduct: state.singleProduct.updatedProduct
 })
 
 const mapDispatch = dispatch => ({
-  loadingProduct: id => dispatch(fetchProduct(id))
+  loadingProduct: id => dispatch(fetchProduct(id)),
+  writeProduct: update => dispatch(writeProductUpdate(update)),
+  updateSingleProduct: (id, updates) => dispatch(updateProduct(id, updates))
 })
 
 export default connect(mapState, mapDispatch)(SingleProduct)
