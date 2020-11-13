@@ -13,7 +13,7 @@ export {default as SingleProduct} from './SingleProduct'
 export {default as AllUsers} from './allusers'
 export {default as AdminHome} from './admin-home'
 export {default as Home} from './home'
-export {CartDC} from './cart'
+export {default as Cart} from './cart'
 
 export {ErrorPage} from './error-page'
 

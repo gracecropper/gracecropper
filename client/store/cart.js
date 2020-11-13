@@ -77,7 +77,6 @@ export const orderCreator = () => {
       const {data} = await axios.post('/api/cartItems', {
         status: 'In User Cart'
       })
-      console.log('data', data)
       dispatch(setOrderId(data.id))
     } catch (error) {
       console.log('there was an error in orderCreator', error)

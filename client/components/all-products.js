@@ -59,7 +59,6 @@ class AllProductsDC extends React.Component {
         </div>
       )
     }
-
     return (
       <div>
         <div className="filteringAndOrdering">

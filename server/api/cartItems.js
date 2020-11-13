@@ -2,22 +2,6 @@ const router = require('express').Router()
 const {OrderItem, Order, Product} = require('../db/models')
 module.exports = router
 
-router.get('/:orderId', async (req, res, next) => {
-  try {
-    const allItems = await OrderItem.findAll({
-      where: {
-        orderId: +req.params.orderId
-      },
-      include: {
-        model: Product
-      }
-    })
-    res.json(allItems)
-  } catch (error) {
-    next(error)
-  }
-})
-
 // POST REQUEST FOR CREATING NEW ORDER
 router.post('/', async (req, res, next) => {
   try {
@@ -58,8 +42,9 @@ router.put('/:id/decrement', async (req, res, next) => {
   try {
     const id = req.params.id
     const orderItem = await OrderItem.findByPk(id)
-    await orderItem.update() //find out how to change the db
-    res.status(204)
+    await orderItem.decrement('quantity')
+    res.json(orderItem)
+    // res.status(204)
   } catch (error) {
     next(error)
   }
@@ -71,8 +56,25 @@ router.put('/:id/increment', async (req, res, next) => {
   try {
     const id = req.params.id
     const orderItem = await OrderItem.findByPk(id)
-    await orderItem.update() //find out how to change the db
-    res.status(204)
+    await orderItem.increment('quantity')
+    res.json(orderItem)
+    // res.status(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    const allItems = await OrderItem.findAll({
+      where: {
+        orderId: +req.params.orderId
+      },
+      include: {
+        model: Product
+      }
+    })
+    res.json(allItems)
   } catch (error) {
     next(error)
   }
