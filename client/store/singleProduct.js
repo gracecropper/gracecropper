@@ -16,7 +16,6 @@ const initialState = {
     name: '',
     type: '',
     imageUrl: '',
-    size: '',
     description: '',
     quantity: null,
     price: null
@@ -72,12 +71,13 @@ export const updateProduct = (id, updates) => {
       //make sure we're only sending updates users input
       const updateObj = {}
       for (var key in updates) {
-        if (updates[key] !== '' || updates[key] === null) {
+        if (updates[key] !== '' || updates[key] !== null) {
           updateObj[key] = updates[key]
         }
       }
+
       console.log('update Obj', updateObj)
-      const {data} = await axios.put(`/api/singleproduct/${id}`, updateObj)
+      const {data} = await axios.put(`/api/products/${id}`, updateObj)
       dispatch(updateSingleProduct(data))
     } catch (err) {
       console.log('Could not update:', err)
