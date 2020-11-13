@@ -14,10 +14,12 @@ const OrderItem = require('./orderItem')
 // Order and Products are many-to-many -> in sequelize "belongsToMany"
 User.hasMany(Order)
 Order.belongsTo(User)
-Order.hasMany(OrderItem)
-OrderItem.belongsTo(Order)
-OrderItem.belongsTo(Product) //productId in orderItem table
-Product.hasMany(OrderItem)
+// Order.hasMany(OrderItem)
+// OrderItem.belongsTo(Order)
+// OrderItem.belongsTo(Product) //productId in orderItem table
+
+Order.belongsToMany(Product, {through: OrderItem})
+Product.belongsToMany(Order, {through: OrderItem})
 
 //Product.belongsTo(OrderItem)
 
