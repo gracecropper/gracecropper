@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {fetchProducts, removeProduct} from '../store/allProducts'
+import {fetchProducts, removeProduct} from '../../store/allProducts'
 import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
-import AddDelete from './add-delete'
+import AddDelete from '../add-delete'
+import './all-products.css'
+
 /**
  * COMPONENT
  */
@@ -60,7 +61,7 @@ class AllProductsDC extends React.Component {
       )
     }
     return (
-      <div>
+      <div id="productsPage">
         <div className="filteringAndOrdering">
           <div className="View">
             View
@@ -76,7 +77,7 @@ class AllProductsDC extends React.Component {
         <div className="products">
           {filteredProducts.map(elm => {
             return (
-              <div key={elm.id}>
+              <div key={elm.id} className="product">
                 <a href="#">
                   <img src={elm.imageUrl} alt="image" />
                 </a>
@@ -84,8 +85,11 @@ class AllProductsDC extends React.Component {
                 <AddDelete product={elm} />
 
                 {/* If the user is an admin, button to delete product */}
+
+                {/* If the user is an admin, display button to delete product */}
                 {role === 'Admin' ? (
                   <button
+                    type="button"
                     className="deleteProduct"
                     onClick={() => this.handleDelete(elm.id)}
                   >
