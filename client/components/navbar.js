@@ -4,33 +4,59 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
+import {
+  Cart,
+  House,
+  EmojiSmile,
+  EmojiSunglasses,
+  EmojiWink,
+  Crop
+} from 'react-bootstrap-icons'
+
+import './navbar.css'
+
 const NavBar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>GraceCropper!</h1>
+  <div id="navigate">
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div className="inOrOut">
           {/* The navbar will show these links after you log in */}
-          <Link to="/userhome">My Home</Link>
-          <a href="#" onClick={handleClick}>
+          <Link to="/userhome">
+            <EmojiSmile />
+            My Home
+          </Link>
+          <Link to="#" onClick={handleClick}>
             Logout
-          </a>
+          </Link>
         </div>
       ) : (
-        <div>
+        <div className="inOrOut">
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">
+            <EmojiSunglasses />
+            Login
+          </Link>
+          <Link to="/signup">
+            <EmojiWink />
+            Sign Up
+          </Link>
         </div>
       )}
-      <div>
-        {/* I put this outside of the ternary operator so they appear regardless of whether user is logged in or not. */}
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        <Link to="">My Cart</Link>
-      </div>
+
+      {/* I put this outside of the ternary operator so they appear regardless of whether user is logged in or not. */}
+      <Link to="/">
+        <House />
+        Home
+      </Link>
+      <Link to="/products">
+        <Crop />
+        Products
+      </Link>
+      <Link to="">
+        <Cart />
+        Cart
+      </Link>
     </nav>
-    <hr />
   </div>
 )
 
