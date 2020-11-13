@@ -31,12 +31,10 @@ class AdddeleteDC extends React.Component {
     try {
       e.preventDefault()
       this.props.product.quantity = this.state.quantity
-      console.log(this.props.product)
       if (!this.props.orderId) {
         console.log('does not have orderId')
         await this.props.orderCreate()
       }
-      console.log('here, order id? ', this.props.orderId)
       try {
         this.props.addToCart(this.props.product, this.props.orderId)
         alert('Successfully Added To Cart')
