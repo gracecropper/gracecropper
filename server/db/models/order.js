@@ -39,7 +39,6 @@ const Order = db.define('order', {
 
 //instance method to automatically update the order total and quantity
 Order.prototype.addToCart = async function(orderItem) {
-  await this.addOrderItem(orderItem)
   this.orderSubtotal += orderItem.price
   this.quantity += orderItem.quantity
   await this.save()
