@@ -1,14 +1,41 @@
-.navigate {
+#navigate {
   display: flex;
-  width: 95%;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+  background-color: #f0c482;
+}
+
+#navigate nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
-  margin: 0 0 0 0;
-  padding: 0;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  height: 100px;
+}
+
+#navigate h3 {
+  width: 200px;
+  padding: 10px;
+  margin: 0px;
 }
 
 .inOrOut {
-  width: 200px;
+  display: flex;
+  flex-direction: row;
+  width: 300px;
   margin: 0;
   padding: 0;
+}
+
+#rightNavLinks {
+  width: 300px;
+}
+
+#leftNavLinks {
+  align-self: left;
 }
