@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+// what is order quantity?
 const Order = db.define('order', {
   //date order placed, null if this order is user's cart
   date: {
