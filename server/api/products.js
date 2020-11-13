@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
 //edit product route
 router.put('/:productId', async (req, res, next) => {
   try {
-    if (!User.isAdmin(req.session.passport.user)) {
+    if (!req.user.dataValues.role === 'Admin') {
       res.sendStatus(403)
     }
 
@@ -46,7 +46,7 @@ router.put('/:productId', async (req, res, next) => {
 //route to delete product
 router.delete('/:productId', async (req, res, next) => {
   try {
-    if (!User.isAdmin(req.session.passport.user)) {
+    if (!req.user.dataValues.role === 'Admin') {
       res.sendStatus(403)
     }
 
@@ -61,12 +61,10 @@ router.delete('/:productId', async (req, res, next) => {
   }
 })
 
-// who should we restrict this route to? should any user be able to create new products?
-
 //route to add products
 router.post('/', async (req, res, next) => {
   try {
-    if (!User.isAdmin(req.session.passport.user)) {
+    if (!req.user.dataValues.role === 'Admin') {
       res.sendStatus(403)
     }
     const newProduct = await Product.create(req.body)

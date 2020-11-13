@@ -17,13 +17,20 @@ const Product = db.define('product', {
   },
   quantity: {
     type: Sequelize.INTEGER,
+    allowNull: false,
     validate: {
       min: 0,
-      max: 10000
+      max: 10000,
+      notNull: true
     }
   },
   price: {
-    type: Sequelize.INTEGER //number of pennies per item
+    type: Sequelize.INTEGER, //number of pennies per item
+    allowNull: false,
+    validate: {
+      min: 0,
+      notNull: true
+    }
   },
   imageUrl: {
     type: Sequelize.TEXT,

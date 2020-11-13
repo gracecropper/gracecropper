@@ -26,21 +26,12 @@ class SingleProduct extends Component {
       this.props.product.id,
       this.props.updatedProduct
     )
-    //resets the form
-    this.props.writeProduct({
-      name: '',
-      type: '',
-      imageUrl: '',
-      size: '',
-      description: '',
-      quantity: undefined,
-      price: undefined
-    })
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     try {
-      this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      await this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      this.props.writeProduct(this.props.product)
     } catch (error) {
       console.error('Could not load product', error)
     }
@@ -61,17 +52,17 @@ class SingleProduct extends Component {
           <p>{description}</p>
         </div>
 
-        {/* {role === 'Admin' ? ( */}
-        <EditProducts
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          updatedProduct={this.props.updatedProduct}
-          price={price}
-          quantity={quantity}
-        />
-        {/* ) : (
+        {role === 'Admin' ? (
+          <EditProducts
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            updatedProduct={this.props.updatedProduct}
+            price={price}
+            quantity={quantity}
+          />
+        ) : (
           ''
-        )} */}
+        )}
       </div>
     )
   }
