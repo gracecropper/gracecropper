@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me, editUser, getSingleUser} from '../../store'
+import {default as EditUser} from './edit-user'
 
 class SingleUser extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class SingleUser extends Component {
       isAdmin: this.props.user.role === 'Admin',
       userId: this.props.user.id
     })
+
     if (this.props.user.role === 'Admin' && this.props.match.params.id) {
       // this needs to change because /editprofile has none
       await this.props.getSingleUser(this.props.match.params.id)
@@ -52,12 +54,15 @@ class SingleUser extends Component {
   }
   render() {
     return (
-      <editUser
-        onChange={this.onChange}
-        user={this.props.user}
-        currentUser={this.state}
-        onSubmit={this.onSubmit}
-      />
+      <div>
+        <h3>Edit Profile</h3>
+        <EditUser
+          onChange={this.onChange}
+          user={this.props.user}
+          currentUser={this.state}
+          onSubmit={this.onSubmit}
+        />
+      </div>
     )
   }
 }
@@ -70,7 +75,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    editUser: body => dispatch(editUser(body)),
+    editUser: (id, body) => dispatch(editUser(id, body)),
     me: () => dispatch(me()),
     getSingleUser: id => dispatch(getSingleUser(id))
   }

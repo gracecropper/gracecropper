@@ -16,15 +16,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.put('/', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     if (!req.user) {
-      return res.sendStatus(401)
+      return res.sendStatus(403)
     }
     if (!req.user.correctPassword(req.body.oldPassword)) {
       return res.sendStatus(401)
     }
+
     const userToUpdate = await User.findByPk(req.body.userId)
+
     if (req.user.role === 'Admin') {
       await userToUpdate.update({
         role: req.body.role
@@ -39,7 +41,7 @@ router.put('/', async (req, res, next) => {
       }
       await userToUpdate.save()
     }
-    res.send(userToUpdate)
+    res.status(200).json(userToUpdate)
   } catch (err) {
     next(err)
   }
@@ -49,7 +51,7 @@ router.put('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     if (!req.user || req.user.role !== 'Admin') {
-      return res.sendStatus(401)
+      return res.sendStatus(403)
     }
     const user = await User.findByPk(req.params.id)
     res.json(user)

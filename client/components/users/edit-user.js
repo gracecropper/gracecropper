@@ -41,14 +41,14 @@ const EditUser = props => {
           type="text"
           name="email"
           onChange={props.onChange}
-          value={props.user.email}
+          value={props.currentUser.email}
         />
         <p>{props.currentUser.isAdmin ? 'Admin' : 'Old'} Password:</p>{' '}
         <input
           type="password"
           name="oldPassword"
           onChange={props.onChange}
-          value={props.user.oldPassword}
+          value={props.currentUser.oldPassword}
         />
         <p>New Password:</p>{' '}
         <input
@@ -70,6 +70,3 @@ const EditUser = props => {
 }
 
 export default EditUser
-//if user role === admin, they can update email and role
-
-//if user role === user, they can update their email and password....

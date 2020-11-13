@@ -58,7 +58,7 @@ export const logout = () => async dispatch => {
 
 export const getSingleUser = id => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/singleuser/${id}`)
+    const {data} = await axios.get(`/api/users/${id}`)
     dispatch(getUser(data))
   } catch (err) {
     console.error(err)
@@ -67,7 +67,7 @@ export const getSingleUser = id => async dispatch => {
 
 export const editUser = body => async dispatch => {
   try {
-    const {data} = await axios.put('/api/users', body)
+    const {data} = await axios.put(`/api/users/${body.userId}`, body)
     dispatch(getUser(data))
   } catch (err) {
     console.error(err)

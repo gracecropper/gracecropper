@@ -13,7 +13,6 @@ export const UserHome = props => {
   return (
     <div>
       {props.role === 'Admin' ? <AdminHome /> : <h3>Welcome, {email}</h3>}
-      <SingleUser />
     </div>
   )
 }
