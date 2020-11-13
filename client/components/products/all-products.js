@@ -85,6 +85,7 @@ class AllProductsDC extends React.Component {
                 {/* If the user is an admin, button to delete product */}
                 {role === 'Admin' ? (
                   <button
+                    type="button"
                     className="deleteProduct"
                     onClick={() => this.handleDelete(elm.id)}
                   >
