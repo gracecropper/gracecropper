@@ -1,0 +1,14 @@
+.navigate {
+  display: flex;
+  width: 95%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+.inOrOut {
+  width: 200px;
+  margin: 0;
+  padding: 0;
+}

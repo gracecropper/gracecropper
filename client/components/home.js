@@ -10,14 +10,14 @@ const Home = () => (
 
     <div id="homePageGrid">
       <div className="homePageImg">
-        <img src="/crops.jpeg" className="homePageImg" />
+        <img src="/img/crop.jpg" className="homePageImg" />
         <button type="button" className="bannerButton">
           Crops
         </button>
       </div>
 
       <div className="homePageImg">
-        <img src="/croptop.jpg" className="homePageImg" />
+        <img src="/img/croptop.jpg" className="homePageImg" />
         <button type="button" className="bannerButton">
           Crop Tops
         </button>
