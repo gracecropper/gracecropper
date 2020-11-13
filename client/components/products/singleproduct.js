@@ -4,8 +4,8 @@ import {
   fetchProduct,
   updateProduct,
   writeProductUpdate
-} from '../store/singleProduct'
-import EditProducts from './admin_routes/edit-products'
+} from '../../store/singleProduct'
+import EditProducts from '../admin_routes/edit-products'
 
 class SingleProduct extends Component {
   constructor(props) {

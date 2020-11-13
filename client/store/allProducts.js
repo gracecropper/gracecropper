@@ -42,7 +42,7 @@ export const deleteProduct = productId => {
 export const fetchProducts = () => {
   return async dispatch => {
     try {
-      const response = await Axios.get('/api/allproducts')
+      const response = await Axios.get('/api/products')
       const products = response.data
       const action = setProducts(products)
       dispatch(action)
@@ -56,7 +56,7 @@ export const fetchProducts = () => {
 export const postProducts = productInput => {
   return async dispatch => {
     try {
-      const {data} = await Axios.post('/api/allproducts', productInput)
+      const {data} = await Axios.post('/api/products', productInput)
       dispatch(addProducts(data))
     } catch (err) {
       console.log('Could not add the product', err)
@@ -68,7 +68,7 @@ export const postProducts = productInput => {
 export const removeProduct = productId => {
   return async dispatch => {
     try {
-      Axios.delete(`/api/singleproduct/${productId}`)
+      Axios.delete(`/api/products/${productId}`)
       dispatch(deleteProduct(productId))
     } catch (err) {
       console.log('Could not remove product', err)

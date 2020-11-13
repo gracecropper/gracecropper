@@ -57,7 +57,7 @@ export const updateSingleProduct = updates => {
 export const fetchProduct = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/singleproduct/${id}`)
+      const {data} = await axios.get(`/api/products/${id}`)
       dispatch(getProduct(data))
     } catch (error) {
       console.log(error)
