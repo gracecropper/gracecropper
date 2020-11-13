@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const {User} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -23,6 +24,10 @@ router.get('/:id', async (req, res, next) => {
 //edit product route
 router.put('/:productId', async (req, res, next) => {
   try {
+    if (!req.user.dataValues.role === 'Admin') {
+      res.sendStatus(403)
+    }
+
     const updatedProductPromise = await Product.update(req.body, {
       returning: true,
       where: {
@@ -41,6 +46,10 @@ router.put('/:productId', async (req, res, next) => {
 //route to delete product
 router.delete('/:productId', async (req, res, next) => {
   try {
+    if (!req.user.dataValues.role === 'Admin') {
+      res.sendStatus(403)
+    }
+
     await Product.destroy({
       where: {
         id: req.params.productId
@@ -52,11 +61,12 @@ router.delete('/:productId', async (req, res, next) => {
   }
 })
 
-// who should we restrict this route to? should any user be able to create new products?
-
 //route to add products
 router.post('/', async (req, res, next) => {
   try {
+    if (!req.user.dataValues.role === 'Admin') {
+      res.sendStatus(403)
+    }
     const newProduct = await Product.create(req.body)
     res.json(newProduct)
   } catch (err) {
