@@ -1,5 +1,4 @@
 import React from 'react'
-import StripeButton from './stripeButton'
 import 'bootstrap/dist/css/bootstrap.css'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
