@@ -30,7 +30,7 @@ router.put('/', async (req, res, next) => {
         role: req.body.role
       })
     }
-    if (req.body.userId === req.user.id) {
+    if (req.body.userId == req.user.id) {
       if (req.body.email) {
         userToUpdate.email = req.body.email
       }

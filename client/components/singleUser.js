@@ -11,7 +11,8 @@ class SingleUser extends Component {
       oldPassword: '',
       isAdmin: false,
       role: 'User',
-      userId: ''
+      userId: '',
+      loggedInUserId: -1
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -21,7 +22,8 @@ class SingleUser extends Component {
     this.setState({
       email: this.props.user.email,
       isAdmin: this.props.user.role === 'Admin',
-      userId: this.props.user.id
+      userId: this.props.user.id,
+      loggedInUserId: this.props.user.id //saves the original user id of the logged in user
     })
     if (this.props.user.role === 'Admin' && this.props.match.params.id) {
       await this.props.getSingleUser(this.props.match.params.id)
@@ -84,7 +86,8 @@ class SingleUser extends Component {
           <p>Email:</p>{' '}
           <input
             readOnly={
-              this.state.isAdmin && this.state.userId !== this.props.user.id
+              this.state.isAdmin &&
+              this.state.loggedInUserId !== this.props.user.id
             }
             type="text"
             name="email"
@@ -101,7 +104,8 @@ class SingleUser extends Component {
           <p>New Password:</p>{' '}
           <input
             readOnly={
-              this.state.isAdmin && this.state.userId !== this.props.user.id
+              this.state.isAdmin &&
+              this.state.loggedInUserId !== this.props.user.id
             }
             type="password"
             name="password"

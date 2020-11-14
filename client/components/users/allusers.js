@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchUsers} from '../store/admin'
 import {Link} from 'react-router-dom'
+import {fetchUsers} from '../../store/admin'
 
 import './allusers.css'
 
-class allusers extends React.Component {
+class AllUsersDC extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -61,4 +61,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(allusers)
+export default connect(mapState, mapDispatch)(AllUsersDC)

@@ -4,35 +4,65 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>GraceCropper!</h1>
+import {
+  Cart,
+  House,
+  EmojiSmile,
+  EmojiSunglasses,
+  EmojiWink,
+  Crop,
+  ArrowDownRight
+} from 'react-bootstrap-icons'
+
+import './navbar.css'
+
+const NavBar = ({handleClick, isLoggedIn}) => (
+  <div id="navigate">
     <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/userhome">My Home</Link>
-          <Link to="/myhistory">Order History</Link>
-          <Link to="/editprofile">Edit Profile</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-      <div>
-        {/* I put this outside of the ternary operator so they appear regardless of whether user is logged in or not. */}
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        <Link to="">My Cart</Link>
+      <h3>GraceCropper</h3>
+      <div id="leftNavLinks">
+        <Link to="/">
+          <House />
+          Home
+        </Link>
+        <Link to="/products">
+          <Crop />
+          Products
+        </Link>
+        <Link to="">
+          <Cart />
+          Cart
+        </Link>
+      </div>
+
+      <div id="rightNavLinks">
+        {isLoggedIn ? (
+          <div className="inOrOut">
+            {/* The navbar will show these links after you log in */}
+            <Link to="/userhome">
+              <EmojiSmile />
+              My Home
+            </Link>
+            <Link to="#" onClick={handleClick}>
+              <ArrowDownRight />
+              Logout
+            </Link>
+          </div>
+        ) : (
+          <div className="inOrOut">
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login">
+              <EmojiSunglasses />
+              Login
+            </Link>
+            <Link to="/signup">
+              <EmojiWink />
+              Sign Up
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
-    <hr />
   </div>
 )
 
@@ -53,12 +83,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavBar)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+NavBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
