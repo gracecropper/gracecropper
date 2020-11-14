@@ -13,14 +13,14 @@ import {
 } from '../store/cart'
 
 class Cart extends React.Component {
-  // constructor() {
-  //   super()
-  //   this.handleMinus = this.handleMinus.bind(this)
-  //   this.handlePlus = this.handlePlus.bind(this)
-  //   this.deleteItem = this.deleteItem.bind(this)
-  //   this.emptyCart = this.emptyCart.bind(this)
-  //   console.log('inside constructor')
-  // }
+  constructor(props) {
+    super(props)
+    // this.handleMinus = this.handleMinus.bind(this)
+    // this.handlePlus = this.handlePlus.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
+    // this.emptyCart = this.emptyCart.bind(this)
+    // console.log('inside constructor')
+  }
   async componentDidMount() {
     if (this.props.orderId !== undefined) {
       this.props.loadProducts(this.props.orderId)
@@ -39,24 +39,24 @@ class Cart extends React.Component {
   //   e.preventDefault()
   //   this.props.plus(id)
   // }
-  // deleteItem(id) {
-  //   console.log('delete item')
-  //   e.preventDefault()
-  //   this.props.deleteOrderItem(id)
-  // }
+  deleteItem(orderId, productId) {
+    this.props.removeOrderItem(orderId, productId)
+  }
   // emptyCart(id) {
   //   console.log('empty cart')
   //   e.preventDefault()
   //   this.props.emptyCart(id)
   // }
+
   render() {
     // console.log('is it rendering?')
     const items = this.props.items || []
-    console.log('items', items)
+    const orderId = this.props.orderId
+
     return (
       <div className="shopping-cart">
         <h1>Shopping Cart</h1>
-        {this.props.orderId === null ? (
+        {orderId === null ? (
           <h1>
             There is no Item in your cart. Oops{' '}
             <Link to="/home">Go Shopping</Link>{' '}
@@ -65,39 +65,13 @@ class Cart extends React.Component {
           items.map(item => {
             return (
               <div key={item.id} className="quantity">
-                <SingleProductView product={item} />
-                <div className="buttons">
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={() => {
-                      this.props.handlePlus(item.id)
-                    }}
-                  >
-                    +
-                  </button>
-                  <p className="textblock">
-                    The quantity:{item.orderItem.quantity}
-                  </p>
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={() => {
-                      this.handleMinus(item.id)
-                    }}
-                  >
-                    -
-                  </button>
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={() => {
-                      this.deleteItem(item.id)
-                    }}
-                  >
-                    Delete Item
-                  </button>{' '}
-                </div>
+                <SingleProductView
+                  product={item}
+                  orderId={orderId}
+                  deleteItem={this.deleteItem}
+                  handlePlus={this.handleplus}
+                  handleMinus={this.handleMinus}
+                />
               </div>
             )
           })
@@ -118,19 +92,23 @@ class Cart extends React.Component {
     )
   }
 }
+
 const mapState = state => {
   return {
     items: state.cart.products,
+    order: state.cart,
     orderId: state.cart.id
   }
 }
+
 const mapDispatch = dispatch => {
   return {
     loadProducts: orderId => dispatch(getAllCartItems(orderId)),
     orderCreator: () => dispatch(orderCreator()),
     plus: id => dispatch(increaseQty(id)),
     minus: id => dispatch(decreaseQty(id)),
-    deleteOrderItem: id => dispatch(deleteOrderItem(id))
+    removeOrderItem: (orderId, productId) =>
+      dispatch(deleteOrderItem(orderId, productId))
     // emptyCart: (id) => dispatch(emptyCart(id))
   }
 }

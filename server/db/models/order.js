@@ -39,16 +39,23 @@ const Order = db.define('order', {
 })
 
 //instance method to automatically update the order total and quantity
-Order.prototype.updateCart = async function(orderItem) {
-  this.orderSubtotal += orderItem.price
-  this.quantity += orderItem.quantity
+Order.prototype.updateCartTotals = async function(price, quantity) {
+  this.orderSubtotal += price
+  this.quantity += quantity
+  await this.save()
+}
+
+Order.prototype.subtractTotal = async function(price, quantity) {
+  this.orderSubtotal -= price
+  this.quantity -= quantity
   await this.save()
 }
 
 //after update that does what the instance method does?
 // Order.afterUpdate(async (orderInstance, ) => {
 //   const items = await OrderItem.findAll({where: {id: orderInstance.id}})
-
+//reduce quantity
+//reduce price
 //   orderInstance.orderSubtotal +=
 //   orderInstance.quantity +=
 

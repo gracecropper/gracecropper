@@ -38,23 +38,26 @@ router.put('/add', async (req, res, next) => {
     const orderInstance = await Order.findByPk(orderId)
     const productInstance = await Product.findByPk(productId)
 
-    //need to check if assoc. exists, if so, update, else add.
-    //the through here adds the quantity and price to the OrderItem
-    const orderItem = await orderInstance.addProduct(productInstance, {
-      through: {quantity: quantity, price: price}
+    //check to see if association exists already
+    let orderItem = await OrderItem.findOne({
+      where: {
+        orderId: orderId,
+        productId: productId
+      }
     })
 
-    // if (createdBoolean === true) {
-    //if new orderItem instance, update as new quantity
+    if (orderItem) {
+      orderItem.increment('quantity', {by: quantity})
+    } else {
+      orderItem = await orderInstance.addProduct(productInstance, {
+        through: {quantity: quantity, price: price}
+      })
+    }
 
-    // newItem.update({quantity: quantity, price: price})
-    // } else {
-    //   //If it already exists, just increment the current quantity
-    //   newItem.increment('quantity', {by: quantity})
-    // }
+    //update the subtotal and total
+    orderInstance.updateCartTotals(price, quantity)
 
-    // orderInstance.update()
-
+    //return the order
     const result = await Order.findOne({
       where: {
         id: orderId
@@ -64,24 +67,35 @@ router.put('/add', async (req, res, next) => {
       }
     })
 
-    // result.updateCart(orderItem) giving an error rn
     res.json(result)
   } catch (error) {
     next(error)
   }
 })
 
-// //DELETE REQUEST
-// router.delete('/:id', async (req, res, next) => {
-//   try {
-//     const item = await OrderItem.findByPk(+req.params.id)
-//     if (!item) return res.sendStatus(404)
-//     await item.destroy()
-//     res.sendStatus(204)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+//DELETE REQUEST
+router.delete('/delete', async (req, res, next) => {
+  try {
+    //needs productId + orderId
+    console.log(req.query.item)
+    console.log('order', req.query.cart)
+
+    const item = await OrderItem.findOne({
+      where: {productId: req.query.item, orderId: req.query.cart}
+    })
+
+    if (!item) return res.sendStatus(404)
+
+    //delete quantity and price from cart total
+    const order = await Order.findByPk(req.query.cart)
+    order.subtractTotal(item.price, item.quantity)
+
+    await item.destroy()
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
 
 // //PUT REQUEST FOR DECREMENTING ORDER ITEM QTY
 // router.put('/:id/decrement', async (req, res, next) => {

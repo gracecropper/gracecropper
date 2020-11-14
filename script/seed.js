@@ -58,7 +58,7 @@ async function seed() {
     })
   ])
 
-  await orders[0].updateCart(orderItems[0])
+  await orders[0].updateCartTotals(orderItems[0].price, orderItems[0].quantity)
   await users[0].addOrder(orders[0])
 
   // console.log(`$${orders[0].orderTotal / 100}`)

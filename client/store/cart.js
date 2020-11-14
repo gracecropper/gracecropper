@@ -21,10 +21,10 @@ const setItems = items => ({
   items
 })
 
-// const deleteItem = orderItemId => ({
-//   type: DELETE_ITEM,
-//   orderItemId
-// })
+const deleteItem = productId => ({
+  type: DELETE_ITEM,
+  productId
+})
 
 const addItem = item => ({
   type: ADD_ITEM,
@@ -56,11 +56,13 @@ export const getAllCartItems = orderId => {
     }
   }
 }
-export const deleteOrderItem = orderItemId => {
+export const deleteOrderItem = (orderId, productId) => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/cartitems/${orderItemId}`)
-      dispatch(deleteItem(orderItemId))
+      await axios.delete(
+        `/api/cartitems/delete?cart=${orderId}&item=${productId}`
+      )
+      dispatch(deleteItem(productId))
     } catch (error) {
       console.log('there was an error in deleteOrderItem in redux', error)
     }
@@ -122,10 +124,13 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ITEMS:
       return {...state, ...action.items}
-    // case DELETE_ITEM:
-    //   return state.items.filter(
-    //     orderItem => orderItem.id !== action.orderItemId
-    //   )
+    case DELETE_ITEM:
+      return {
+        ...state,
+        products: state.products.filter(product => {
+          return product.id !== action.productId
+        })
+      }
     case ADD_ITEM:
       return {...state, ...action.item}
     case SET_ORDER:
