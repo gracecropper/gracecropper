@@ -22,9 +22,9 @@ class Cart extends React.Component {
   //   console.log('inside constructor')
   // }
   componentDidMount() {
-    if (this.props.cart.orderId !== null) {
-      console.log('orderid', this.props.cart.orderId)
-      this.props.loadProducts(this.props.cart.orderId)
+    if (this.props.orderId !== null) {
+      console.log('this was successful', this.props.orderId)
+      this.props.loadProducts(this.props.orderId)
     }
   }
   // handleMinus(id) {
@@ -49,13 +49,12 @@ class Cart extends React.Component {
   // }
   render() {
     // console.log('is it rendering?')
-    const items = this.props.cart.items || []
-    console.log('this.props', this.props)
-    // return <div>hello</div>
+    const items = this.props.items || []
+    console.log('items', items)
     return (
       <div className="shopping-cart">
         <h1>Shopping Cart</h1>
-        {this.props.cart.orderId === null ? (
+        {this.props.orderId === null ? (
           <h1>
             There is no Item in your cart. Oops{' '}
             <Link to="/home">Go Shopping</Link>{' '}
@@ -63,9 +62,11 @@ class Cart extends React.Component {
         ) : (
           items.map(item => {
             return (
-              <div key={item.id} className="quantity">
-                <SingleProductView id={item.id} />
-                <Link to={`/singleproduct/${item.id}`}>{item.name}</Link>
+              <div key={item.product.id} className="quantity">
+                <SingleProductView productId={item.product.id} />
+                <Link to={`/singleproduct/${item.product.id}`}>
+                  {item.product.name}
+                </Link>
                 <div className="buttons">
                   <button
                     className="button"
@@ -118,13 +119,13 @@ class Cart extends React.Component {
 }
 const mapState = state => {
   return {
-    cart: state.cart
+    items: state.cart.items,
+    orderId: state.cart.orderId
   }
 }
 const mapDispatch = dispatch => {
   return {
-    loadProducts: () => dispatch(getAllCartItems()),
-    orderCreator: orderId => dispatch(orderCreator(orderId)),
+    loadProducts: orderId => dispatch(getAllCartItems(orderId)),
     plus: id => dispatch(increaseQty(id)),
     minus: id => dispatch(decreaseQty(id)),
     deleteOrderItem: id => dispatch(deleteOrderItem(id))

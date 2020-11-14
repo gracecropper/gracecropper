@@ -5,7 +5,7 @@ import './SingleProductView.css'
 class SingleProductView extends Component {
   componentDidMount() {
     try {
-      this.props.loadingProduct(this.props.id)
+      this.props.loadingProduct(this.props.productId)
     } catch (error) {
       console.error('there was an error in componentDidMount SingleProduct')
     }

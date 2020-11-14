@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import {addToCart, orderCreator} from '../store/cart'
 
-class AdddeleteDC extends React.Component {
+class AddDelete extends React.Component {
   constructor(props) {
     super(props)
     this.handlePlus = this.handlePlus.bind(this)
@@ -28,21 +28,20 @@ class AdddeleteDC extends React.Component {
   }
 
   async addToCart(e) {
+    //one main problem right now is that when we refresh, we assign a new orderId, which is not something we want.
+
     try {
       e.preventDefault()
       this.props.product.quantity = this.state.quantity
       if (!this.props.orderId) {
         console.log('does not have orderId')
-        await this.props.orderCreate()
+        await this.props.orderCreator()
       }
       try {
         this.props.addToCart(this.props.product, this.props.orderId)
         alert('Successfully Added To Cart')
       } catch (err) {
-        console.log(
-          'something went wrong after we try orderCreate',
-          err.message
-        )
+        console.log('error in add to cart', err.message)
       }
     } catch (err) {
       console.log('error in add to cart', err.message)
@@ -75,8 +74,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     addToCart: (product, orderId) => dispatch(addToCart(product, orderId)),
-    orderCreate: () => dispatch(orderCreator())
+    orderCreator: () => dispatch(orderCreator())
   }
 }
 
-export default connect(mapState, mapDispatch)(AdddeleteDC)
+export default connect(mapState, mapDispatch)(AddDelete)

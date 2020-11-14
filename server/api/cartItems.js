@@ -15,19 +15,36 @@ router.post('/', async (req, res, next) => {
 //POST REQUEST FOR CREATING NEW ORDER ITEM
 router.post('/add', async (req, res, next) => {
   try {
-    const newItem = await OrderItem.create(req.body)
+    const {orderId, productId, quantity, price} = req.body
+    const [newItem, createdBoolean] = await OrderItem.findOrCreate({
+      where: {
+        orderId: orderId,
+        productId: productId
+      }
+    })
+    if (createdBoolean === true) {
+      //if new orderItem instance, update as new quantity
+      newItem.update({quantity: quantity, price: price})
+    } else {
+      //If it already exists, just increment the current quantity
+      newItem.increment('quantity', {by: quantity})
+    }
+    // OrderInstance.addToCart(orderitem) prototype method defined in db that adds to Order subTotal
+    const orderInstance = await Order.findByPk(orderId)
+    orderInstance.addToCart(newItem)
 
-    const orderId = req.body.orderId
-    const orderInstance = await OrderItem.findByPk(orderId)
+    //we now have to use findOne or findAll to eager load products table...
+    //I can only fix the error msg: "EagerLoadingError [SequelizeEagerLoadingError]: product is not associated to orderItem!" by adding another association in the db...maybe there's a better way to do this.
+
     const result = await OrderItem.findOne({
       where: {
-        id: newItem.id
+        orderId,
+        productId
       },
       include: {
         model: Product
       }
     })
-    // orderInstance.addToCart(newItem)
     res.json(result)
   } catch (error) {
     next(error)
@@ -49,9 +66,10 @@ router.delete('/:id', async (req, res, next) => {
 //PUT REQUEST FOR DECREMENTING ORDER ITEM QTY
 router.put('/:id/decrement', async (req, res, next) => {
   try {
+    //need to refactor this since we don't have pk in orderitems table.
     const id = req.params.id
     const orderItem = await OrderItem.findByPk(id)
-    await orderItem.decrement('quantity')
+    await orderItem.decrement('quantity') //by default, decrements by 1
     res.json(orderItem)
     // res.status(204)
   } catch (error) {
@@ -63,9 +81,10 @@ router.put('/:id/decrement', async (req, res, next) => {
 
 router.put('/:id/increment', async (req, res, next) => {
   try {
+    //need to refactor this since we don't have pk in orderitems table.
     const id = req.params.id
     const orderItem = await OrderItem.findByPk(id)
-    await orderItem.increment('quantity')
+    await orderItem.increment('quantity') //by default increments by 1
     res.json(orderItem)
     // res.status(204)
   } catch (error) {
@@ -77,7 +96,7 @@ router.get('/:orderId', async (req, res, next) => {
   try {
     const allItems = await OrderItem.findAll({
       where: {
-        orderId: +req.params.orderId
+        orderId: req.params.orderId
       },
       include: {
         model: Product
