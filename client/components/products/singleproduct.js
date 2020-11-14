@@ -4,8 +4,8 @@ import {
   fetchProduct,
   updateProduct,
   writeProductUpdate
-} from '../store/singleProduct'
-import EditProducts from './admin_routes/edit-products'
+} from '../../store/singleProduct'
+import EditProducts from '../admin_routes/edit-products'
 
 class SingleProduct extends Component {
   constructor(props) {
@@ -26,26 +26,20 @@ class SingleProduct extends Component {
       this.props.product.id,
       this.props.updatedProduct
     )
-    //resets the form
-    this.props.writeProduct({
-      name: '',
-      type: 'Crops',
-      imageUrl: '',
-      size: '',
-      description: ''
-    })
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     try {
-      this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      await this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      this.props.writeProduct(this.props.product)
     } catch (error) {
       console.error('Could not load product', error)
     }
   }
 
   render() {
-    const {name, imageUrl, price, description} = this.props.product || []
+    const {name, imageUrl, price, description, quantity} =
+      this.props.product || []
 
     const role = this.props.role
 
@@ -54,7 +48,7 @@ class SingleProduct extends Component {
         <div className="singleProduct">
           <h1>{name}</h1>
           <img src={imageUrl} />
-          <p>{price}</p>
+          <p>${price / 100}</p>
           <p>{description}</p>
         </div>
 
@@ -63,6 +57,8 @@ class SingleProduct extends Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             updatedProduct={this.props.updatedProduct}
+            price={price}
+            quantity={quantity}
           />
         ) : (
           ''

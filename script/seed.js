@@ -8,7 +8,7 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
+    User.create({email: 'cody@email.com', password: '123', role: 'Admin'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
@@ -17,7 +17,7 @@ async function seed() {
       name: 'Cabbage Crop Top',
       type: 'Cropped Tops',
       quantity: 20,
-      price: 2500,
+      price: 25.0,
       size: 'M',
       imageUrl: '/img/croptop.jpg',
       description: 'Cream of the crop top'
@@ -26,7 +26,7 @@ async function seed() {
       name: 'Best Crops Ever',
       type: 'Crops',
       quantity: 20,
-      price: 1000,
+      price: 10.0,
       imageUrl: '/img/crop.jpg',
       description: 'organic and good for you'
     }),
@@ -34,7 +34,7 @@ async function seed() {
       name: 'When in doubt, crop it out',
       type: 'Cropped Pictures',
       quantity: 20,
-      price: 1000,
+      price: 10.0,
       imageUrl: '/img/croppedpic.png',
       description: 'get that photobomber outta your life!'
     })
@@ -70,26 +70,11 @@ async function seed() {
   const orderItems = await Promise.all([
     OrderItem.create({
       quantity: 5,
-      price: 2500
-    }),
-    OrderItem.create({
-      quantity: 77,
-      price: 7000
-    }),
-    OrderItem.create({
-      quantity: 1,
-      price: 70
-    }),
-    OrderItem.create({
-      quantity: 2,
-      price: 700
+      price: 2500,
+      orderId: 1,
+      productId: 1
     })
   ])
-  //which product is in your cart?  crop top
-  await orderItems[0].setProduct(products[0])
-  await orderItems[1].setProduct(products[1])
-  await orderItems[2].setProduct(products[2])
-  await orderItems[3].setProduct(products[0])
 
   await orders[0].addToCart(orderItems[0])
   await orders[0].addToCart(orderItems[1])

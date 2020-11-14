@@ -13,11 +13,8 @@ const OrderItem = db.define('orderItem', {
   price: {
     type: Sequelize.INTEGER //divide by 100 on client side
   },
-  priceDisplay: {
-    type: Sequelize.STRING,
-    get() {
-      return `$${(this.price / 100).toFixed(2)}`
-    }
+  size: {
+    type: Sequelize.ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL')
   }
 })
 

@@ -1,24 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {AddProducts} from '.'
+import AdminHome from '../admin_routes/admin-home'
+import OrderHistory from '../orderHistory'
 
 /**
  * COMPONENT
  */
-export const AdminHome = props => {
+export const UserHome = props => {
   const {email} = props
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
-
-      <Link to="/allusers">All Users</Link>
-
-      <AddProducts />
-
-      <label>Edit Products</label>
+      {props.role === 'Admin' ? <AdminHome /> : <h3>Welcome, {email}</h3>}
+      <OrderHistory />
     </div>
   )
 }
@@ -33,11 +28,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(AdminHome)
+export default connect(mapState)(UserHome)
 
 /**
  * PROP TYPES
  */
-AdminHome.propTypes = {
+UserHome.propTypes = {
   email: PropTypes.string
 }

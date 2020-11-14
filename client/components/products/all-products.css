@@ -1,0 +1,29 @@
+#productsPage {
+  align-content: center;
+}
+
+.products {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: 400px 400px 400px;
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
+  justify-items: center;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 400px;
+  background-color: #c69c5c;
+}
+
+.products img {
+  width: 300px;
+  height: 350px;
+}

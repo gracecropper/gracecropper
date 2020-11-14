@@ -16,6 +16,13 @@ export class NewProductDC extends React.Component {
   }
 
   handleChange(event) {
+    //type change
+    // if (event.target.name === 'quantity'){
+    //   event.target.value = parseInt(event.target.value, 10)
+    //   console.log(event.target.value)
+    // }
+    console.log(event.target.name)
+    console.log(event.target.value)
     //writing product info as object
     this.props.writeProduct({[event.target.name]: event.target.value})
 
@@ -51,7 +58,9 @@ export class NewProductDC extends React.Component {
         type: '',
         imageUrl: '',
         size: null,
-        description: ''
+        description: '',
+        quantity: 0,
+        price: 0
       })
     }
   }
@@ -67,7 +76,6 @@ export class NewProductDC extends React.Component {
             {this.state.validate ? '' : 'Fill in all missing fields!'}
           </small>
         </label>
-
         {/* Name of Product */}
         <label>
           Name: <small>{this.state.errors.name}</small>
@@ -79,7 +87,6 @@ export class NewProductDC extends React.Component {
           onChange={this.handleChange}
           value={newProduct.name}
         />
-
         {/* Product Type */}
         <label>Product Type:</label>
         {/* select dropdown here */}
@@ -95,7 +102,26 @@ export class NewProductDC extends React.Component {
           <option value="Crops">Crops</option>
           <option value="Cropped Pictures">Cropped Pictures</option>
         </select>
-
+        {/* Quantity of Product */}
+        <label>Quantity:</label>
+        <input
+          type="number"
+          pattern="[0-9]*"
+          inputMode="numeric"
+          onChange={this.handleChange}
+          name="quantity"
+          value={newProduct.quantity}
+        />
+        {/* Price of Product */}
+        <label>Price:</label>
+        $<input
+          type="number"
+          pattern="[0-9]*"
+          inputMode="numeric"
+          onChange={this.handleChange}
+          name="price"
+          value={newProduct.price}
+        />
         {/* Description */}
         <label>Description:</label>
         <textarea
