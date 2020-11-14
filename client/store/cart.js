@@ -4,17 +4,14 @@ import axios from 'axios'
  */
 const SET_ITEMS = 'SET_ITEMS'
 const DELETE_ITEM = 'DELETE_ITEM'
-const POST_ITEM = 'POST_ITEM'
-const SET_ORDERID = 'SET_ORDERID'
+const ADD_ITEM = 'ADD_ITEM'
+const SET_ORDER = 'SET_ORDER'
 const INCREMENT_ITEM = 'INCREMENT_ITEM'
 const DECREMENT_ITEM = 'DECREMENT_ITEM'
 /**
  * INITIAL STATE
  */
-const initialState = {
-  orderId: null,
-  items: []
-}
+const initialState = {}
 
 /**
  * ACTION CREATORS
@@ -24,18 +21,18 @@ const setItems = items => ({
   items
 })
 
-const deleteItem = orderItemId => ({
-  type: DELETE_ITEM,
-  orderItemId
-})
+// const deleteItem = orderItemId => ({
+//   type: DELETE_ITEM,
+//   orderItemId
+// })
 
-const postItem = item => ({
-  type: POST_ITEM,
+const addItem = item => ({
+  type: ADD_ITEM,
   item
 })
-const setOrderId = id => ({
-  type: SET_ORDERID,
-  id
+const setOrder = order => ({
+  type: SET_ORDER,
+  order
 })
 const decreaseQuant = id => ({
   type: DECREMENT_ITEM,
@@ -65,19 +62,18 @@ export const deleteOrderItem = orderItemId => {
       await axios.delete(`/api/cartitems/${orderItemId}`)
       dispatch(deleteItem(orderItemId))
     } catch (error) {
-      console.log('there was an error in deleteOrderItem in redux')
+      console.log('there was an error in deleteOrderItem in redux', error)
     }
   }
 }
 
-//i need to add this to combine reducers.
 export const orderCreator = () => {
   return async dispatch => {
     try {
       const {data} = await axios.post('/api/cartItems', {
         status: 'In User Cart'
       })
-      dispatch(setOrderId(data.id))
+      dispatch(setOrder(data))
     } catch (error) {
       console.log('there was an error in orderCreator', error)
     }
@@ -86,15 +82,15 @@ export const orderCreator = () => {
 export const addToCart = (productsObj, orderId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/cartItems/add', {
+      const {data} = await axios.put('/api/cartItems/add', {
         quantity: productsObj.quantity,
         price: productsObj.price,
         orderId: orderId,
         productId: productsObj.id
       })
-      dispatch(postItem(data))
+      dispatch(addItem(data))
     } catch (error) {
-      console.log('there was an error in addToCart in redux')
+      console.log('there was an error in addToCart in redux', error)
     }
   }
 }
@@ -125,15 +121,15 @@ export const decreaseQty = id => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ITEMS:
-      return {...state, items: action.items}
-    case DELETE_ITEM:
-      return state.items.filter(
-        orderItem => orderItem.id !== action.orderItemId
-      )
-    case POST_ITEM:
-      return {...state, items: [...state.items, action.item]}
-    case SET_ORDERID:
-      return {...state, orderId: action.id}
+      return {...state, ...action.items}
+    // case DELETE_ITEM:
+    //   return state.items.filter(
+    //     orderItem => orderItem.id !== action.orderItemId
+    //   )
+    case ADD_ITEM:
+      return {...state, ...action.item}
+    case SET_ORDER:
+      return {...state, ...action.order}
     case INCREMENT_ITEM:
       return {
         ...state,

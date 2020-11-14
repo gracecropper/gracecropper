@@ -21,7 +21,8 @@ Order.belongsTo(User)
 Order.belongsToMany(Product, {through: OrderItem})
 Product.belongsToMany(Order, {through: OrderItem})
 
-OrderItem.belongsTo(Product)
+//jin did this to fix it but i can fix it otherwise
+// OrderItem.belongsTo(Product)
 //Product.belongsTo(OrderItem)
 
 /**

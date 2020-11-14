@@ -21,9 +21,11 @@ class Cart extends React.Component {
   //   this.emptyCart = this.emptyCart.bind(this)
   //   console.log('inside constructor')
   // }
-  componentDidMount() {
-    if (this.props.orderId !== null) {
-      console.log('this was successful', this.props.orderId)
+  async componentDidMount() {
+    if (this.props.orderId !== undefined) {
+      this.props.loadProducts(this.props.orderId)
+    } else {
+      await this.props.orderCreator()
       this.props.loadProducts(this.props.orderId)
     }
   }
@@ -62,11 +64,8 @@ class Cart extends React.Component {
         ) : (
           items.map(item => {
             return (
-              <div key={item.product.id} className="quantity">
-                <SingleProductView productId={item.product.id} />
-                <Link to={`/singleproduct/${item.product.id}`}>
-                  {item.product.name}
-                </Link>
+              <div key={item.id} className="quantity">
+                <SingleProductView product={item} />
                 <div className="buttons">
                   <button
                     className="button"
@@ -77,7 +76,9 @@ class Cart extends React.Component {
                   >
                     +
                   </button>
-                  <p className="textblock">The quantity:{item.quantity}</p>
+                  <p className="textblock">
+                    The quantity:{item.orderItem.quantity}
+                  </p>
                   <button
                     className="button"
                     type="button"
@@ -119,13 +120,14 @@ class Cart extends React.Component {
 }
 const mapState = state => {
   return {
-    items: state.cart.items,
-    orderId: state.cart.orderId
+    items: state.cart.products,
+    orderId: state.cart.id
   }
 }
 const mapDispatch = dispatch => {
   return {
     loadProducts: orderId => dispatch(getAllCartItems(orderId)),
+    orderCreator: () => dispatch(orderCreator()),
     plus: id => dispatch(increaseQty(id)),
     minus: id => dispatch(decreaseQty(id)),
     deleteOrderItem: id => dispatch(deleteOrderItem(id))

@@ -29,7 +29,6 @@ class AddDelete extends React.Component {
 
   async addToCart(e) {
     //one main problem right now is that when we refresh, we assign a new orderId, which is not something we want.
-
     try {
       e.preventDefault()
       this.props.product.quantity = this.state.quantity
@@ -37,12 +36,8 @@ class AddDelete extends React.Component {
         console.log('does not have orderId')
         await this.props.orderCreator()
       }
-      try {
-        this.props.addToCart(this.props.product, this.props.orderId)
-        alert('Successfully Added To Cart')
-      } catch (err) {
-        console.log('error in add to cart', err.message)
-      }
+      this.props.addToCart(this.props.product, this.props.orderId)
+      alert('Successfully Added To Cart')
     } catch (err) {
       console.log('error in add to cart', err.message)
     }
@@ -67,8 +62,9 @@ class AddDelete extends React.Component {
 }
 const mapState = state => {
   return {
-    orderId: state.cart.orderId,
-    items: state.cart.items
+    orderId: state.cart.id,
+    items: state.cart.products,
+    user: state.user
   }
 }
 const mapDispatch = dispatch => {
