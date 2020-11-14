@@ -15,5 +15,5 @@ export {default as AdminHome} from './admin_routes/admin-home'
 export {default as Home} from './home'
 
 export {ErrorPage} from './error-page'
-
+export {default as Checkout} from './checkout'
 export {default as AddProducts} from './admin_routes/add-products'
