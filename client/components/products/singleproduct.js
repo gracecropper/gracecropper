@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import AddDelete from './add-delete'
 import {
   fetchProduct,
   updateProduct,
   writeProductUpdate
 } from '../../store/singleProduct'
+import AddDelete from '../add-delete'
 import EditProducts from '../admin_routes/edit-products'
 
 class SingleProduct extends Component {
@@ -31,7 +31,7 @@ class SingleProduct extends Component {
 
   async componentDidMount() {
     try {
-      await this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      await this.props.loadingProduct(this.props.match.params.id) //getting productId from our Routes
       this.props.writeProduct(this.props.product)
     } catch (error) {
       console.error('there was an error in componentDidMount SingleProduct')
@@ -52,7 +52,7 @@ class SingleProduct extends Component {
           <p>{description}</p>
           <AddDelete product={this.props.product} />
         </div>
-
+        <AddDelete product={this.props.product} />
         {role === 'Admin' ? (
           <EditProducts
             handleChange={this.handleChange}

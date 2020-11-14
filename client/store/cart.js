@@ -79,7 +79,7 @@ export const orderCreator = () => {
       })
       dispatch(setOrderId(data.id))
     } catch (error) {
-      console.log('there was an error in orderCreator')
+      console.log('there was an error in orderCreator', error)
     }
   }
 }
@@ -89,8 +89,8 @@ export const addToCart = (productsObj, orderId) => {
       const {data} = await axios.post('/api/cartItems/add', {
         quantity: productsObj.quantity,
         price: productsObj.price,
-        productId: productsObj.productId,
-        orderId
+        orderId: orderId,
+        productId: productsObj.id
       })
       dispatch(postItem(data))
     } catch (error) {

@@ -2,92 +2,71 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './cart.css'
+import SingleProductView from './SingleProductView'
 import {
   getAllCartItems,
   increaseQty,
   decreaseQty,
-  deleteOrderItem
+  deleteOrderItem,
+  orderCreator
+  // , emptyCart, getOrder
 } from '../store/cart'
-// emptyCart, getOrder
-import SingleProductView from './SingleProductView'
 
-export class CartDC extends React.Component {
-  constructor() {
-    super()
-    this.handleMinus = this.handleMinus.bind(this)
-    this.handlePlus = this.handlePlus.bind(this)
-    this.deleteItem = this.deleteItem(this)
-    this.emptyCart = this.emptyCart(this)
-  }
+class Cart extends React.Component {
+  // constructor() {
+  //   super()
+  //   this.handleMinus = this.handleMinus.bind(this)
+  //   this.handlePlus = this.handlePlus.bind(this)
+  //   this.deleteItem = this.deleteItem.bind(this)
+  //   this.emptyCart = this.emptyCart.bind(this)
+  //   console.log('inside constructor')
+  // }
   componentDidMount() {
-    // loadproducts()
-    // getOrders()// is it tied to userId?
-  }
-  handleMinus(id) {
-    console.log('minus item')
-    // e.preventDefault()
-    // this.props.increaseQuant(id)
-  }
-  handlePlus(id) {
-    console.log('plus item')
-    // e.preventDefault()
-    // this.props.decreaseQuant(id)
-  }
-  deleteItem(id) {
-    console.log('delete item')
-    // e.preventDefault()
-    // this.props.deleteOrderItem(id)
-  }
-  emptyCart(id) {
-    console.log('empty cart')
-    // e.preventDefault()
-    // this.props.emptyCart(id)
-  }
-  render() {
-    // const { cartItems, order } = this.props
-    const cartItems = [
-      {
-        id: 1,
-        quantity: 5000,
-        price: 2500,
-        orderId: 1,
-        productId: 1
-      },
-      {
-        id: 2,
-        quantity: 1,
-        price: 2,
-        orderId: 1,
-        productId: 1
-      }
-    ]
-    const order = {
-      id: 1,
-      date: 2020 - 11 - 11,
-      status: 'deliverd',
-      paymentMethod: 'Credential',
-      quantity: 10,
-      orderSubtotal: 3500,
-      tax: 1.08,
-      orderTotal: null,
-      shippingAddress: '777 park place',
-      userId: 1
+    if (this.props.orderId !== null) {
+      console.log('this was successful', this.props.orderId)
+      this.props.loadProducts(this.props.orderId)
     }
-
+  }
+  // handleMinus(id) {
+  //   console.log('minus item')
+  //   e.preventDefault()
+  //   this.props.minus(id)
+  // }
+  // handlePlus(id) {
+  //   console.log('plus item')
+  //   e.preventDefault()
+  //   this.props.plus(id)
+  // }
+  // deleteItem(id) {
+  //   console.log('delete item')
+  //   e.preventDefault()
+  //   this.props.deleteOrderItem(id)
+  // }
+  // emptyCart(id) {
+  //   console.log('empty cart')
+  //   e.preventDefault()
+  //   this.props.emptyCart(id)
+  // }
+  render() {
+    // console.log('is it rendering?')
+    const items = this.props.items || []
+    console.log('items', items)
     return (
       <div className="shopping-cart">
         <h1>Shopping Cart</h1>
-        {cartItems.length < 1 ? (
+        {this.props.orderId === null ? (
           <h1>
             There is no Item in your cart. Oops{' '}
             <Link to="/home">Go Shopping</Link>{' '}
           </h1>
         ) : (
-          cartItems.map(item => {
+          items.map(item => {
             return (
-              <div key={item.id} className="quantity">
-                <SingleProductView id={item.id} />
-                <Link to={`/singleproduct/${item.id}`}>{item.name}</Link>
+              <div key={item.product.id} className="quantity">
+                <SingleProductView productId={item.product.id} />
+                <Link to={`/singleproduct/${item.product.id}`}>
+                  {item.product.name}
+                </Link>
                 <div className="buttons">
                   <button
                     className="button"
@@ -108,7 +87,6 @@ export class CartDC extends React.Component {
                   >
                     -
                   </button>
-
                   <button
                     className="button"
                     type="button"
@@ -117,13 +95,13 @@ export class CartDC extends React.Component {
                     }}
                   >
                     Delete Item
-                  </button>
+                  </button>{' '}
                 </div>
               </div>
             )
           })
         )}
-        <p>Your order total is:</p>
+        {/* <p>Your order total is:</p>
         <p>${order.orderSubtotal}</p>
         <Link to="/home">Check Out</Link>
         <button
@@ -134,25 +112,24 @@ export class CartDC extends React.Component {
           }}
         >
           Delete Order
-        </button>
+        </button> */}
       </div>
     )
   }
 }
 const mapState = state => {
   return {
-    cartItems: state.cartItems,
-    order: state.order
+    items: state.cart.items,
+    orderId: state.cart.orderId
   }
 }
 const mapDispatch = dispatch => {
   return {
-    loadproducts: () => dispatch(getAllCartItems()),
-    // loadOrder: () => dispatch(getOrder()),
-    increaseQuant: id => dispatch(increaseQty(id)),
-    decreaseQuant: id => dispatch(decreaseQty(id)),
+    loadProducts: orderId => dispatch(getAllCartItems(orderId)),
+    plus: id => dispatch(increaseQty(id)),
+    minus: id => dispatch(decreaseQty(id)),
     deleteOrderItem: id => dispatch(deleteOrderItem(id))
     // emptyCart: (id) => dispatch(emptyCart(id))
   }
 }
-export default connect(mapState, mapDispatch)(CartDC)
+export default connect(mapState, mapDispatch)(Cart)

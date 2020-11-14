@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../../store/allProducts'
 import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
-import AddDelete from './add-delete'
+import AddDelete from '../add-delete'
 import './all-products.css'
 
 /**
@@ -60,7 +60,6 @@ class AllProductsDC extends React.Component {
         </div>
       )
     }
-
     return (
       <div id="productsPage">
         <div className="filteringAndOrdering">
