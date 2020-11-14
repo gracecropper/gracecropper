@@ -15,8 +15,8 @@ import {
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    // this.handleMinus = this.handleMinus.bind(this)
-    // this.handlePlus = this.handlePlus.bind(this)
+    this.handleMinus = this.handleMinus.bind(this)
+    this.handlePlus = this.handlePlus.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     // this.emptyCart = this.emptyCart.bind(this)
     // console.log('inside constructor')
@@ -29,16 +29,14 @@ class Cart extends React.Component {
       this.props.loadProducts(this.props.orderId)
     }
   }
-  // handleMinus(id) {
-  //   console.log('minus item')
-  //   e.preventDefault()
-  //   this.props.minus(id)
-  // }
-  // handlePlus(id) {
-  //   console.log('plus item')
-  //   e.preventDefault()
-  //   this.props.plus(id)
-  // }
+  handleMinus(orderId, productId) {
+    console.log('minus item')
+    this.props.minus(orderId, productId)
+  }
+  handlePlus(orderId, productId) {
+    console.log('plus item')
+    this.props.plus(orderId, productId)
+  }
   deleteItem(orderId, productId) {
     this.props.removeOrderItem(orderId, productId)
   }
@@ -69,7 +67,7 @@ class Cart extends React.Component {
                   product={item}
                   orderId={orderId}
                   deleteItem={this.deleteItem}
-                  handlePlus={this.handleplus}
+                  handlePlus={this.handlePlus}
                   handleMinus={this.handleMinus}
                 />
               </div>
@@ -105,8 +103,8 @@ const mapDispatch = dispatch => {
   return {
     loadProducts: orderId => dispatch(getAllCartItems(orderId)),
     orderCreator: () => dispatch(orderCreator()),
-    plus: id => dispatch(increaseQty(id)),
-    minus: id => dispatch(decreaseQty(id)),
+    plus: (orderId, productId) => dispatch(increaseQty(orderId, productId)),
+    minus: (orderId, productId) => dispatch(decreaseQty(orderId, productId)),
     removeOrderItem: (orderId, productId) =>
       dispatch(deleteOrderItem(orderId, productId))
     // emptyCart: (id) => dispatch(emptyCart(id))

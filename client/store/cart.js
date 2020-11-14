@@ -97,21 +97,25 @@ export const addToCart = (productsObj, orderId) => {
   }
 }
 
-export const increaseQty = id => {
+export const increaseQty = (orderId, productId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cartitems/${id}/increment`)
-      dispatch(increaseQuant(id))
+      const {data} = await axios.put(
+        `/api/cartitems/increment?cart=${orderId}&item=${productId}`
+      )
+      dispatch(increaseQuant(productId))
     } catch (error) {
       console.log('there was a problem in increaseQty in redux.')
     }
   }
 }
-export const decreaseQty = id => {
+export const decreaseQty = (orderId, productId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cartitems/${id}/decrement`)
-      dispatch(decreaseQuant(id))
+      const {data} = await axios.put(
+        `/api/cartitems/decrement?cart=${orderId}&item=${productId}`
+      )
+      dispatch(decreaseQuant(productId))
     } catch (error) {
       console.log('there was a problem in drecreaseQty in redux.')
     }
@@ -138,19 +142,21 @@ export default function(state = initialState, action) {
     case INCREMENT_ITEM:
       return {
         ...state,
-        items: state.items.map(item => {
+        products: state.products.map(item => {
           if (item.id === action.id) {
-            return item.quantity++
+            item.orderItem.quantity++
           }
+          return item
         })
       }
     case DECREMENT_ITEM:
       return {
         ...state,
-        items: state.items.map(item => {
+        products: state.products.map(item => {
           if (item.id === action.id) {
-            return item.quantity--
+            item.orderItem.quantity--
           }
+          return item
         })
       }
     default:

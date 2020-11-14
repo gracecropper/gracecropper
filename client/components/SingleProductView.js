@@ -19,7 +19,7 @@ class SingleProductView extends Component {
             className="button"
             type="button"
             onClick={() => {
-              this.props.handlePlus(id)
+              this.props.handlePlus(orderId, id)
             }}
           >
             +
@@ -29,7 +29,7 @@ class SingleProductView extends Component {
             className="button"
             type="button"
             onClick={() => {
-              this.handleMinus(id)
+              this.props.handleMinus(orderId, id)
             }}
           >
             -
