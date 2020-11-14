@@ -1,16 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import FormCheck from 'react-bootstrap/FormCheck'
-import FormFile from 'react-bootstrap/FormFile'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup'
 import StripeCheckout from 'react-stripe-checkout'
-import {render} from 'enzyme'
+import {Form, FormControl, Row, Col, Container, Button} from 'react-bootstrap'
 
 let orderSubtotal = 100
 class checkout extends React.Component {
