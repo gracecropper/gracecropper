@@ -8,7 +8,7 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
+    User.create({email: 'cody@email.com', password: '123', role: 'Admin'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
@@ -17,7 +17,7 @@ async function seed() {
       name: 'Cabbage Crop Top',
       type: 'Cropped Tops',
       quantity: 20,
-      price: 2500,
+      price: 25.0,
       size: 'M',
       imageUrl: '/img/croptop.jpg',
       description: 'Cream of the crop top'
@@ -26,7 +26,7 @@ async function seed() {
       name: 'Best Crops Ever',
       type: 'Crops',
       quantity: 20,
-      price: 1000,
+      price: 10.0,
       imageUrl: '/img/crop.jpg',
       description: 'organic and good for you'
     }),
@@ -34,7 +34,7 @@ async function seed() {
       name: 'When in doubt, crop it out',
       type: 'Cropped Pictures',
       quantity: 20,
-      price: 1000,
+      price: 10.0,
       imageUrl: '/img/croppedpic.png',
       description: 'get that photobomber outta your life!'
     })
@@ -51,12 +51,12 @@ async function seed() {
   //creating an order item
   const orderItems = await Promise.all([
     OrderItem.create({
-      quantity: 5000,
-      price: 2500
+      quantity: 5,
+      price: 2500,
+      orderId: 1,
+      productId: 1
     })
   ])
-  //which product is in your cart?  crop top!
-  await orderItems[0].setProduct(products[0])
 
   await orders[0].addToCart(orderItems[0])
   await users[0].addOrder(orders[0])

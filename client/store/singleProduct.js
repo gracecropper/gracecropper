@@ -16,8 +16,9 @@ const initialState = {
     name: '',
     type: '',
     imageUrl: '',
-    size: '',
-    description: ''
+    description: '',
+    quantity: null,
+    price: null
   }
 }
 
@@ -55,7 +56,7 @@ export const updateSingleProduct = updates => {
 export const fetchProduct = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/singleproduct/${id}`)
+      const {data} = await axios.get(`/api/products/${id}`)
       dispatch(getProduct(data))
     } catch (error) {
       console.log(error)
@@ -70,12 +71,13 @@ export const updateProduct = (id, updates) => {
       //make sure we're only sending updates users input
       const updateObj = {}
       for (var key in updates) {
-        if (updates[key] !== '' || updates[key] === null) {
+        if (updates[key] !== '' || updates[key] !== null) {
           updateObj[key] = updates[key]
         }
       }
+
       console.log('update Obj', updateObj)
-      const {data} = await axios.put(`/api/singleproduct/${id}`, updateObj)
+      const {data} = await axios.put(`/api/products/${id}`, updateObj)
       dispatch(updateSingleProduct(data))
     } catch (err) {
       console.log('Could not update:', err)

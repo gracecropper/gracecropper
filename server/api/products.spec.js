@@ -6,12 +6,12 @@ const db = require('../db')
 const app = require('../index')
 const Product = db.model('product')
 
-describe('All products routes', () => {
+describe('Products routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/allproducts', () => {
+  describe('/api/products', () => {
     //
     beforeEach(() => {
       return Product.create({
@@ -21,13 +21,12 @@ describe('All products routes', () => {
       })
     })
 
-    it('GET /api/allproducts', async () => {
+    it('GET /api/products', async () => {
       const res = await request(app)
-        .get('/api/allproducts')
+        .get('/api/products')
         .expect(200)
 
       expect(res.body).to.be.an('array')
-      // expect(res.body[0].email).to.be.equal(codysEmail)
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
