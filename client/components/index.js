@@ -18,5 +18,5 @@ export {default as SingleUser} from './users/singleUser'
 export {default as Cart} from './cart'
 
 export {ErrorPage} from './error-page'
-
+export {default as Checkout} from './checkout'
 export {default as AddProducts} from './admin_routes/add-products'

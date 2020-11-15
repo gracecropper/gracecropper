@@ -11,6 +11,7 @@ import {
   SingleProduct,
   AllProducts,
   ErrorPage,
+  Checkout
   OrderHistory,
   SingleUser,
   Cart
@@ -32,6 +33,13 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
+        <Route path="/allusers" component={AllUsers} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/allusers" component={AllUsers} />
+        <Route path="/products" component={AllProducts} />
+        <Route path="/singleproduct/:id" component={SingleProduct} />
+        <Route path="/checkout" component={Checkout} />
         <Route exact path="/allusers" component={AllUsers} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
