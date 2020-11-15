@@ -31,12 +31,14 @@ const ConfirmationPage = props => {
         <Col xs={8} md={6}>
           <Image src="/img/corn-confirm.jpg" alt="confirm" />
         </Col>
-        {!props.user && (
-          <p className="bottom">
-            Want the full grace cropper experience?{' '}
-            <Link to="/signup">Sign up</Link> today!
-          </p>
-        )}
+        <Col>
+          {!props.user.id && (
+            <p className="bottom">
+              Want the full grace cropper experience?{' '}
+              <Link to="/signup">Sign up</Link> today!
+            </p>
+          )}
+        </Col>
       </Container>
     </div>
   )
