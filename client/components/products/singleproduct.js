@@ -5,6 +5,7 @@ import {
   updateProduct,
   writeProductUpdate
 } from '../../store/singleProduct'
+import AddDelete from '../add-delete'
 import EditProducts from '../admin_routes/edit-products'
 
 class SingleProduct extends Component {
@@ -30,13 +31,12 @@ class SingleProduct extends Component {
 
   async componentDidMount() {
     try {
-      await this.props.loadingProduct(this.props.match.params.id) //productId set in our routes
+      await this.props.loadingProduct(this.props.match.params.id) //getting productId from our Routes
       this.props.writeProduct(this.props.product)
     } catch (error) {
-      console.error('Could not load product', error)
+      console.error('there was an error in componentDidMount SingleProduct')
     }
   }
-
   render() {
     const {name, imageUrl, price, description, quantity} =
       this.props.product || []
@@ -50,8 +50,9 @@ class SingleProduct extends Component {
           <img src={imageUrl} />
           <p>${price / 100}</p>
           <p>{description}</p>
+          <AddDelete product={this.props.product} />
         </div>
-
+        <AddDelete product={this.props.product} />
         {role === 'Admin' ? (
           <EditProducts
             handleChange={this.handleChange}
@@ -67,7 +68,6 @@ class SingleProduct extends Component {
     )
   }
 }
-
 const mapState = state => ({
   product: state.singleProduct.singleProduct,
   role: state.user.role,
