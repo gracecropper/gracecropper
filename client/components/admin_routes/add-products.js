@@ -60,7 +60,8 @@ export class NewProductDC extends React.Component {
         size: null,
         description: '',
         quantity: 0,
-        price: 0
+        price: 0,
+        upload: null
       })
     }
   }
@@ -86,6 +87,14 @@ export class NewProductDC extends React.Component {
           placeholder="Product Name"
           onChange={this.handleChange}
           value={newProduct.name}
+        />
+        <label>Product Image:</label>
+        <input
+          type="file"
+          name="upload"
+          onChange={evt =>
+            this.props.writeProduct({upload: evt.target.files[0]})
+          }
         />
         {/* Product Type */}
         <label>Product Type:</label>

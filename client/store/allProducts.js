@@ -56,6 +56,16 @@ export const fetchProducts = () => {
 export const postProducts = productInput => {
   return async dispatch => {
     try {
+      //If there is an uploaded file
+      if (productInput.upload) {
+        const formData = new FormData() //multipart form to upload file
+        formData.append('upload', productInput.upload)
+        const {data} = await Axios.post('/api/upload', formData, {
+          headers: {'content-type': 'multipart/form-data'}
+        })
+        productInput.upload = null
+        productInput.imageUrl = data //once we get the imageUrl we can set it on product input
+      }
       const {data} = await Axios.post('/api/products', productInput)
       dispatch(addProducts(data))
     } catch (err) {
@@ -85,7 +95,8 @@ const initialState = {
     imageUrl: '',
     description: '',
     quantity: 0,
-    price: 0
+    price: 0,
+    upload: null //for uploaded file storage
   }
 }
 
