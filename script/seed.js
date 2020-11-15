@@ -96,11 +96,7 @@ async function seed() {
     })
   ])
 
-  await orders[0].addToCart(orderItems[0])
-  //await orders[0].addToCart(orderItems[1])
-  //await orders[0].addToCart(orderItems[2])
-  //await orders[1].addToCart(orderItems[3])
-
+  await orders[0].updateCartTotals(orderItems[0].price, orderItems[0].quantity)
   await users[0].addOrder(orders[0])
   await users[0].addOrder(orders[1])
 

@@ -31,7 +31,7 @@ const NavBar = ({handleClick, isLoggedIn}) => (
           <Crop />
           Products
         </Link>
-        <Link to="">
+        <Link to="/cart">
           <Cart />
           Cart
         </Link>
