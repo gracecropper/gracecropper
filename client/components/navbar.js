@@ -61,7 +61,7 @@ const NavBar = ({handleClick, isLoggedIn}) => (
                   <EmojiSmile />
                   My Home
                 </Dropdown.Item>
-                <Dropdown.Item href="myhistory">Order History</Dropdown.Item>
+                <Dropdown.Item href="orderhistory">Order History</Dropdown.Item>
                 <Dropdown.Item href="/editprofile">Edit Profile</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

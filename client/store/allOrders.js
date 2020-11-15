@@ -5,7 +5,7 @@ const setOrders = orders => ({type: SET_ORDERS, orders})
 
 export const getMyHistory = () => async dispatch => {
   try {
-    const {data} = await Axios.get('/api/allorders/myHistory')
+    const {data} = await Axios.get('/api/allorders/orderhistory')
     dispatch(setOrders(data))
   } catch (error) {
     console.error(error)

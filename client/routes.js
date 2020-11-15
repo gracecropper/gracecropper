@@ -52,7 +52,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/userhome" component={UserHome} />
-            <Route exact path="/myhistory" component={OrderHistory} />
+            <Route exact path="/orderhistory" component={OrderHistory} />
             <Route exact path="/editprofile/:id" component={SingleUser} />
             <Route exact path="/editprofile" component={SingleUser} />
           </Switch>
