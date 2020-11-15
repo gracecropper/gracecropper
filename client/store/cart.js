@@ -9,6 +9,7 @@ const ADD_ITEM = 'ADD_ITEM'
 const SET_ORDER = 'SET_ORDER'
 const INCREMENT_ITEM = 'INCREMENT_ITEM'
 const DECREMENT_ITEM = 'DECREMENT_ITEM'
+const REMOVE_CART = 'REMOVE_CART'
 /**
  * INITIAL STATE
  */
@@ -44,6 +45,10 @@ const increaseQuant = id => ({
   id
 })
 
+const removeCart = () => ({
+  type: REMOVE_CART
+})
+
 /**
  * THUNK CREATORS
  */
@@ -57,6 +62,7 @@ export const getAllCartItems = orderId => {
     }
   }
 }
+
 export const deleteOrderItem = (orderId, productId) => {
   return async dispatch => {
     try {
@@ -112,6 +118,7 @@ export const increaseQty = (orderId, productId) => {
     }
   }
 }
+
 export const decreaseQty = (orderId, productId) => {
   return async dispatch => {
     try {
@@ -124,13 +131,25 @@ export const decreaseQty = (orderId, productId) => {
     }
   }
 }
+
+export const deleteCart = orderId => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/cartitems/${orderId}`)
+      dispatch(removeCart())
+    } catch (error) {
+      console.log('Could not delete cart', error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ITEMS:
-      return {...state, ...action.items}
+      return {...action.items}
     case DELETE_ITEM:
       return {
         ...state,
@@ -138,10 +157,11 @@ export default function(state = initialState, action) {
           return product.id !== action.productId
         })
       }
+
     case ADD_ITEM:
       return {...state, ...action.item}
     case SET_ORDER:
-      return {...state, ...action.order}
+      return {...action.order}
     case INCREMENT_ITEM:
       return {
         ...state,
@@ -164,8 +184,9 @@ export default function(state = initialState, action) {
       }
     case REMOVE_USER:
       return initialState //if you log out set the cart to empty
+    case REMOVE_CART:
+      return initialState
     default:
       return state
   }
 }
-//need to double check returned states...
