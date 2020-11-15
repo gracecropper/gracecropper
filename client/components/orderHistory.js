@@ -23,13 +23,15 @@ class OrderHistory extends React.Component {
                 <p>Order Total: {order.orderTotalDisplay}</p>
                 <p>Shipped To: {order.shippingAddress}</p>
                 <ul>
-                  {order.orderItems.map(orderItem => (
-                    <li key={orderItem.id}>
+                  {order.products.map(product => (
+                    <li key={product.id}>
                       <p>
-                        {`${orderItem.quantity} ${orderItem.product.name} - 
-                    ${orderItem.priceDisplay} per item`}
+                        {`${product.orderItem.quantity} ${
+                          product.orderItem.name
+                        } - 
+                    ${product.priceDisplay} per item`}
                       </p>
-                      <img src={orderItem.product.imageUrl} height="100px" />
+                      <img src={product.imageUrl} height="100px" />
                     </li>
                   ))}
                 </ul>

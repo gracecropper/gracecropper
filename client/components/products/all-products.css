@@ -1,5 +1,6 @@
 #productsPage {
   align-content: center;
+  padding-top: 30px;
 }
 
 .products {
@@ -11,6 +12,7 @@
   justify-items: center;
   grid-template-columns: auto auto auto;
   align-items: center;
+  margin-top: 30px;
 }
 
 .product {
