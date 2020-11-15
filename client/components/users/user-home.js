@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AdminHome from '../admin_routes/admin-home'
+import {SingleUser} from '..'
 
 /**
  * COMPONENT
@@ -11,7 +12,15 @@ export const UserHome = props => {
 
   return (
     <div>
-      {props.role === 'Admin' ? <AdminHome /> : <h3>Welcome, {email}</h3>}
+      {props.role === 'Admin' ? (
+        <AdminHome />
+      ) : (
+        <div>
+          <h3>Welcome, {email}</h3>
+          <SingleUser />{' '}
+          {/*<Link to="/editprofile">Click here to edit your profile</Link> */}
+        </div>
+      )}
     </div>
   )
 }

@@ -13,6 +13,9 @@ export {default as SingleProduct} from './products/singleproduct'
 export {default as AllUsers} from './users/allusers'
 export {default as AdminHome} from './admin_routes/admin-home'
 export {default as Home} from './home'
+export {default as OrderHistory} from './orderHistory'
+export {default as SingleUser} from './users/singleUser'
+export {default as Cart} from './cart'
 
 export {ErrorPage} from './error-page'
 
