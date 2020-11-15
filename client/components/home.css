@@ -7,14 +7,18 @@
   justify-items: center;
   grid-template-columns: auto auto auto;
   align-items: center;
+  align-content: center;
+  padding-bottom: 150px;
+  margin-bottom: 150px;
 }
 
 button {
-  width: 200px;
+  width: 300px;
 }
 
 .homePageImg {
   border: black;
   width: 300px;
   height: 300px;
+  padding-top: 50px;
 }

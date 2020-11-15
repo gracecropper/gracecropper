@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-
+import 'bootstrap/dist/css/bootstrap.css'
+import Navbar from 'react-bootstrap/Navbar'
 import {
   Cart,
   House,
@@ -16,10 +17,21 @@ import {
 
 import './navbar.css'
 
+import {Dropdown} from 'react-bootstrap'
+
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div id="navigate">
-    <nav>
-      <h3>GraceCropper</h3>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">
+        <img
+          src="/img/crop-icon.jpg"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="Grace Cropper logo"
+        />{' '}
+        GraceCropper
+      </Navbar.Brand>
       <div id="leftNavLinks">
         <Link to="/">
           <House />
@@ -29,7 +41,7 @@ const NavBar = ({handleClick, isLoggedIn}) => (
           <Crop />
           Products
         </Link>
-        <Link to="">
+        <Link to="/cart">
           <Cart />
           Cart
         </Link>
@@ -39,10 +51,21 @@ const NavBar = ({handleClick, isLoggedIn}) => (
         {isLoggedIn ? (
           <div className="inOrOut">
             {/* The navbar will show these links after you log in */}
-            <Link to="/userhome">
-              <EmojiSmile />
-              My Home
-            </Link>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Profile
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="/userhome">
+                  <EmojiSmile />
+                  My Home
+                </Dropdown.Item>
+                <Dropdown.Item href="orderhistory">Order History</Dropdown.Item>
+                <Dropdown.Item href="/editprofile">Edit Profile</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
             <Link to="#" onClick={handleClick}>
               <ArrowDownRight />
               Logout
@@ -62,7 +85,7 @@ const NavBar = ({handleClick, isLoggedIn}) => (
           </div>
         )}
       </div>
-    </nav>
+    </Navbar>
   </div>
 )
 

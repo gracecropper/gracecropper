@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../../store/allProducts'
 import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
+import AddDelete from '../add-delete'
 import './all-products.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import {DropdownButton, Dropdown} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -23,7 +26,7 @@ class AllProductsDC extends React.Component {
   }
 
   productsFilter(event) {
-    this.setState({selection: event.target.value})
+    this.setState({selection: event})
   }
 
   handleDelete(id) {
@@ -59,18 +62,31 @@ class AllProductsDC extends React.Component {
         </div>
       )
     }
-
     return (
       <div id="productsPage">
         <div className="filteringAndOrdering">
           <div className="View">
-            View
-            <select name="campuses" onChange={this.productsFilter}>
+            {/* <select name="campuses" onChange={this.productsFilter}>
               <option value="All">All</option>
               <option value="Crops">Crops</option>
               <option value="Cropped Tops">Crop Tops</option>
               <option value="Cropped Pictures">Cropped Photos</option>
-            </select>
+            </select> */}
+            <DropdownButton
+              variant="warning"
+              id="dropdown-basic-button"
+              title="View"
+              onSelect={this.productsFilter}
+            >
+              <Dropdown.Item eventKey="All">All</Dropdown.Item>
+              <Dropdown.Item eventKey="Crops">Crops</Dropdown.Item>
+              <Dropdown.Item eventKey="Cropped Tops">
+                Cropped Tops
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="Cropped Pictures">
+                Cropped Photos
+              </Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
 
@@ -82,8 +98,9 @@ class AllProductsDC extends React.Component {
                   <img src={elm.imageUrl} alt="image" />
                 </a>
                 <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
+                <AddDelete product={elm} />
 
-                {/* If the user is an admin, display button to delete product */}
+                {/* If the user is an admin, button to delete product */}
                 {role === 'Admin' ? (
                   <button
                     type="button"

@@ -1,0 +1,18 @@
+.singleProductView {
+  text-align: center;
+}
+
+.image {
+  margin-right: 50px;
+  width: 100px;
+  height: 100px;
+}
+
+.price {
+  width: 83px;
+  padding-top: 27px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484d;
+  font-weight: 300;
+}

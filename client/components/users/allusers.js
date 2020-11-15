@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/admin'
+import {Link} from 'react-router-dom'
 
 import './allusers.css'
 
@@ -32,6 +33,9 @@ class AllUsersDC extends React.Component {
                   <li>ID: {user.id}</li>
                   <li>email: {user.email}</li>
                   <li>account type: {user.role}</li>
+                  <li>
+                    <Link to={`/editprofile/${user.id}`}>User Profile</Link>
+                  </li>
                   {/* will have to eventually include a link to their order history here too , also edit user link*/}
                 </ul>
               </div>
