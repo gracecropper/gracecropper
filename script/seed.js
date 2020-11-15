@@ -93,12 +93,25 @@ async function seed() {
       orderId: 2,
       productId: 1,
       size: 'M'
+    }),
+    OrderItem.create({
+      quantity: 5,
+      price: 2500,
+      orderId: 3,
+      productId: 1,
+      size: 'M'
     })
   ])
 
   await orders[0].updateCartTotals(orderItems[0].price, orderItems[0].quantity)
+  await orders[1].updateCartTotals(orderItems[1].price, orderItems[1].quantity)
+  await orders[1].updateCartTotals(orderItems[4].price, orderItems[4].quantity)
+  await orders[2].updateCartTotals(orderItems[2].price, orderItems[2].quantity)
+  await orders[2].updateCartTotals(orderItems[3].price, orderItems[3].quantity)
   await users[0].addOrder(orders[0])
   await users[0].addOrder(orders[1])
+  await users[1].addOrder(orders[2])
+  await users[1].addOrder(orders[3])
 
   // console.log(`$${orders[0].orderTotal / 100}`)
   console.log(`seeded ${users.length} users`)

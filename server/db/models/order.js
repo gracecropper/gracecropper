@@ -46,13 +46,13 @@ const Order = db.define('order', {
 
 //instance method to automatically update the order total and quantity
 Order.prototype.updateCartTotals = async function(price, quantity) {
-  this.orderSubtotal += price
+  this.orderSubtotal += price * quantity
   this.quantity += quantity
   await this.save()
 }
 
 Order.prototype.subtractTotal = async function(price, quantity) {
-  this.orderSubtotal -= price
+  this.orderSubtotal -= price * quantity
   this.quantity -= quantity
   await this.save()
 }
