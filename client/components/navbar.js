@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-
+import 'bootstrap/dist/css/bootstrap.css'
+import Navbar from 'react-bootstrap/Navbar'
 import {
   Cart,
   House,
@@ -20,8 +21,17 @@ import {Dropdown} from 'react-bootstrap'
 
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div id="navigate">
-    <nav>
-      <h3>GraceCropper</h3>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">
+        <img
+          src="/img/crop-icon.jpg"
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="Grace Cropper logo"
+        />{' '}
+        GraceCropper
+      </Navbar.Brand>
       <div id="leftNavLinks">
         <Link to="/">
           <House />
@@ -75,7 +85,7 @@ const NavBar = ({handleClick, isLoggedIn}) => (
           </div>
         )}
       </div>
-    </nav>
+    </Navbar>
   </div>
 )
 

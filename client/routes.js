@@ -11,7 +11,7 @@ import {
   SingleProduct,
   AllProducts,
   ErrorPage,
-  Checkout
+  Checkout,
   OrderHistory,
   SingleUser,
   Cart
