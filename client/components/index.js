@@ -16,7 +16,7 @@ export {default as Home} from './home'
 export {default as OrderHistory} from './orderHistory'
 export {default as SingleUser} from './users/singleUser'
 export {default as Cart} from './cart'
-
+export {default as ConfirmationPage} from './confirmationPage'
 export {ErrorPage} from './error-page'
 export {default as Checkout} from './checkout'
 export {default as AddProducts} from './admin_routes/add-products'
