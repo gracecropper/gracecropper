@@ -1,5 +1,5 @@
 import React from 'react'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import {Jumbotron, Container} from 'react-bootstrap'
 
 import './home.css'
 
@@ -7,10 +7,12 @@ const Home = () => {
   return (
     <div id="homePage">
       <Jumbotron fluid>
-        <h2>
-          <i>Crops, Crop Tops, and Cropped Photos</i>
-        </h2>
-        <p>GraceCropper, your one stop-shop for all things Crop!</p>
+        <Container>
+          <h2>
+            <i>Crops, Crop Tops, and Cropped Photos</i>
+          </h2>
+          <p>GraceCropper, your one stop-shop for all things Crop!</p>
+        </Container>
       </Jumbotron>
 
       <div id="homePageGrid">
