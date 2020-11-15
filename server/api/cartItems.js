@@ -108,7 +108,7 @@ router.put('/decrement', async (req, res, next) => {
 
     //delete quantity and price from cart total
     const order = await Order.findByPk(req.query.cart)
-    order.subtractTotal(item.price, item.quantity)
+    order.subtractTotal(item.price, 1) // decrements by 1
 
     res.json(item)
   } catch (error) {
@@ -127,7 +127,7 @@ router.put('/increment', async (req, res, next) => {
 
     //delete quantity and price from cart total
     const order = await Order.findByPk(req.query.cart)
-    order.updateCartTotals(item.price, item.quantity)
+    order.updateCartTotals(item.price, 1) //increase quantity by 1, not total quantity
 
     res.json(item)
   } catch (error) {
