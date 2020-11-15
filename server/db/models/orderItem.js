@@ -15,6 +15,12 @@ const OrderItem = db.define('orderItem', {
   },
   size: {
     type: Sequelize.ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL')
+  },
+  priceDisplay: {
+    type: Sequelize.STRING,
+    get() {
+      return `$${(this.price / 100).toFixed(2)}`
+    }
   }
 })
 

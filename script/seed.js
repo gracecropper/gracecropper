@@ -72,7 +72,27 @@ async function seed() {
       quantity: 5,
       price: 2500,
       orderId: 1,
-      productId: 1
+      productId: 1,
+      size: 'XS'
+    }),
+    OrderItem.create({
+      quantity: 77,
+      price: 7000,
+      orderId: 1,
+      productId: 2
+    }),
+    OrderItem.create({
+      quantity: 1,
+      price: 70,
+      orderId: 2,
+      productId: 3
+    }),
+    OrderItem.create({
+      quantity: 2,
+      price: 700,
+      orderId: 2,
+      productId: 1,
+      size: 'M'
     })
   ])
 
