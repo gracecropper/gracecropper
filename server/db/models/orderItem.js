@@ -19,7 +19,7 @@ const OrderItem = db.define('orderItem', {
   priceDisplay: {
     type: Sequelize.STRING,
     get() {
-      return `$${(this.price / 100).toFixed(2)}`
+      return (this.price / 100).toFixed(2)
     }
   }
 })

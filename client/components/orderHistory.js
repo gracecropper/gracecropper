@@ -26,10 +26,8 @@ class OrderHistory extends React.Component {
                   {order.products.map(product => (
                     <li key={product.id}>
                       <p>
-                        {`${product.orderItem.quantity} ${
-                          product.orderItem.name
-                        } - 
-                    ${product.priceDisplay} per item`}
+                        {`${product.orderItem.quantity} ${product.name} -
+                    ${product.orderItem.priceDisplay} per item`}
                       </p>
                       <img src={product.imageUrl} height="100px" />
                     </li>

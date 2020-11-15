@@ -3,28 +3,17 @@ import './SingleProductView.css'
 
 class SingleProductView extends Component {
   render() {
-    const {name, imageUrl, price, id, orderItem} = this.props.product || []
+    const {name, imageUrl, id, orderItem} = this.props.product || []
     const orderId = this.props.orderId
-
     return (
       <div>
         <div className="image">
           {/* add link into span name */}
           <span>{name}</span>
           <img src={imageUrl} className="image" />
-          <p className="price">Price per item: {price}</p>
+          <p className="price">Price per item: ${orderItem.priceDisplay}</p>
         </div>
         <div className="buttons">
-          <button
-            className="button"
-            type="button"
-            onClick={() => {
-              this.props.handlePlus(orderId, id)
-            }}
-          >
-            +
-          </button>
-          <p className="textblock">The quantity:{orderItem.quantity}</p>
           <button
             className="button"
             type="button"
@@ -33,6 +22,16 @@ class SingleProductView extends Component {
             }}
           >
             -
+          </button>
+          <p className="textblock">The quantity:{orderItem.quantity}</p>
+          <button
+            className="button"
+            type="button"
+            onClick={() => {
+              this.props.handlePlus(orderId, id)
+            }}
+          >
+            +
           </button>
           <button
             className="button"
