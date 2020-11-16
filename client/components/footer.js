@@ -13,8 +13,12 @@ const Footer = () => {
         <MDBRow>
           <MDBCol md="6">
             <h5 className="title">Grace Cropper</h5>
-            <p>Crop' til you drop!</p>
-            <a href="https://github.com/gracecropper/gracecropper">
+            <p>Crop 'til you drop!</p>
+            <a
+              href="https://github.com/gracecropper/gracecropper"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <GoMarkGithub color="##e36397" size={32} /> Link to GitHub
             </a>
           </MDBCol>
