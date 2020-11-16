@@ -14,10 +14,14 @@ class SingleProduct extends Component {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChangeFile = this.handleChangeFile.bind(this)
   }
 
   handleChange(event) {
     this.props.writeProduct({[event.target.name]: event.target.value})
+  }
+  handleChangeFile(event) {
+    this.props.writeProduct({file: event.target.files[0]})
   }
 
   handleSubmit(event) {
@@ -56,6 +60,7 @@ class SingleProduct extends Component {
         {role === 'Admin' ? (
           <EditProducts
             handleChange={this.handleChange}
+            handleChangeFile={this.handleChangeFile}
             handleSubmit={this.handleSubmit}
             updatedProduct={this.props.updatedProduct}
             price={price}

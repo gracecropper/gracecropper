@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const path = require('path')
 const multer = require('multer')
 
 //using a single file called upload

@@ -95,6 +95,7 @@ export class NewProductDC extends React.Component {
           onChange={evt =>
             this.props.writeProduct({upload: evt.target.files[0]})
           }
+          value={undefined}
         />
         {/* Product Type */}
         <label>Product Type:</label>
