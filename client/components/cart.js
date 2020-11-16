@@ -39,7 +39,12 @@ class Cart extends React.Component {
     this.props.removeOrderItem(orderId, productId)
   }
   emptyCart(id) {
-    this.props.emptyCart(id)
+    try {
+      this.props.emptyCart(id)
+      alert('You have successfully deleted your order')
+    } catch (err) {
+      console.log('something wrong with deleting the order', err)
+    }
   }
 
   render() {
@@ -87,16 +92,22 @@ class Cart extends React.Component {
         )}
         <p>Your order total is:</p>
         <p>${subTotal}</p>
-        <Link to="/checkout">Check Out</Link>
-        <button
-          className="button"
-          type="button"
-          onClick={() => {
-            this.emptyCart(orderId)
-          }}
-        >
-          Delete Order
-        </button>
+        {subTotal > 0 ? (
+          <div>
+            <Link to="/checkout">Check Out</Link>
+            <button
+              className="button"
+              type="button"
+              onClick={() => {
+                this.emptyCart(orderId)
+              }}
+            >
+              Delete Order
+            </button>
+          </div>
+        ) : (
+          <Link to="/products"> Shop for more items</Link>
+        )}
       </div>
     )
   }
