@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './SingleProductView.css'
+import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 
 class SingleProductView extends Component {
   render() {
@@ -9,9 +10,13 @@ class SingleProductView extends Component {
       <div>
         <div className="image">
           {/* add link into span name */}
-          <span>{name}</span>
-          <img src={imageUrl} className="image" />
-          <p className="price">Price per item: ${orderItem.priceDisplay}</p>
+          <span>
+            <Link to={`/singleproduct/${id}`}>{name}</Link>
+          </span>
+          <div className="imageprice">
+            <img src={imageUrl} className="image" />
+            <p className="price">Unit Price: ${orderItem.priceDisplay}</p>
+          </div>
         </div>
         <div className="buttons">
           <button

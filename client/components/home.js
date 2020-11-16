@@ -1,5 +1,6 @@
 import React from 'react'
 import {Jumbotron, Container, Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 import './home.css'
 
@@ -33,23 +34,29 @@ const Home = () => {
       <div id="homePageGrid">
         <div className="homePageImg">
           <img src="/img/crop.jpg" className="homePageImg" />
-          <Button type="button" className="bannerButton" variant="warning">
-            Crops
-          </Button>
+          <Link to="/products#/?filter=crops">
+            <Button type="button" className="bannerButton" variant="warning">
+              Crops
+            </Button>
+          </Link>
         </div>
 
         <div className="homePageImg">
           <img src="/img/croptop.jpg" className="homePageImg" />
-          <Button type="button" className="bannerButton" variant="warning">
-            Crop Tops
-          </Button>
+          <Link to="/products#/?filter=croppedtops">
+            <Button type="button" className="bannerButton" variant="warning">
+              Crop Tops
+            </Button>
+          </Link>
         </div>
 
         <div className="homePageImg">
           <img src="/img/croppedpic.png" className="homePageImg" />
-          <Button type="button" className="bannerButton" variant="warning">
-            Cropped Pictures
-          </Button>
+          <Link to="/products#/?filter=croppedpictures">
+            <Button type="button" className="bannerButton" variant="warning">
+              Cropped Pictures
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

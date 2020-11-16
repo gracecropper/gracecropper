@@ -16,7 +16,9 @@ export const UserHome = props => {
         <AdminHome />
       ) : (
         <div>
-          <h3>Welcome, {email}</h3>
+          <h3 style={{paddingTop: '50px', paddingBottom: '25px'}}>
+            Welcome, {email}
+          </h3>
           <SingleUser />{' '}
           {/*<Link to="/editprofile">Click here to edit your profile</Link> */}
         </div>

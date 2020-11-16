@@ -47,7 +47,7 @@ class OrderHistory extends React.Component {
               </div>
             ))
         ) : (
-          <p>
+          <p style={{'padding-left': '160px'}}>
             No Orders Yet...We recommend placing some!{' '}
             <img src="/img/sadCorn.png" />
           </p>
