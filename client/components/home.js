@@ -6,7 +6,7 @@ import './home.css'
 const Home = () => {
   return (
     <div id="homePage">
-      <Jumbotron fluid>
+      <Jumbotron fluid id="jumbotron">
         <Container>
           <h2>
             <i>Crops, Crop Tops, and Cropped Photos</i>
