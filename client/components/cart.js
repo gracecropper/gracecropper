@@ -68,7 +68,10 @@ class Cart extends React.Component {
     }
 
     return (
-      <div className="shopping-cart">
+      <div
+        className="shopping-cart"
+        style={{padding: '50px 50px 475px 100px', height: '1500px'}}
+      >
         <h1>Shopping Cart</h1>
         {items.length === 0 ? (
           <h1>
