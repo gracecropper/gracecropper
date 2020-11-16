@@ -1,0 +1,47 @@
+import React from 'react'
+import {GoMarkGithub} from 'react-icons/go'
+import {AiTwotoneTrophy} from 'react-icons/ai'
+import {MDBCol, MDBContainer, MDBRow, MDBFooter} from 'mdbreact'
+
+const Footer = () => {
+  return (
+    <MDBFooter
+      style={{'background-color': '#ffbb33'}}
+      className="font-small pt-4 mt-4"
+    >
+      <MDBContainer fluid className="text-center text-md-left">
+        <MDBRow>
+          <MDBCol md="6">
+            <h5 className="title">Grace Cropper</h5>
+            <p>Crop' til you drop!</p>
+            <a href="https://github.com/gracecropper/gracecropper">
+              <GoMarkGithub color="##e36397" size={32} /> Link to GitHub
+            </a>
+          </MDBCol>
+          <MDBCol md="6">
+            <h5 className="title">Proud Creators</h5>
+            <ul>
+              <li className="list-unstyled">
+                <AiTwotoneTrophy size={25} /> Tianying (Jenna) Jiang
+                <li className="list-unstyled">
+                  <AiTwotoneTrophy size={25} /> Jin Young Choi
+                </li>
+                <li className="list-unstyled">
+                  <AiTwotoneTrophy size={25} /> Amanda Barrafato
+                </li>
+                <li className="list-unstyled" />
+                <AiTwotoneTrophy size={25} /> Jennifer Rafael
+              </li>
+            </ul>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+      <div>
+        <MDBContainer
+          style={{'background-color': '#FF8800', height: '25px'}}
+          fluid
+        />
+      </div>
+    </MDBFooter>
+  )
+}
