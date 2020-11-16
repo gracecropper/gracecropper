@@ -6,10 +6,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class checkout extends React.Component {
-  constructor() {
-    super()
-  }
-
   handleToken(token, address) {
     console.log(token, address)
   }
