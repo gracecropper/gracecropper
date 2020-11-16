@@ -2,6 +2,7 @@
 
 const db = require('../server/db')
 const {User, Product, Order, OrderItem} = require('../server/db/models')
+const faker = require('faker')
 
 async function seed() {
   await db.sync({force: true})
@@ -213,6 +214,45 @@ async function seed() {
       size: 'M'
     })
   ])
+
+  const fakerFunction = () => {
+    for (let i = 0; i <= 50; i++) {
+      let newUser = {
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        role: 'User'
+      }
+
+      let newOrder = {
+        date: faker.date.past(),
+        status: 'Delivered',
+        paymentMethod: 'credit',
+        shippingAddress: faker.address.streetAddress()
+      }
+
+      let newCrop = {
+        name: `${faker.commerce.productName()} Crop`,
+        type: 'Crops',
+        price: faker.random.number(1000),
+        quantity: faker.random.number(10000),
+        description: faker.lorem.sentence()
+      }
+
+      let newCropTop = {
+        name: `${faker.commerce.productName()} Crop Top`,
+        type: 'Cropped Tops',
+        price: faker.random.number(1000),
+        quantity: faker.random.number(10000),
+        description: faker.lorem.sentence(),
+        imageUrl: '/img/croptop.jpg'
+      }
+      users.push(User.create(newUser))
+      orders.push(Order.create(newOrder))
+      products.push(Product.create(newCrop), Product.create(newCropTop))
+    }
+  }
+
+  fakerFunction()
 
   await orders[0].updateCartTotals(orderItems[0].price, orderItems[0].quantity)
   await orders[1].updateCartTotals(orderItems[1].price, orderItems[1].quantity)

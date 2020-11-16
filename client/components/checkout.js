@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import StripeCheckout from 'react-stripe-checkout'
 import {Form, FormControl, Row, Col, Container, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class checkout extends React.Component {
   handleToken(token, address) {
@@ -11,14 +12,11 @@ class checkout extends React.Component {
   onSubmit(e) {
     // e.stopPropagation()
   }
-  onCheckout() {
-    this.props.history.push(`/cart/checkout/confirmation`)
-  }
   render() {
     return (
       <Container>
         <Row className="justify-content-md-center">
-          <h1 style={{'padding-top': '30px'}}>Checkout Form</h1>
+          <h1 style={{paddingTop: '30px'}}>Checkout Form</h1>
         </Row>
         <Form>
           <Form.Row>
@@ -96,12 +94,6 @@ class checkout extends React.Component {
                   name="formHorizontalRadios"
                   id="formHorizontalRadios1"
                 />
-                <Form.Check
-                  type="radio"
-                  label="I also went to GraceHopper for a discount of $100"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios3"
-                />
               </Col>
             </Form.Group>
           </fieldset>
@@ -110,7 +102,7 @@ class checkout extends React.Component {
               <StripeCheckout
                 stripeKey="pk_test_51Hmk1dJSfpsyMJaRPcz6no77LrPylcbf7RHzy2QPQtxhoVrxFG7lkHDCvf5PXZHQRxnkM4pS1wrgYH23p61DEtLA00LIGcDTUo"
                 token={this.handleToken}
-                amount={orderSubtotal * 100}
+                amount={Number(this.props.order.orderTotal)}
               >
                 <Button type="button" disabled={false} onClick={this.onSubmit}>
                   Click to pay with Stripe!
@@ -131,4 +123,10 @@ class checkout extends React.Component {
   }
 }
 
-export default checkout
+const mapState = state => {
+  return {
+    order: state.cart,
+    orderId: state.cart.id
+  }
+}
+export default connect(mapState)(checkout)

@@ -1,0 +1,9 @@
+#adminHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

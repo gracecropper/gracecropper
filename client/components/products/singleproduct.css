@@ -1,7 +1,20 @@
-.singleProduct {
+.singleProductPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-content: center;
-  justify-content: center;
+  align-items: center;
   padding-top: 30px;
-  padding-bottom: 30px;
-  height: 550px;
+  padding-bottom: 50px;
+}
+
+.singleProduct {
+  justify-content: center;
+  align-content: center;
+  padding-bottom: 50px;
+}
+
+.singleProduct img {
+  width: 500px;
+  height: 450px;
 }
