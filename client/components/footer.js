@@ -6,7 +6,7 @@ import {MDBCol, MDBContainer, MDBRow, MDBFooter} from 'mdbreact'
 const Footer = () => {
   return (
     <MDBFooter
-      style={{'background-color': '#ffbb33'}}
+      style={{backgroundColor: '#ffbb33'}}
       className="font-small pt-4 mt-4"
     >
       <MDBContainer fluid className="text-center text-md-left">
@@ -23,13 +23,14 @@ const Footer = () => {
             <ul>
               <li className="list-unstyled">
                 <AiTwotoneTrophy size={25} /> Tianying (Jenna) Jiang
-                <li className="list-unstyled">
-                  <AiTwotoneTrophy size={25} /> Jin Young Choi
-                </li>
-                <li className="list-unstyled">
-                  <AiTwotoneTrophy size={25} /> Amanda Barrafato
-                </li>
-                <li className="list-unstyled" />
+              </li>
+              <li className="list-unstyled">
+                <AiTwotoneTrophy size={25} /> Jin Young Choi
+              </li>
+              <li className="list-unstyled">
+                <AiTwotoneTrophy size={25} /> Amanda Barrafato
+              </li>
+              <li className="list-unstyled">
                 <AiTwotoneTrophy size={25} /> Jennifer Rafael
               </li>
             </ul>
@@ -38,10 +39,12 @@ const Footer = () => {
       </MDBContainer>
       <div>
         <MDBContainer
-          style={{'background-color': '#FF8800', height: '25px'}}
+          style={{backgroundColor: '#FF8800', height: '25px'}}
           fluid
         />
       </div>
     </MDBFooter>
   )
 }
+
+export default Footer

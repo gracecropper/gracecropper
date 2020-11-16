@@ -5,8 +5,9 @@ import {
   updateProduct,
   writeProductUpdate
 } from '../../store/singleProduct'
-import AddDelete from '../add-delete'
+import AddDelete from './add-delete'
 import EditProducts from '../admin_routes/edit-products'
+import './singleproduct.css'
 
 class SingleProduct extends Component {
   constructor(props) {

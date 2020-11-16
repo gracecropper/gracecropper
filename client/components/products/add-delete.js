@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {addToCart, decreaseQty, increaseQty, orderCreator} from '../store/cart'
+import {addToCart, orderCreator} from '../../store/cart'
+
+import './add-delete.css'
 
 class AddDelete extends React.Component {
   constructor(props) {
@@ -44,15 +46,16 @@ class AddDelete extends React.Component {
 
   render() {
     return (
-      <div>
-        <button type="button" size="lg" onClick={this.handlePlus}>
-          +
-        </button>
-        <p>{this.state.quantity}</p>
+      <div className="productsButtons">
         <button type="button" size="lg" onClick={this.handleMinus}>
           -
         </button>
-        <button type="button" onClick={this.addToCart}>
+        <p>{this.state.quantity}</p>
+        <button type="button" size="lg" onClick={this.handlePlus}>
+          +
+        </button>
+
+        <button type="button" onClick={this.addToCart} id="addToCart">
           Add To Cart
         </button>
       </div>

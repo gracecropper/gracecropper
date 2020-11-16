@@ -1,14 +1,15 @@
 #productsPage {
   align-content: center;
   padding-top: 30px;
+  padding-bottom: 100px;
 }
 
 .products {
   display: grid;
   grid-auto-flow: row;
-  grid-template-rows: 400px 400px 400px;
+  grid-template-rows: 500px;
   grid-column-gap: 30px;
-  grid-row-gap: 20px;
+  grid-row-gap: 30px;
   justify-items: center;
   grid-template-columns: auto auto auto;
   align-items: center;
@@ -21,11 +22,12 @@
   align-items: center;
   justify-content: center;
   width: 350px;
-  height: 400px;
+  height: 450px;
   background-color: #c69c5c;
 }
 
 .products img {
+  padding: 10px;
   width: 300px;
   height: 350px;
 }
