@@ -15,10 +15,16 @@ const Home = () => {
         }}
       >
         <Container>
-          <h2 style={{color: '#ffbb33', 'text-shadow': '1px 1px'}}>
+          <h2
+            style={{
+              color: '#ffbb33',
+              'text-shadow': '1px 1px',
+              fontSize: '40px'
+            }}
+          >
             <i>Crops, Crop Tops, and Cropped Photos</i>
           </h2>
-          <p style={{color: 'white'}}>
+          <p style={{color: 'white', fontSize: '30px'}}>
             GraceCropper, your one stop-shop for all things Crop!
           </p>
         </Container>
