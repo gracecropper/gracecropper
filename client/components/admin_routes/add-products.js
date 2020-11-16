@@ -1,13 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {postProducts, writeProducts} from '../../store/allProducts'
+import './productsforms.css'
 
 export class NewProductDC extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       errors: {
-        name: ''
+        name: '',
+        quantity: '',
+        price: '',
+        type: ''
       },
       validate: true
     }
@@ -16,13 +20,6 @@ export class NewProductDC extends React.Component {
   }
 
   handleChange(event) {
-    //type change
-    // if (event.target.name === 'quantity'){
-    //   event.target.value = parseInt(event.target.value, 10)
-    //   console.log(event.target.value)
-    // }
-    console.log(event.target.name)
-    console.log(event.target.value)
     //writing product info as object
     this.props.writeProduct({[event.target.name]: event.target.value})
 
@@ -39,6 +36,34 @@ export class NewProductDC extends React.Component {
           this.setState({validate: true})
         }
       }
+      case 'quantity': {
+        if (Number(value) <= 0) {
+          errors.quantity = 'Please enter a value greater than 0'
+          this.setState({validate: false})
+        } else {
+          errors.quantity = ''
+          this.setState({validate: true})
+        }
+      }
+      case 'price': {
+        if (Number(value) <= 0) {
+          errors.price = 'Please enter a value greater than $0'
+          this.setState({validate: false})
+        } else {
+          errors.price = ''
+          this.setState({validate: true})
+        }
+      }
+      case 'type': {
+        console.log(value)
+        if (value.length === 0) {
+          errors.type = 'Please select a product type'
+          this.setState({validate: false})
+        } else {
+          errors.type = ''
+          this.setState({validate: true})
+        }
+      }
       default:
         break
     }
@@ -48,8 +73,13 @@ export class NewProductDC extends React.Component {
     //do not refresh
     event.preventDefault()
 
-    //add the product if there's no errors in the field!
-    if (this.state.validate === true) {
+    if (this.props.newProduct.type === '') {
+      this.setState({
+        validate: false,
+        errors: {type: 'Please select a product type'}
+      })
+    } else if (this.state.validate === true) {
+      //add the product if there's no errors in the field!
       this.props.addProduct(this.props.newProduct)
 
       //reset the form
@@ -70,10 +100,10 @@ export class NewProductDC extends React.Component {
     let newProduct = this.props.newProduct || {}
 
     return (
-      <form className="addProductsForm" onSubmit={this.addItem}>
+      <form className="productsForm" onSubmit={this.addItem}>
         <label htmlFor="New Product" className="productFormHeader">
           <h2>New Product Form</h2>
-          <small>
+          <small className="errorMsg">
             {this.state.validate ? '' : 'Fill in all missing fields!'}
           </small>
         </label>
@@ -98,7 +128,9 @@ export class NewProductDC extends React.Component {
           value={undefined}
         />
         {/* Product Type */}
-        <label>Product Type:</label>
+        <label>
+          Product Type: <small>{this.state.errors.type}</small>
+        </label>
         {/* select dropdown here */}
         <select
           value={newProduct.type}
@@ -113,7 +145,9 @@ export class NewProductDC extends React.Component {
           <option value="Cropped Pictures">Cropped Pictures</option>
         </select>
         {/* Quantity of Product */}
-        <label>Quantity:</label>
+        <label>
+          Quantity: <small>{this.state.errors.quantity}</small>
+        </label>
         <input
           type="number"
           pattern="[0-9]*"
@@ -123,7 +157,9 @@ export class NewProductDC extends React.Component {
           value={newProduct.quantity}
         />
         {/* Price of Product */}
-        <label>Price:</label>
+        <label>
+          Price: <small>{this.state.errors.price}</small>
+        </label>
         $<input
           type="number"
           pattern="[0-9]*"

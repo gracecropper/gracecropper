@@ -18,7 +18,7 @@ const Home = () => {
           <h2
             style={{
               color: '#ffbb33',
-              'text-shadow': '1px 1px',
+              textShadow: '1px 1px',
               fontSize: '40px'
             }}
           >
