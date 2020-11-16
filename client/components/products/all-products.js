@@ -6,7 +6,7 @@ import Loader from 'react-loader-spinner'
 import AddDelete from './add-delete'
 import './all-products.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import {DropdownButton, Dropdown} from 'react-bootstrap'
+import {DropdownButton, Dropdown, Button, Container} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -90,7 +90,7 @@ class AllProductsDC extends React.Component {
               <div key={elm.id} className="product">
                 <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
                 <a href="#">
-                  <img src={elm.imageUrl} alt="image" />
+                  <img src={elm.imageUrl} alt="image" className="images" />
                 </a>
                 <AddDelete product={elm} />
 
