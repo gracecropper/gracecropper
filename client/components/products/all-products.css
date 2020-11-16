@@ -21,8 +21,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 350;
-  height: 400px;
+  width: 350px;
+  height: 500px;
   background-color: #ffca28;
 }
 
@@ -30,6 +30,5 @@
   align-content: center;
   padding: 10px;
   width: 350px;
-  height: 450px;
-  background-color: #c69c5c;
+  height: 400px;
 }
