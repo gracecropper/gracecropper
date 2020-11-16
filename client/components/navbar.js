@@ -57,12 +57,18 @@ const NavBar = ({handleClick, isLoggedIn}) => (
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="/userhome">
+                <Dropdown.Item to="/userhome" as={Link}>
+                  {' '}
+                  {/* uses react router dom for link instead of regular link which refreshes the page */}
                   <EmojiSmile />
                   My Home
                 </Dropdown.Item>
-                <Dropdown.Item href="orderhistory">Order History</Dropdown.Item>
-                <Dropdown.Item href="/editprofile">Edit Profile</Dropdown.Item>
+                <Dropdown.Item to="/orderhistory" as={Link}>
+                  Order History
+                </Dropdown.Item>
+                <Dropdown.Item to="/editprofile" as={Link}>
+                  Edit Profile
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
