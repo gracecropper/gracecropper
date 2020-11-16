@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {postProducts, writeProducts} from '../../store/allProducts'
-import './add-products.css'
+import './productsforms.css'
 
 export class NewProductDC extends React.Component {
   constructor(props) {
@@ -100,7 +100,7 @@ export class NewProductDC extends React.Component {
     let newProduct = this.props.newProduct || {}
 
     return (
-      <form className="addProductsForm" onSubmit={this.addItem}>
+      <form className="productsForm" onSubmit={this.addItem}>
         <label htmlFor="New Product" className="productFormHeader">
           <h2>New Product Form</h2>
           <small className="errorMsg">

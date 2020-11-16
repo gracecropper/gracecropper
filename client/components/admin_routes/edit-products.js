@@ -1,9 +1,9 @@
 import React from 'react'
-
+import './productsforms.css'
 const EditProducts = props => {
   return (
-    <form className="updateForm" onSubmit={props.handleSubmit}>
-      <label htmlFor="Update Product">
+    <form className="productsForm" onSubmit={props.handleSubmit}>
+      <label htmlFor="Update Product" className="productFormHeader">
         <h2>Update Product</h2>
       </label>
       {/* Name of Product */}

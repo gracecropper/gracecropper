@@ -49,7 +49,7 @@ class SingleProduct extends Component {
     const role = this.props.role
 
     return (
-      <div>
+      <div className="singleProductPage">
         <div className="singleProduct">
           <h1>{name}</h1>
           <img src={imageUrl} />
