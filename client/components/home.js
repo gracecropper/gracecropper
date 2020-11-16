@@ -18,7 +18,7 @@ const Home = () => {
           <h2 style={{color: '#ffbb33', 'text-shadow': '1px 1px'}}>
             <i>Crops, Crop Tops, and Cropped Photos</i>
           </h2>
-          <p style={{color: '#ffbb33'}}>
+          <p style={{color: 'white'}}>
             GraceCropper, your one stop-shop for all things Crop!
           </p>
         </Container>

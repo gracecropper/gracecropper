@@ -1,10 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Button, Container, Row, Col} from 'react-bootstrap'
-import {addToCart, decreaseQty, increaseQty, orderCreator} from '../store/cart'
-import './add-delete.css'
 
-// import { Icon } from 'semantic-ui-react'
+import {addToCart, decreaseQty, increaseQty, orderCreator} from '../store/cart'
 
 class AddDelete extends React.Component {
   constructor(props) {
@@ -47,54 +44,18 @@ class AddDelete extends React.Component {
 
   render() {
     return (
-      <Container fluid className="container1">
-        <Row>
-          <Col>
-            <button type="button" onClick={this.handlePlus} className="buttons">
-              <p
-                style={{
-                  'font-size': '15px',
-                  'text-align': 'center',
-                  'vertical-align': 'middle'
-                }}
-              >
-                {' '}
-                +
-              </p>
-            </button>
-          </Col>
-          <Col>
-            <p className="quantity" style={{'margin-top': '85px'}}>
-              {this.state.quantity}
-            </p>
-          </Col>
-          <Col>
-            <button
-              type="button"
-              onClick={this.handleMinus}
-              className="buttons"
-            >
-              <p
-                style={{
-                  'font-size': '15px',
-                  'text-align': 'center',
-                  'vertical-align': 'middle'
-                }}
-              >
-                -
-              </p>
-            </button>
-          </Col>
-        </Row>
-        <Button
-          type="button"
-          onClick={this.addToCart}
-          variant="warning"
-          className="add-to-cart"
-        >
+      <div>
+        <button type="button" size="lg" onClick={this.handlePlus}>
+          +
+        </button>
+        <p>{this.state.quantity}</p>
+        <button type="button" size="lg" onClick={this.handleMinus}>
+          -
+        </button>
+        <button type="button" onClick={this.addToCart}>
           Add To Cart
-        </Button>
-      </Container>
+        </button>
+      </div>
     )
   }
 }
