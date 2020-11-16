@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-
+import './auth-form.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import {Row, Col, Button, Container} from 'react-bootstrap'
 /**
  * COMPONENT
  */
@@ -10,27 +12,44 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <Container style={{height: '500px'}}>
       <form onSubmit={handleSubmit} name={name}>
-        <div>
+        <Row>
           <label htmlFor="email">
-            <small>Email</small>
+            <p>Email</p>
           </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
+          <input name="email" type="text" placeholder="Your email..." />
+        </Row>
+        <Row>
           <label htmlFor="password">
-            <small>Password</small>
+            <p>Password</p>
           </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
+          <input
+            name="password"
+            type="password"
+            placeholder="Your password..."
+          />
+        </Row>
+        <Row>
+          <button
+            type="submit"
+            style={{backgroundColor: '#ffc107', color: 'white'}}
+          >
+            {displayName}
+          </button>
+        </Row>
+        {error &&
+          error.response && (
+            <div style={{color: '#ffc107', size: '25px'}}>
+              {' '}
+              {error.response.data}{' '}
+            </div>
+          )}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
+      <a href="/auth/google" style={{color: '#ffc107', size: '25px'}}>
+        {displayName} with Google
+      </a>
+    </Container>
   )
 }
 

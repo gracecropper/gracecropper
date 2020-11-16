@@ -56,7 +56,7 @@ class SingleUser extends Component {
   render() {
     return (
       <div>
-        <h3>Edit Profile</h3>
+        <h3 style={{paddingBottom: '25px'}}>Edit Profile</h3>
         <EditUser
           onChange={this.onChange}
           user={this.props.user}

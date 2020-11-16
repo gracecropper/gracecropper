@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './edit-user.css'
 const EditUser = props => {
   return (
     <div>
@@ -62,7 +62,13 @@ const EditUser = props => {
           value={props.currentUser.password}
         />
         <p>
-          <button type="submit">Edit Profile</button>
+          <button
+            type="submit"
+            className="button"
+            style={{'background-color': '#ffca28'}}
+          >
+            Edit Profile
+          </button>
         </p>
       </form>
     </div>

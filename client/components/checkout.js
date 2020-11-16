@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import StripeCheckout from 'react-stripe-checkout'
 import {Form, FormControl, Row, Col, Container, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-let orderSubtotal = 100
+
 class checkout extends React.Component {
   handleToken(token, address) {
     console.log(token, address)
