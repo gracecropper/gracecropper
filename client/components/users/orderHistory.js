@@ -1,11 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getMyHistory} from '../store'
+import {getHistory, getSingleUser} from '../../store'
 
 class OrderHistory extends React.Component {
-  componentDidMount() {
-    this.props.getMyHistory()
+  constructor(props) {
+    super(props)
+    this.state = {
+      userId: 0
+    }
   }
+  componentDidMount() {
+    if (this.props.role === 'Admin' && this.props.match.params.id) {
+      this.props.getHistory(this.props.match.params.id)
+    } else {
+      this.props.getHistory(this.props.userId)
+    }
+  }
+
   render() {
     const orders = this.props.orders || []
     return (
@@ -23,13 +34,13 @@ class OrderHistory extends React.Component {
                 <p>Order Total: {order.orderTotalDisplay}</p>
                 <p>Shipped To: {order.shippingAddress}</p>
                 <ul>
-                  {order.orderItems.map(orderItem => (
-                    <li key={orderItem.id}>
+                  {order.products.map(product => (
+                    <li key={product.id}>
                       <p>
-                        {`${orderItem.quantity} ${orderItem.product.name} - 
-                    ${orderItem.priceDisplay} per item`}
+                        {`${product.orderItem.quantity} ${product.name} -
+                    ${product.orderItem.priceDisplay} per item`}
                       </p>
-                      <img src={orderItem.product.imageUrl} height="100px" />
+                      <img src={product.imageUrl} height="100px" />
                     </li>
                   ))}
                 </ul>
@@ -47,12 +58,15 @@ class OrderHistory extends React.Component {
 }
 const mapState = state => {
   return {
-    orders: state.allOrders
+    orders: state.allOrders,
+    role: state.user.role,
+    userId: state.user.id
   }
 }
 const mapDispatch = dispatch => {
   return {
-    getMyHistory: () => dispatch(getMyHistory())
+    getHistory: id => dispatch(getHistory(id)),
+    getSingleUser: id => dispatch(getSingleUser(id))
   }
 }
 export default connect(mapState, mapDispatch)(OrderHistory)

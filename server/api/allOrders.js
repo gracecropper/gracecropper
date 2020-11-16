@@ -1,30 +1,17 @@
 const router = require('express').Router()
 const {User, Product, OrderItem, Order} = require('../db/models')
 
-// GET /api/allorders/myHistory
+// GET /api/allorders/orderhistory
 
-router.get('/myHistory', async (req, res, next) => {
+router.get('/orderhistory/:id', async (req, res, next) => {
   try {
     if (!req.user) {
       res.sendStatus(401)
       return
     }
-    const orders = await Order.findAll({
-      include: [
-        {
-          model: User,
-          where: {
-            id: req.user.id
-          }
-        },
-        {
-          model: OrderItem,
-          include: {
-            model: Product
-          }
-        }
-      ]
-    })
+    const user = await User.findByPk(req.params.id)
+    const orders = await user.getOrders({include: Product})
+
     res.json(orders)
   } catch (error) {
     next(error)

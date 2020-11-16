@@ -36,7 +36,11 @@ class AllUsersDC extends React.Component {
                   <li>
                     <Link to={`/editprofile/${user.id}`}>User Profile</Link>
                   </li>
-                  {/* will have to eventually include a link to their order history here too , also edit user link*/}
+                  <li>
+                    <Link to={`/orderhistory/${user.id}`}>
+                      User Order History
+                    </Link>
+                  </li>
                 </ul>
               </div>
             )

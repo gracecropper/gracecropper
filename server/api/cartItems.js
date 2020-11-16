@@ -3,8 +3,6 @@ const {OrderItem, Order, Product} = require('../db/models')
 module.exports = router
 
 // POST REQUEST FOR CREATING NEW ORDER
-
-//find or create bc user might have orderID already started...
 router.post('/', async (req, res, next) => {
   try {
     let newItem
@@ -135,15 +133,35 @@ router.put('/increment', async (req, res, next) => {
   }
 })
 
+//GET ORDER
 router.get('/:orderId', async (req, res, next) => {
   try {
     const allItems = await Order.findAll({
       where: {
         id: req.params.orderId
-      }
+      },
+      include: Product
     })
-    res.json(allItems)
+    res.json(allItems[0])
   } catch (error) {
     next(error)
   }
 })
+
+router.delete('/:orderId', async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      where: {id: req.params.orderId}
+    })
+
+    if (!order) return res.sendStatus(404)
+
+    await order.destroy()
+
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//update totals thunk

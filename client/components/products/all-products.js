@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../../store/allProducts'
 import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
-import AddDelete from '../add-delete'
+import AddDelete from './add-delete'
 import './all-products.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import {DropdownButton, Dropdown, Button, Container} from 'react-bootstrap'
@@ -66,12 +66,6 @@ class AllProductsDC extends React.Component {
       <div id="productsPage">
         <div className="filteringAndOrdering">
           <div className="View">
-            {/* <select name="campuses" onChange={this.productsFilter}>
-              <option value="All">All</option>
-              <option value="Crops">Crops</option>
-              <option value="Cropped Tops">Crop Tops</option>
-              <option value="Cropped Pictures">Cropped Photos</option>
-            </select> */}
             <DropdownButton
               variant="warning"
               id="dropdown-basic-button"
@@ -94,10 +88,10 @@ class AllProductsDC extends React.Component {
           {filteredProducts.map(elm => {
             return (
               <div key={elm.id} className="product">
+                <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
                 <a href="#">
                   <img src={elm.imageUrl} alt="image" className="images" />
                 </a>
-                <Link to={`/singleproduct/${elm.id}`}>{elm.name}</Link>
                 <AddDelete product={elm} />
 
                 {/* If the user is an admin, button to delete product */}

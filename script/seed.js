@@ -18,9 +18,80 @@ async function seed() {
       type: 'Cropped Tops',
       quantity: 20,
       price: 25.0,
-      size: 'M',
       imageUrl: '/img/croptop.jpg',
       description: 'Cream of the crop top'
+    }),
+    Product.create({
+      name: 'Brooklyn Crop Top',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/brooklyn.png',
+      description: `No Sleep Til'`
+    }),
+    Product.create({
+      name: 'Crop Til You',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/croptiludrop.png',
+      description: `Don't stop the crop!`
+    }),
+    Product.create({
+      name: 'Seoul Crop Top',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/seoul.png',
+      description: `<3 Seoul <3`
+    }),
+    Product.create({
+      name: 'Run Seed Crop Top',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/npmrunseed.jpg',
+      description: `Npm install npm run seed`
+    }),
+    Product.create({
+      name: 'Support Local',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/supportlocal.png',
+      description: `Support your local farms and businesses`
+    }),
+    Product.create({
+      name: 'GraceCropper',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/gracecropper.png',
+      description: `Support us!`
+    }),
+    Product.create({
+      name: 'Support Local',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/supportlocal.png',
+      description: `Support your local farms and businesses`
+    }),
+    Product.create({
+      name: 'This.crops.name',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/thiscropsname.png',
+      description: `this.crops.name = GraceCropper!`
+    }),
+    Product.create({
+      name: '2020 sux Crop Top',
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 25.0,
+      imageUrl: '/img/2021please.png',
+      description: `Hindsight is 2020`
     }),
     Product.create({
       name: 'Best Crops Ever',
@@ -28,6 +99,46 @@ async function seed() {
       quantity: 20,
       price: 10.0,
       imageUrl: '/img/crop.jpg',
+      description: 'organic and good for you'
+    }),
+    Product.create({
+      name: 'Tomatoes',
+      type: 'Crops',
+      quantity: 20,
+      price: 5.0,
+      imageUrl: '/img/tomatoes.jpeg',
+      description: 'red and juicy and organic and good for you'
+    }),
+    Product.create({
+      name: 'Corn',
+      type: 'Crops',
+      quantity: 20,
+      price: 5.0,
+      imageUrl: '/img/corn.jpg',
+      description: 'organic and corny and good for you'
+    }),
+    Product.create({
+      name: 'Bell Peppers',
+      type: 'Crops',
+      quantity: 20,
+      price: 5.0,
+      imageUrl: '/img/bellpeppers.jpg',
+      description: 'organic and good for you'
+    }),
+    Product.create({
+      name: 'Potatoes',
+      type: 'Crops',
+      quantity: 20,
+      price: 10.0,
+      imageUrl: '/img/potato.jpg',
+      description: 'organic and good for you and a root vegetable'
+    }),
+    Product.create({
+      name: 'Cucumbers',
+      type: 'Crops',
+      quantity: 20,
+      price: 7.0,
+      imageUrl: '/img/cucumbers.jpeg',
       description: 'organic and good for you'
     }),
     Product.create({

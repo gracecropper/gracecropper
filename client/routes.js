@@ -14,7 +14,8 @@ import {
   Checkout,
   OrderHistory,
   SingleUser,
-  Cart
+  Cart,
+  ConfirmationPage
 } from './components'
 import {me} from './store'
 
@@ -47,12 +48,13 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/singleproduct/:id" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
-
+        <Route exact path="/confirmation" component={ConfirmationPage} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/userhome" component={UserHome} />
-            <Route exact path="/myhistory" component={OrderHistory} />
+            <Route exact path="/orderhistory" component={OrderHistory} />
+            <Route exact path="/orderhistory/:id" component={OrderHistory} />
             <Route exact path="/editprofile/:id" component={SingleUser} />
             <Route exact path="/editprofile" component={SingleUser} />
           </Switch>

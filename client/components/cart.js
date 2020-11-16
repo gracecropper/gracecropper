@@ -8,8 +8,8 @@ import {
   increaseQty,
   decreaseQty,
   deleteOrderItem,
-  orderCreator
-  // , emptyCart, getOrder
+  orderCreator,
+  deleteCart
 } from '../store/cart'
 
 class Cart extends React.Component {
@@ -18,7 +18,7 @@ class Cart extends React.Component {
     this.handleMinus = this.handleMinus.bind(this)
     this.handlePlus = this.handlePlus.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
-    // this.emptyCart = this.emptyCart.bind(this)
+    this.emptyCart = this.emptyCart.bind(this)
     // console.log('inside constructor')
   }
   async componentDidMount() {
@@ -26,38 +26,49 @@ class Cart extends React.Component {
       this.props.loadProducts(this.props.orderId)
     } else {
       await this.props.orderCreator()
-      this.props.loadProducts(this.props.orderId)
     }
   }
   handleMinus(orderId, productId) {
-    console.log('minus item')
     this.props.minus(orderId, productId)
   }
+
   handlePlus(orderId, productId) {
-    console.log('plus item')
     this.props.plus(orderId, productId)
   }
   deleteItem(orderId, productId) {
     this.props.removeOrderItem(orderId, productId)
   }
-  // emptyCart(id) {
-  //   console.log('empty cart')
-  //   e.preventDefault()
-  //   this.props.emptyCart(id)
-  // }
+  emptyCart(id) {
+    this.props.emptyCart(id)
+  }
 
   render() {
-    // console.log('is it rendering?')
     const items = this.props.items || []
     const orderId = this.props.orderId
+    let subTotal
+
+    //edits the orderTotal subTotal locally
+    if (items.length !== 0 && orderId) {
+      subTotal = this.props.items.reduce((accum, val) => {
+        return (
+          accum + Number(val.orderItem.priceDisplay) * val.orderItem.quantity
+        )
+      }, 0)
+
+      if (subTotal < 0) {
+        subTotal = 0
+      }
+    } else {
+      subTotal = 0
+    }
 
     return (
       <div className="shopping-cart">
         <h1>Shopping Cart</h1>
-        {orderId === null ? (
+        {items.length === 0 ? (
           <h1>
-            There is no Item in your cart. Oops{' '}
-            <Link to="/home">Go Shopping</Link>{' '}
+            There are no items in your cart. <br />
+            Oops <Link to="/products">Go Shopping</Link>{' '}
           </h1>
         ) : (
           items.map(item => {
@@ -74,18 +85,18 @@ class Cart extends React.Component {
             )
           })
         )}
-        {/* <p>Your order total is:</p>
-        <p>${order.orderSubtotal}</p>
-        <Link to="/home">Check Out</Link>
+        <p>Your order total is:</p>
+        <p>${subTotal}</p>
+        <Link to="/checkout">Check Out</Link>
         <button
           className="button"
           type="button"
           onClick={() => {
-            this.emptyCart(order.id)
+            this.emptyCart(orderId)
           }}
         >
           Delete Order
-        </button> */}
+        </button>
       </div>
     )
   }
@@ -106,8 +117,8 @@ const mapDispatch = dispatch => {
     plus: (orderId, productId) => dispatch(increaseQty(orderId, productId)),
     minus: (orderId, productId) => dispatch(decreaseQty(orderId, productId)),
     removeOrderItem: (orderId, productId) =>
-      dispatch(deleteOrderItem(orderId, productId))
-    // emptyCart: (id) => dispatch(emptyCart(id))
+      dispatch(deleteOrderItem(orderId, productId)),
+    emptyCart: id => dispatch(deleteCart(id))
   }
 }
 export default connect(mapState, mapDispatch)(Cart)

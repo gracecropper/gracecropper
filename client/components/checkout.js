@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import StripeCheckout from 'react-stripe-checkout'
 import {Form, FormControl, Row, Col, Container, Button} from 'react-bootstrap'
-
+import {Link} from 'react-router-dom'
 let orderSubtotal = 100
 class checkout extends React.Component {
   handleToken(token, address) {
@@ -11,12 +11,14 @@ class checkout extends React.Component {
   onSubmit(e) {
     // e.stopPropagation()
   }
-
+  onCheckout() {
+    this.props.history.push(`/cart/checkout/confirmation`)
+  }
   render() {
     return (
       <Container>
         <Row className="justify-content-md-center">
-          <h1>Checkout Form</h1>
+          <h1 style={{'padding-top': '30px'}}>Checkout Form</h1>
         </Row>
         <Form>
           <Form.Row>
@@ -116,9 +118,13 @@ class checkout extends React.Component {
               </StripeCheckout>
             </div>
           </Row>
-          <Button variant="primary" type="submit" onClick={this.onSubmit}>
-            Submit
-          </Button>
+          <Link to="/confirmation">
+            {' '}
+            Submit your order
+            {/* <Button variant="primary" type="submit" onClick={this.onCheckout}>
+              Submit
+          </Button> */}
+          </Link>
         </Form>
       </Container>
     )

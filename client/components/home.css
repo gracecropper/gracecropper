@@ -24,3 +24,7 @@ button {
   height: 300px;
   padding-top: 50px;
 }
+
+#jumbotron {
+  background-color: #ffbb33;
+}

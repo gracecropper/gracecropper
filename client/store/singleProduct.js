@@ -15,10 +15,10 @@ const initialState = {
   updatedProduct: {
     name: '',
     type: '',
-    imageUrl: '',
     description: '',
-    quantity: null,
-    price: null
+    quantity: '',
+    price: '',
+    file: null
   }
 }
 
@@ -68,10 +68,20 @@ export const fetchProduct = id => {
 export const updateProduct = (id, updates) => {
   return async dispatch => {
     try {
+      if (updates.file) {
+        const formData = new FormData() //multipart form to upload file
+        formData.append('upload', updates.file)
+        const {data} = await axios.post('/api/upload', formData, {
+          headers: {'content-type': 'multipart/form-data'}
+        })
+        updates.file = null
+        updates.imageUrl = data //once we get the imageUrl we can set it on product input
+      }
+
       //make sure we're only sending updates users input
       const updateObj = {}
-      for (var key in updates) {
-        if (updates[key] !== '' || updates[key] !== null) {
+      for (let key in updates) {
+        if (updates[key] !== '' && updates[key] !== null) {
           updateObj[key] = updates[key]
         }
       }
