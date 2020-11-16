@@ -67,8 +67,8 @@ class Cart extends React.Component {
         <h1>Shopping Cart</h1>
         {items.length === 0 ? (
           <h1>
-            There is no Item in your cart. Oops{' '}
-            <Link to="/products">Go Shopping</Link>{' '}
+            There are no items in your cart. <br />
+            Oops <Link to="/products">Go Shopping</Link>{' '}
           </h1>
         ) : (
           items.map(item => {

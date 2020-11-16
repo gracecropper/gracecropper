@@ -5,18 +5,23 @@ import {
   updateProduct,
   writeProductUpdate
 } from '../../store/singleProduct'
-import AddDelete from '../add-delete'
+import AddDelete from './add-delete'
 import EditProducts from '../admin_routes/edit-products'
+import './singleproduct.css'
 
 class SingleProduct extends Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChangeFile = this.handleChangeFile.bind(this)
   }
 
   handleChange(event) {
     this.props.writeProduct({[event.target.name]: event.target.value})
+  }
+  handleChangeFile(event) {
+    this.props.writeProduct({file: event.target.files[0]})
   }
 
   handleSubmit(event) {
@@ -55,6 +60,7 @@ class SingleProduct extends Component {
         {role === 'Admin' ? (
           <EditProducts
             handleChange={this.handleChange}
+            handleChangeFile={this.handleChangeFile}
             handleSubmit={this.handleSubmit}
             updatedProduct={this.props.updatedProduct}
             price={price}

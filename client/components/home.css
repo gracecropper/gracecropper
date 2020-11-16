@@ -11,7 +11,9 @@
   padding-bottom: 150px;
   margin-bottom: 150px;
 }
-
+h2 {
+  color: '#ffbb33';
+}
 button {
   width: 300px;
 }
@@ -21,4 +23,8 @@ button {
   width: 300px;
   height: 300px;
   padding-top: 50px;
+}
+
+#jumbotron {
+  background-color: #ffbb33;
 }

@@ -22,7 +22,7 @@ import {Dropdown} from 'react-bootstrap'
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div id="navigate">
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/" style={{color: '#FF8800', fontFamily: 'Garamond'}}>
         <img
           src="/img/crop-icon.jpg"
           width="30"
@@ -30,18 +30,18 @@ const NavBar = ({handleClick, isLoggedIn}) => (
           className="d-inline-block align-top"
           alt="Grace Cropper logo"
         />{' '}
-        GraceCropper
+        <i>GraceCropper</i>
       </Navbar.Brand>
       <div id="leftNavLinks">
-        <Link to="/">
+        <Link to="/" style={{color: '#FF8800', fontFamily: 'Garamond'}}>
           <House />
           Home
         </Link>
-        <Link to="/products">
+        <Link to="/products" style={{color: '#FF8800', fontFamily: 'Garamond'}}>
           <Crop />
           Products
         </Link>
-        <Link to="/cart">
+        <Link to="/cart" style={{color: '#FF8800', fontFamily: 'Garamond'}}>
           <Cart />
           Cart
         </Link>
@@ -51,23 +51,40 @@ const NavBar = ({handleClick, isLoggedIn}) => (
         {isLoggedIn ? (
           <div className="inOrOut">
             {/* The navbar will show these links after you log in */}
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Profile
+            <Dropdown style={{paddingTop: '20px'}}>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                variant="warning"
+                style={{color: 'white', fontFamily: 'Garamond'}}
+              >
+                <i> Profile</i>
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="/userhome">
+                <Dropdown.Item to="/userhome" as={Link}>
+                  {' '}
+                  {/* uses react router dom for link instead of regular link which refreshes the page */}
                   <EmojiSmile />
                   My Home
                 </Dropdown.Item>
-                <Dropdown.Item href="orderhistory">Order History</Dropdown.Item>
-                <Dropdown.Item href="/editprofile">Edit Profile</Dropdown.Item>
+                <Dropdown.Item to="/orderhistory" as={Link}>
+                  Order History
+                </Dropdown.Item>
+                <Dropdown.Item to="/editprofile" as={Link}>
+                  Edit Profile
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="#" onClick={handleClick}>
-              <ArrowDownRight />
+            <Link
+              to="#"
+              onClick={handleClick}
+              style={{color: '#FF8800', fontFamily: 'Garamond'}}
+            >
+              <ArrowDownRight
+                style={{color: '#FF8800', fontFamily: 'Garamond'}}
+              />
               Logout
             </Link>
           </div>

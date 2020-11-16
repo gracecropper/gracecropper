@@ -1,40 +1,49 @@
 import React from 'react'
-import {Jumbotron, Container} from 'react-bootstrap'
+import {Jumbotron, Container, Button} from 'react-bootstrap'
 
 import './home.css'
 
 const Home = () => {
   return (
     <div id="homePage">
-      <Jumbotron fluid>
+      <Jumbotron
+        fluid
+        style={{
+          backgroundColor: '#ffbb33',
+          background: 'url("/img/crop2.gif")',
+          backgroundRepeat: 'round'
+        }}
+      >
         <Container>
-          <h2>
+          <h2 style={{color: '#ffbb33', 'text-shadow': '1px 1px'}}>
             <i>Crops, Crop Tops, and Cropped Photos</i>
           </h2>
-          <p>GraceCropper, your one stop-shop for all things Crop!</p>
+          <p style={{color: 'white'}}>
+            GraceCropper, your one stop-shop for all things Crop!
+          </p>
         </Container>
       </Jumbotron>
 
       <div id="homePageGrid">
         <div className="homePageImg">
           <img src="/img/crop.jpg" className="homePageImg" />
-          <button type="button" className="bannerButton">
+          <Button type="button" className="bannerButton" variant="warning">
             Crops
-          </button>
+          </Button>
         </div>
 
         <div className="homePageImg">
           <img src="/img/croptop.jpg" className="homePageImg" />
-          <button type="button" className="bannerButton">
+          <Button type="button" className="bannerButton" variant="warning">
             Crop Tops
-          </button>
+          </Button>
         </div>
 
         <div className="homePageImg">
           <img src="/img/croppedpic.png" className="homePageImg" />
-          <button type="button" className="bannerButton">
+          <Button type="button" className="bannerButton" variant="warning">
             Cropped Pictures
-          </button>
+          </Button>
         </div>
       </div>
     </div>
