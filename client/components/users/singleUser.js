@@ -28,7 +28,6 @@ class SingleUser extends Component {
     })
 
     if (this.props.user.role === 'Admin' && this.props.match.params.id) {
-      // this needs to change because /editprofile has none
       await this.props.getSingleUser(this.props.match.params.id)
       this.setState({
         role: this.props.user.role,

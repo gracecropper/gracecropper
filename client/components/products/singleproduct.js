@@ -52,7 +52,6 @@ class SingleProduct extends Component {
           <p>{description}</p>
           <AddDelete product={this.props.product} />
         </div>
-        <AddDelete product={this.props.product} />
         {role === 'Admin' ? (
           <EditProducts
             handleChange={this.handleChange}
