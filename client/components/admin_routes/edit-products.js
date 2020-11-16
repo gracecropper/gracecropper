@@ -54,7 +54,7 @@ const EditProducts = props => {
       {/* Image Upload */}
       {/* need to update props!! */}
       <label>Image:</label>
-      <input type="file" name="imageUrl" onChange={props.handleChange} />
+      <input type="file" name="file" onChange={props.handleChangeFile} />
       {/* Description */}
       <label>Description:</label>
       <textarea
