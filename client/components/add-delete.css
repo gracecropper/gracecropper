@@ -1,0 +1,14 @@
+.container1 {
+  background-color: #ffecb3;
+  height: 150px;
+}
+.quantity {
+  position: relative;
+}
+.buttons {
+  color: white;
+  width: 80px;
+}
+
+.add-to-cart {
+}

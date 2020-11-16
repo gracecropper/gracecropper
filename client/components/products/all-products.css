@@ -1,6 +1,6 @@
 #productsPage {
   align-content: center;
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 .products {
@@ -20,12 +20,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  width: 350;
   height: 400px;
-  background-color: #c69c5c;
+  background-color: #ffca28;
 }
 
 .products img {
+  align-content: center;
+  padding-top: 120px;
   width: 300px;
   height: 350px;
 }
