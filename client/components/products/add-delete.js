@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 import {addToCart, orderCreator} from '../../store/cart'
-
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './add-delete.css'
 
 class AddDelete extends React.Component {
@@ -11,6 +11,7 @@ class AddDelete extends React.Component {
     this.handlePlus = this.handlePlus.bind(this)
     this.handleMinus = this.handleMinus.bind(this)
     this.addToCart = this.addToCart.bind(this)
+    this.notify = this.notify.bind(this)
     this.state = {
       quantity: 1
     }
@@ -28,7 +29,9 @@ class AddDelete extends React.Component {
       quantity: this.state.quantity - 1 > 0 ? this.state.quantity - 1 : 1
     })
   }
-
+  notify() {
+    toast('Successfully Added To Cart')
+  }
   async addToCart(e) {
     try {
       e.preventDefault()
@@ -38,7 +41,7 @@ class AddDelete extends React.Component {
         await this.props.orderCreator()
       }
       this.props.addToCart(this.props.product, this.props.orderId)
-      alert('Successfully Added To Cart')
+      this.notify()
     } catch (err) {
       console.log('error in add to cart', err.message)
     }
@@ -56,12 +59,14 @@ class AddDelete extends React.Component {
         </button>
 
         <button type="button" onClick={this.addToCart} id="addToCart">
+          <ToastContainer />
           Add To Cart
         </button>
       </div>
     )
   }
 }
+
 const mapState = state => {
   return {
     orderId: state.cart.id,
