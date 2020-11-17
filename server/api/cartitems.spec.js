@@ -4,30 +4,26 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const OrderItem = db.model('orderItem')
+const Order = db.model('order')
 
-describe('cartitems routes', () => {
+describe('cart items routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/cartitems/', () => {
+  describe('/api/cartitems/:orderId', () => {
     beforeEach(() => {
-      return OrderItem.create({
-        quantity: 1,
-        price: 2500,
-        productId: 1,
-        orderId: 1
+      return Order.create({
+        status: 'In User Cart',
+        quantity: 150
       })
     })
-
-    it('GET /api/cartitems', async () => {
+    it('GET /api/cartitems/1', async () => {
       const res = await request(app)
-        .get('/api/cartitems')
+        .get('/api/cartitems/1')
         .expect(200)
-
-      expect(res.body).to.be.an('array')
-      expect(res.body[0].quantity).to.be.equal(1)
+      expect(res.body).to.be.an('object')
+      expect(res.body.quantity).to.be.equal(150)
     })
   })
 })
