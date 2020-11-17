@@ -8,11 +8,10 @@ const Footer = () => {
     <MDBFooter
       style={{
         backgroundColor: '#ffbb33',
-        position: 'relative',
         bottom: '0px',
         width: '100 %'
       }}
-      className="font-small pt-4 mt-4 fixed-bottom "
+      className="font-small pt-4 mt-4 "
     >
       <MDBContainer
         fluid

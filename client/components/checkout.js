@@ -9,7 +9,7 @@ class checkout extends React.Component {
   handleToken(token, address) {}
   render() {
     return (
-      <Container>
+      <Container style={{'min-height': '100vh'}}>
         <Row className="justify-content-md-center">
           <h1 style={{paddingTop: '30px'}}>Checkout Form</h1>
         </Row>
