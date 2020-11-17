@@ -20,7 +20,6 @@ export const UserHome = props => {
             Welcome, {email}
           </h3>
           <SingleUser />{' '}
-          {/*<Link to="/editprofile">Click here to edit your profile</Link> */}
         </div>
       )}
     </div>

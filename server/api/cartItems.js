@@ -8,7 +8,7 @@ router.post('/', async (req, res, next) => {
     let newItem
     let createdBoolean
     let checkUser = req.session.passport
-    // //if user is signed in
+    //if user is signed in
     if (checkUser) {
       ;[newItem, createdBoolean] = await Order.findOrCreate({
         where: {
@@ -163,5 +163,3 @@ router.delete('/:orderId', async (req, res, next) => {
     next(error)
   }
 })
-
-//update totals thunk

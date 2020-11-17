@@ -59,7 +59,7 @@ export const fetchProduct = id => {
       const {data} = await axios.get(`/api/products/${id}`)
       dispatch(getProduct(data))
     } catch (error) {
-      console.log(error)
+      console.log('Could not fetch product', error)
     }
   }
 }

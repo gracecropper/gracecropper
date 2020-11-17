@@ -39,7 +39,6 @@ describe('Product model', () => {
       await Product.create({type: 'Crops', name: ''})
       throw Error('Creating this product should have failed')
     } catch (error) {
-      // console.log(error.message)
       expect(error.message).to.contain('Validation notEmpty on name failed')
     }
   })

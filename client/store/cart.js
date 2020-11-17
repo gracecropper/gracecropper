@@ -71,7 +71,7 @@ export const deleteOrderItem = (orderId, productId) => {
       )
       dispatch(deleteItem(productId))
     } catch (error) {
-      console.log('there was an error in deleteOrderItem in redux', error)
+      console.log('Could not delete item', error)
     }
   }
 }
@@ -84,7 +84,7 @@ export const orderCreator = () => {
       })
       dispatch(setOrder(data))
     } catch (error) {
-      console.log('there was an error in orderCreator', error)
+      console.log('Could not create orderId', error)
     }
   }
 }
@@ -101,7 +101,7 @@ export const addToCart = (productsObj, orderId) => {
       })
       dispatch(addItem(data))
     } catch (error) {
-      console.log('there was an error in addToCart in redux', error)
+      console.log('Could not add to cart', error)
     }
   }
 }
@@ -114,7 +114,7 @@ export const increaseQty = (orderId, productId) => {
       )
       dispatch(increaseQuant(productId))
     } catch (error) {
-      console.log('there was a problem in increaseQty in redux.')
+      console.log('Could not increase quantity of item', error)
     }
   }
 }
@@ -127,7 +127,7 @@ export const decreaseQty = (orderId, productId) => {
       )
       dispatch(decreaseQuant(productId))
     } catch (error) {
-      console.log('there was a problem in drecreaseQty in redux.')
+      console.log('Could not decrease quantity of item', error)
     }
   }
 }

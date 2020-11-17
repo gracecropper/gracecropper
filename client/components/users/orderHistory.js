@@ -3,12 +3,6 @@ import {connect} from 'react-redux'
 import {getHistory, getSingleUser} from '../../store'
 
 class OrderHistory extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userId: 0
-    }
-  }
   componentDidMount() {
     if (this.props.role === 'Admin' && this.props.match.params.id) {
       this.props.getHistory(this.props.match.params.id)
