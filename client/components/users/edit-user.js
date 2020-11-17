@@ -2,7 +2,7 @@ import React from 'react'
 import './edit-user.css'
 const EditUser = props => {
   return (
-    <div>
+    <div style={{'min-height': '100vh'}}>
       <form onSubmit={props.onSubmit}>
         {props.currentUser.isAdmin ? (
           <p>
@@ -65,7 +65,7 @@ const EditUser = props => {
           <button
             type="submit"
             className="button"
-            style={{'background-color': '#ffca28'}}
+            style={{backgroundColor: '#ffca28'}}
           >
             Edit Profile
           </button>

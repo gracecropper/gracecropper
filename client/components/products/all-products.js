@@ -6,6 +6,7 @@ import Loader from 'react-loader-spinner'
 import AddDelete from './add-delete'
 import './all-products.css'
 import {DropdownButton, Dropdown, Button, Container} from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.css'
 
 /**
  * COMPONENT

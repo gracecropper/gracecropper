@@ -69,7 +69,7 @@ class Cart extends React.Component {
     }
 
     return (
-      <div className="shopping-cart">
+      <div className="shopping-cart" style={{minHeight: '100vh'}}>
         <h1>Shopping Cart</h1>
         {items.length === 0 ? (
           <h1>

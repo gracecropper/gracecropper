@@ -57,6 +57,7 @@ class Routes extends Component {
             <Route exact path="/orderhistory/:id" component={OrderHistory} />
             <Route exact path="/editprofile/:id" component={SingleUser} />
             <Route exact path="/editprofile" component={SingleUser} />
+            <Route component={ErrorPage} />
           </Switch>
         )}
         {/* Displays our Error Page component as a fallback */}
