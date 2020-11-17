@@ -27,7 +27,7 @@ const initialState = {
  */
 
 //action creator to get the product
-const getProduct = product => ({
+export const getProduct = product => ({
   type: GET_PRODUCT,
   product
 })
