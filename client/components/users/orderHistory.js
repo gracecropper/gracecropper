@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getHistory, getSingleUser} from '../../store'
-import Alert from 'react-bootstrap/Alert'
 
 class OrderHistory extends React.Component {
   componentDidMount() {
@@ -32,6 +31,7 @@ class OrderHistory extends React.Component {
                   <li key={product.id}>
                     <p>
                       {`${product.orderItem.quantity} ${product.name} -
+
                     ${product.orderItem.priceDisplay} per item`}
                     </p>
                     <img src={product.imageUrl} height="100px" />
