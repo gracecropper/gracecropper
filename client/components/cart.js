@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './cart.css'
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import SingleProductView from './SingleProductView'
 import {
   getAllCartItems,
@@ -19,6 +21,7 @@ class Cart extends React.Component {
     this.handlePlus = this.handlePlus.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.emptyCart = this.emptyCart.bind(this)
+    this.notify = this.notify.bind(this)
     // console.log('inside constructor')
   }
   async componentDidMount() {
@@ -27,6 +30,9 @@ class Cart extends React.Component {
     } else {
       await this.props.orderCreator()
     }
+  }
+  notify() {
+    toast('Removed from cart!')
   }
   handleMinus(orderId, productId) {
     this.props.minus(orderId, productId)
@@ -37,11 +43,12 @@ class Cart extends React.Component {
   }
   deleteItem(orderId, productId) {
     this.props.removeOrderItem(orderId, productId)
+    this.notify()
   }
   emptyCart(id) {
     try {
       this.props.emptyCart(id)
-      alert('You have successfully deleted your order')
+      this.notify()
     } catch (err) {
       console.log('something wrong with deleting the order', err)
     }
@@ -105,6 +112,7 @@ class Cart extends React.Component {
                 this.emptyCart(orderId)
               }}
             >
+              <ToastContainer />
               Delete Order
             </button>
           </div>
