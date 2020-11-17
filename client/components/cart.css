@@ -13,7 +13,9 @@
   margin-bottom: 25px;
   margin-top: 70px;
 }
-
+.Toastify__toast-container {
+  width: 500px;
+}
 .button {
   background-color: #ffc107; /* Green background */
   border: solid #ff6f00;
