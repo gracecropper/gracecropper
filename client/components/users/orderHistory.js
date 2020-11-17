@@ -18,7 +18,7 @@ class OrderHistory extends React.Component {
       ['Delivered', 'Pending', 'Shipped'].includes(order.status)
     )
     return (
-      <div>
+      <div style={{minHeight: '100vh'}}>
         {filteredOrders.length ? (
           filteredOrders.map(order => (
             <div className="order" key={order.id}>

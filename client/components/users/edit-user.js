@@ -2,7 +2,7 @@ import React from 'react'
 import './edit-user.css'
 const EditUser = props => {
   return (
-    <div>
+    <div style={{'min-height': '100vh'}}>
       <form onSubmit={props.onSubmit}>
         {props.currentUser.isAdmin ? (
           <p>

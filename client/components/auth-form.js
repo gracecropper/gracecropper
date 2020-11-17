@@ -12,7 +12,7 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <Container style={{height: '500px'}}>
+    <Container style={{height: '500px', 'min-height': '100vh'}}>
       <form onSubmit={handleSubmit} name={name}>
         <Row>
           <label htmlFor="email">
