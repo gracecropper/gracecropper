@@ -4,12 +4,6 @@ import {getHistory, getSingleUser} from '../../store'
 import Alert from 'react-bootstrap/Alert'
 
 class OrderHistory extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userId: 0
-    }
-  }
   componentDidMount() {
     if (this.props.role === 'Admin' && this.props.match.params.id) {
       this.props.getHistory(this.props.match.params.id)

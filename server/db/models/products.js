@@ -49,6 +49,6 @@ Product.beforeCreate(product => {
 })
 
 //beforeUpdate --> turns price into pennies
-Product.beforeUpdate(product => {
-  product.price = product.price * 100
+Product.beforeBulkUpdate(product => {
+  product.attributes.price = product.attributes.price * 100
 })

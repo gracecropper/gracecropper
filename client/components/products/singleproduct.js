@@ -39,7 +39,7 @@ class SingleProduct extends Component {
       await this.props.loadingProduct(this.props.match.params.id) //getting productId from our Routes
       this.props.writeProduct(this.props.product)
     } catch (error) {
-      console.error('there was an error in componentDidMount SingleProduct')
+      console.error('There was an error getting this product')
     }
   }
   render() {
