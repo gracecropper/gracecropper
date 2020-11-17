@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getHistory, getSingleUser} from '../../store'
 import Alert from 'react-bootstrap/Alert'
+
 class OrderHistory extends React.Component {
   componentDidMount() {
     if (this.props.role === 'Admin' && this.props.match.params.id) {
