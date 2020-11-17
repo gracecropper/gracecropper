@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getHistory, getSingleUser} from '../../store'
-import Alert from 'react-bootstrap/Alert'
 
 class OrderHistory extends React.Component {
   componentDidMount() {
@@ -16,7 +15,7 @@ class OrderHistory extends React.Component {
     const orders = this.props.orders || []
     return (
       <div>
-        {orders.length ? (
+        {orders.length > 0 ? (
           orders
             .filter(order =>
               ['Delivered', 'Shipped', 'Pending'].includes(order.status)
@@ -42,26 +41,22 @@ class OrderHistory extends React.Component {
               </div>
             ))
         ) : (
-          <Alert variant="warning">
-            <Alert.Heading>
-              <p
-                style={{
-                  textAlign: 'center',
-                  fontFamily: 'farmhouse',
-                  fontSize: '22px'
-                }}
-              >
-                No Orders Yet...We recommend placing some{' '}
-                <a href="/products" style={{color: 'green'}}>
-                  here
-                </a>!{' '}
-                <img
-                  src="/img/sadCorn.png"
-                  style={{alignItems: 'center', height: '400px'}}
-                />
-              </p>
-            </Alert.Heading>
-          </Alert>
+          <p
+            style={{
+              textAlign: 'center',
+              fontFamily: 'farmhouse',
+              fontSize: '22px'
+            }}
+          >
+            No Orders Yet...We recommend placing some{' '}
+            <a href="/products" style={{color: 'green'}}>
+              here
+            </a>!{' '}
+            <img
+              src="/img/sadCorn.png"
+              style={{alignItems: 'center', height: '400px'}}
+            />
+          </p>
         )}
       </div>
     )
