@@ -18,34 +18,34 @@ const initialState = {}
 /**
  * ACTION CREATORS
  */
-const setItems = items => ({
+export const setItems = items => ({
   type: SET_ITEMS,
   items
 })
 
-const deleteItem = productId => ({
+export const deleteItem = productId => ({
   type: DELETE_ITEM,
   productId
 })
 
-const addItem = item => ({
+export const addItem = item => ({
   type: ADD_ITEM,
   item
 })
-const setOrder = order => ({
+export const setOrder = order => ({
   type: SET_ORDER,
   order
 })
-const decreaseQuant = id => ({
+export const decreaseQuant = id => ({
   type: DECREMENT_ITEM,
   id
 })
-const increaseQuant = id => ({
+export const increaseQuant = id => ({
   type: INCREMENT_ITEM,
   id
 })
 
-const removeCart = () => ({
+export const removeCart = () => ({
   type: REMOVE_CART
 })
 
