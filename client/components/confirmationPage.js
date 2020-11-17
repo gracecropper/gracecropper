@@ -23,10 +23,10 @@ const ConfirmationPage = props => {
 
         <p className="message">
           {props.orderId
-            ? `Your order confirmation number is:  ${props.orderId}
-      You will recieve a confirmation email shortly...\n
-      The wait time for cropping image is 6-7 days and we will be in short contact :')`
-            : `No recent orders. Adopt some new rats today!`}
+            ? `Your order confirmation number is:  ${props.orderId}.
+      You will receive a confirmation email shortly.
+      The wait time for cropping images is 6-7 days. Check your inbox ;)`
+            : `No recent orders. Crop it like it's hot today!`}
         </p>
         <Col xs={8} md={6}>
           <Image src="/img/corn-confirm.jpg" alt="confirm" />
