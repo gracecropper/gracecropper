@@ -149,6 +149,14 @@ async function seed() {
       price: 10.0,
       imageUrl: '/img/croppedpic.png',
       description: 'get that photobomber outta your life!'
+    }),
+    Product.create({
+      name: `Natalie's Crop Top`,
+      type: 'Cropped Tops',
+      quantity: 20,
+      price: 75.0,
+      imageUrl: '/img/mapstatetocrops.jpg',
+      description: 'Map state to crops!'
     })
   ])
   //creating an order
