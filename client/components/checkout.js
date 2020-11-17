@@ -6,12 +6,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class checkout extends React.Component {
-  handleToken(token, address) {
-    console.log(token, address)
-  }
-  onSubmit(e) {
-    // e.stopPropagation()
-  }
+  handleToken(token, address) {}
   render() {
     return (
       <Container>
@@ -110,13 +105,7 @@ class checkout extends React.Component {
               </StripeCheckout>
             </div>
           </Row>
-          <Link to="/confirmation">
-            {' '}
-            Submit your order
-            {/* <Button variant="primary" type="submit" onClick={this.onCheckout}>
-              Submit
-          </Button> */}
-          </Link>
+          <Link to="/confirmation"> Submit your order</Link>
         </Form>
       </Container>
     )

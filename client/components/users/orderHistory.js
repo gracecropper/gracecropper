@@ -1,14 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getHistory, getSingleUser} from '../../store'
+import Alert from 'react-bootstrap/Alert'
 
 class OrderHistory extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userId: 0
-    }
-  }
   componentDidMount() {
     if (this.props.role === 'Admin' && this.props.match.params.id) {
       this.props.getHistory(this.props.match.params.id)
@@ -47,10 +42,26 @@ class OrderHistory extends React.Component {
               </div>
             ))
         ) : (
-          <p style={{'padding-left': '160px'}}>
-            No Orders Yet...We recommend placing some!{' '}
-            <img src="/img/sadCorn.png" />
-          </p>
+          <Alert variant="warning">
+            <Alert.Heading>
+              <p
+                style={{
+                  textAlign: 'center',
+                  fontFamily: 'farmhouse',
+                  fontSize: '22px'
+                }}
+              >
+                No Orders Yet...We recommend placing some{' '}
+                <a href="/products" style={{color: 'green'}}>
+                  here
+                </a>!{' '}
+                <img
+                  src="/img/sadCorn.png"
+                  style={{alignItems: 'center', height: '400px'}}
+                />
+              </p>
+            </Alert.Heading>
+          </Alert>
         )}
       </div>
     )

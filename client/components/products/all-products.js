@@ -5,7 +5,6 @@ import {BrowserRouter as Router, Link, useParams} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import AddDelete from './add-delete'
 import './all-products.css'
-import 'bootstrap/dist/css/bootstrap.css'
 import {DropdownButton, Dropdown, Button, Container} from 'react-bootstrap'
 
 /**

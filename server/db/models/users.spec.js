@@ -28,8 +28,13 @@ describe('User model', () => {
       expect(cody.correctPassword('bonez')).to.be.equal(false)
     })
 
-    it('returns true if the user is an admin', () => {
-      expect(cody.isAdmin()).to.be.equal(true)
+    it('isAdmin returns true if the user is an admin', async () => {
+      const codyInfo = await User.findOne({
+        where: {email: 'cody@puppybook.com'}
+      })
+
+      const isAdminFunc = await User.isAdmin(codyInfo.dataValues.id)
+      expect(isAdminFunc).to.be.equal(true)
     })
   }) // end describe('instanceMethods')
 }) // end describe('User model')

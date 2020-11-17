@@ -19,7 +19,7 @@ class Cart extends React.Component {
     this.handlePlus = this.handlePlus.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.emptyCart = this.emptyCart.bind(this)
-    // console.log('inside constructor')
+
   }
   async componentDidMount() {
     if (this.props.orderId !== undefined) {
@@ -44,7 +44,7 @@ class Cart extends React.Component {
       this.props.emptyCart(id)
       alert('Order deleted!')
     } catch (err) {
-      console.log('something wrong with deleting the order', err)
+      console.log('Something went wrong with deleting the order', err)
     }
   }
 
@@ -60,6 +60,7 @@ class Cart extends React.Component {
           accum + Number(val.orderItem.priceDisplay) * val.orderItem.quantity
         )
       }, 0)
+      console.log(subTotal)
 
       if (subTotal < 0) {
         subTotal = 0

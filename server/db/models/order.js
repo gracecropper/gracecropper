@@ -2,7 +2,6 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const OrderItem = require('./orderItem')
 
-// what is order quantity?
 const Order = db.define('order', {
   //date order placed, null if this order is user's cart
   date: {
@@ -56,15 +55,5 @@ Order.prototype.subtractTotal = async function(price, quantity) {
   this.quantity -= quantity
   await this.save()
 }
-
-//after update that does what the instance method does?
-// Order.afterUpdate(async (orderInstance, ) => {
-//   const items = await OrderItem.findAll({where: {id: orderInstance.id}})
-//reduce quantity
-//reduce price
-//   orderInstance.orderSubtotal +=
-//   orderInstance.quantity +=
-
-// })
 
 module.exports = Order

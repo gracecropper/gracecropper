@@ -3,8 +3,6 @@ import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/admin'
 import {Link} from 'react-router-dom'
 
-import './allusers.css'
-
 class AllUsersDC extends React.Component {
   constructor(props) {
     super(props)
@@ -12,7 +10,6 @@ class AllUsersDC extends React.Component {
   }
 
   componentDidMount() {
-    //need function to check if admin is logged in...
     this.props.getUsersInfo()
   }
 
@@ -21,7 +18,6 @@ class AllUsersDC extends React.Component {
 
     return (
       <div>
-        {/* put if statement here, that will display errorPage if user is not logged into admin account */}
         <div className="pageHeader">
           <h3>All Users</h3>
         </div>
