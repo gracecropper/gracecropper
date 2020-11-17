@@ -9,9 +9,13 @@ const Footer = () => {
       style={{backgroundColor: '#ffbb33'}}
       className="font-small pt-4 mt-4"
     >
-      <MDBContainer fluid className="text-center text-md-left">
+      <MDBContainer
+        fluid
+        className="text-center text-md-left"
+        style={{alignItems: 'right'}}
+      >
         <MDBRow>
-          <MDBCol md="6">
+          <MDBCol md="6" style={{paddingLeft: '50px'}}>
             <h5 className="title">Grace Cropper</h5>
             <p>Crop 'til you drop!</p>
             <a
@@ -22,22 +26,26 @@ const Footer = () => {
               <GoMarkGithub color="##e36397" size={32} /> Link to GitHub
             </a>
           </MDBCol>
-          <MDBCol md="6">
-            <h5 className="title">Proud Creators</h5>
-            <ul>
-              <li className="list-unstyled">
-                <AiTwotoneTrophy size={25} /> Tianying (Jenna) Jiang
-              </li>
-              <li className="list-unstyled">
-                <AiTwotoneTrophy size={25} /> Jin Young Choi
-              </li>
-              <li className="list-unstyled">
-                <AiTwotoneTrophy size={25} /> Amanda Barrafato
-              </li>
-              <li className="list-unstyled">
-                <AiTwotoneTrophy size={25} /> Jennifer Rafael
-              </li>
-            </ul>
+          <MDBCol md="5" style={{textAlign: 'left', paddingLeft: '200px'}}>
+            <MDBCol md="10">
+              <ul>
+                <li className="list-unstyled">
+                  <h5 className="title">Proud Creators</h5>
+                </li>
+                <li className="list-unstyled">
+                  <AiTwotoneTrophy size={25} /> Tianying (Jenna) Jiang
+                </li>
+                <li className="list-unstyled">
+                  <AiTwotoneTrophy size={25} /> Jin Young Choi
+                </li>
+                <li className="list-unstyled">
+                  <AiTwotoneTrophy size={25} /> Amanda Barrafato
+                </li>
+                <li className="list-unstyled">
+                  <AiTwotoneTrophy size={25} /> Jennifer Rafael
+                </li>
+              </ul>
+            </MDBCol>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
