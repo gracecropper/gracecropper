@@ -1,5 +1,5 @@
 #homePageGrid {
-  height: 100%;
+  height: 90%;
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: 30px;

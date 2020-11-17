@@ -1,14 +1,14 @@
 import React from 'react'
 import {Jumbotron, Container, Button} from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.css'
 import {Link} from 'react-router-dom'
 
 import './home.css'
 
 const Home = () => {
   return (
-    <div id="homePage">
+    <div id="homePage" style={{minHeight: '100vh'}}>
       <Jumbotron
-        fluid
         style={{
           backgroundColor: '#ffbb33',
           background: 'url("/img/crop2.gif")',

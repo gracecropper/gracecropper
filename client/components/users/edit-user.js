@@ -65,7 +65,7 @@ const EditUser = props => {
           <button
             type="submit"
             className="button"
-            style={{'background-color': '#ffca28'}}
+            style={{backgroundColor: '#ffca28'}}
           >
             Edit Profile
           </button>
