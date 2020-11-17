@@ -15,7 +15,7 @@ class OrderHistory extends React.Component {
   render() {
     const orders = this.props.orders || []
     return (
-      <div>
+      <div style={{'min-height': '100vh'}}>
         {orders.length ? (
           orders
             .filter(order =>

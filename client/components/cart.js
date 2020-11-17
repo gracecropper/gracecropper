@@ -19,7 +19,6 @@ class Cart extends React.Component {
     this.handlePlus = this.handlePlus.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.emptyCart = this.emptyCart.bind(this)
-
   }
   async componentDidMount() {
     if (this.props.orderId !== undefined) {
@@ -70,7 +69,7 @@ class Cart extends React.Component {
     }
 
     return (
-      <div className="shopping-cart">
+      <div className="shopping-cart" style={{'min-height': '100vh'}}>
         <h1>Shopping Cart</h1>
         {items.length === 0 ? (
           <h1>
