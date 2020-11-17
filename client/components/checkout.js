@@ -4,6 +4,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import {Form, FormControl, Row, Col, Container, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import './checkout.css'
 
 class checkout extends React.Component {
   handleToken(token, address) {}
@@ -71,21 +72,20 @@ class checkout extends React.Component {
               <Form.Control />
             </Form.Group>
           </Form.Row>
+
           <Form.Group as={Row} controlId="formHorizontalCheck">
-            <Col sm={10}>
+            <Col sm={1}>
               <Form.Check label="Shipping address is the same as my billing address" />
               <Form.Check label="Save this information for next time" />
             </Col>
           </Form.Group>
+
           <fieldset>
             <Form.Group as={Row}>
-              <Form.Label as="legend" column sm={2}>
-                <strong>Payment Method</strong>
-              </Form.Label>
-              <Col sm={10}>
+              <Col sm={1}>
                 <Form.Check
                   type="radio"
-                  label="Credit card"
+                  label="Credit Card"
                   name="formHorizontalRadios"
                   id="formHorizontalRadios1"
                 />
@@ -105,7 +105,11 @@ class checkout extends React.Component {
               </StripeCheckout>
             </div>
           </Row>
-          <Link to="/confirmation"> Submit your order</Link>
+          <Link to="/confirmation">
+            <button className="button" type="button">
+              Submit your order
+            </button>
+          </Link>
         </Form>
       </Container>
     )

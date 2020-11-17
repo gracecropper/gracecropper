@@ -19,7 +19,6 @@ class Cart extends React.Component {
     this.handlePlus = this.handlePlus.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
     this.emptyCart = this.emptyCart.bind(this)
-
   }
   async componentDidMount() {
     if (this.props.orderId !== undefined) {
@@ -96,7 +95,11 @@ class Cart extends React.Component {
         <p>${subTotal}</p>
         {subTotal > 0 ? (
           <div>
-            <Link to="/checkout">Check Out</Link>
+            <Link to="/checkout">
+              <button className="button" type="button">
+                Check Out
+              </button>
+            </Link>
             <button
               className="button"
               type="button"
