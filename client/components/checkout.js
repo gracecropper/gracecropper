@@ -5,6 +5,7 @@ import {Form, FormControl, Row, Col, Container, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+// I recommend splitting this component up into smaller single purpose components (form vs payment method vs. stripe maybe?)
 class checkout extends React.Component {
   handleToken(token, address) {}
   render() {

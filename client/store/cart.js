@@ -146,6 +146,8 @@ export const deleteCart = orderId => {
 /**
  * REDUCER
  */
+ // can we combine increment and decrement to just 'update_quantity' where it overwrites the quantity
+ // can we combine the remove user and remove cart?
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ITEMS:

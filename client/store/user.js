@@ -48,6 +48,7 @@ export const auth = (email, password, method) => async dispatch => {
   }
 }
 
+// potential trade-off place to dispatch a "reset cart" action
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')

@@ -2,6 +2,8 @@ const router = require('express').Router()
 const {OrderItem, Order, Product} = require('../db/models')
 module.exports = router
 
+// What kind of protections should we have on these routes? Can I modify someone else's cart if I know their id?
+
 // POST REQUEST FOR CREATING NEW ORDER
 router.post('/', async (req, res, next) => {
   try {

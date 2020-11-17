@@ -2,6 +2,8 @@ const router = require('express').Router()
 const {Product} = require('../db/models')
 const {User} = require('../db/models')
 
+// can we take the admin logic and put it in a reusable function?
+
 router.get('/', async (req, res, next) => {
   try {
     const allProducts = await Product.findAll()

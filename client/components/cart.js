@@ -21,6 +21,7 @@ class Cart extends React.Component {
     this.emptyCart = this.emptyCart.bind(this)
 
   }
+  // no need to call async/await here as that is handled by the thunk
   async componentDidMount() {
     if (this.props.orderId !== undefined) {
       this.props.loadProducts(this.props.orderId)
@@ -48,6 +49,7 @@ class Cart extends React.Component {
     }
   }
 
+  // total logic: can we put it in another function? or use state somehow?
   render() {
     const items = this.props.items || []
     const orderId = this.props.orderId
