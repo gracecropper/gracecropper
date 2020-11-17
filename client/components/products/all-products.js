@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts, removeProduct} from '../../store/allProducts'
-import {BrowserRouter as Router, Link, withRouter} from 'react-router-dom'
+import {BrowserRouter as Router, Link, useParams} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import AddDelete from './add-delete'
 import './all-products.css'
@@ -12,17 +12,27 @@ import {DropdownButton, Dropdown, Button, Container} from 'react-bootstrap'
  * COMPONENT
  */
 class AllProductsDC extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       selection: 'All',
-      sort: ''
+      loading: true
     }
     this.productsFilter = this.productsFilter.bind(this)
   }
 
   componentDidMount() {
     this.props.getAllProducts()
+
+    let query = new URLSearchParams(this.props.history.location.hash)
+    if (query.has('#/?filter')) {
+      let filter = query.get('#/?filter')
+      this.setState({selection: `${filter}`}, () => {
+        this.setState({loading: false})
+      })
+    } else {
+      setTimeout(() => this.setState({loading: false}), 200)
+    }
   }
 
   productsFilter(event) {
@@ -34,20 +44,18 @@ class AllProductsDC extends React.Component {
   }
 
   render() {
-    const loading = this.props.loading
+    const loading = this.state.loading
     const allProducts = this.props.allProducts || []
     const role = this.props.role || 'User'
 
-    //filtering products
-    //need to refactor once DB gets refactored...
     const filteredProducts = allProducts.filter(val => {
-      if (this.state.selection === 'Crops') {
+      if (this.state.selection === 'crops') {
         return val.type === 'Crops'
       }
-      if (this.state.selection === 'Cropped Tops') {
+      if (this.state.selection === 'croppedtops') {
         return val.type === 'Cropped Tops'
       }
-      if (this.state.selection === 'Cropped Pictures') {
+      if (this.state.selection === 'croppedpictures') {
         return val.type === 'Cropped Pictures'
       } else {
         return val
@@ -72,12 +80,22 @@ class AllProductsDC extends React.Component {
               title="View"
               onSelect={this.productsFilter}
             >
-              <Dropdown.Item eventKey="All">All</Dropdown.Item>
-              <Dropdown.Item eventKey="Crops">Crops</Dropdown.Item>
-              <Dropdown.Item eventKey="Cropped Tops">
+              <Dropdown.Item eventKey="All" href="#/">
+                All
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="crops" href="#/?filter=crops">
+                Crops
+              </Dropdown.Item>
+              <Dropdown.Item
+                eventKey="croppedtops"
+                href="#/?filter=croppedtops"
+              >
                 Cropped Tops
               </Dropdown.Item>
-              <Dropdown.Item eventKey="Cropped Pictures">
+              <Dropdown.Item
+                eventKey="croppedpictures"
+                href="#/?filter=croppedpictures"
+              >
                 Cropped Photos
               </Dropdown.Item>
             </DropdownButton>
