@@ -95,7 +95,11 @@ class Cart extends React.Component {
         <p>${subTotal}</p>
         {subTotal > 0 ? (
           <div>
-            <Link to="/checkout">Check Out</Link>
+            <Link to="/checkout">
+              <button className="button" type="button">
+                Check Out
+              </button>
+            </Link>
             <button
               className="button"
               type="button"
