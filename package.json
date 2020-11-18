@@ -69,6 +69,7 @@
     "react-router-dom": "^5.0.0",
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^6.1.0",
+    "react-use-window-size": "^1.0.1",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
