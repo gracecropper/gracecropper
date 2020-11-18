@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import Confetti from 'react-confetti'
 import './confirmationPage.css'
 import 'bootstrap/dist/css/bootstrap.css'
+
 import {
   Image,
   Form,
@@ -17,8 +18,9 @@ import {
 const ConfirmationPage = props => {
   return (
     <div id="checkoutPage">
-      <Confetti width={3000} height={3000} numberOfPieces={2500} />
-      <Container fluid="md">
+      <Container>
+        <Confetti />
+
         <h3 className="congrat">Thank you for your order!</h3>
 
         <p className="message">
