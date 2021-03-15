@@ -17,12 +17,6 @@ describe('Products routes', () => {
         type: 'Crops',
         quantity: 20,
         price: 1000
-      },
-      {
-        name: 'Crop Tops',
-        type: 'Cropped Tops',
-        quantity: 40,
-        price: 2000
       }
     ]
     beforeEach(async () => {
@@ -38,7 +32,6 @@ describe('Products routes', () => {
 
       expect(res.body).to.be.an('array')
       expect(res.body[0].name).to.equal('Crops')
-      expect(res.body[1].name).to.equal('Crop Tops')
     }) // end describe('/api/users')
   }) // end describe('User routes')
 })
